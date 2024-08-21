@@ -111,14 +111,11 @@ object GameController extends IGameController {
   /** Returns the id of the current game unit. The current game unit is the unit
    * that can do actions, in other words, it's their turn.
    */
-  
-  var currentGameUnitId: String = ""
-  
+
+  var currentGameUnitId: String = "c1"
+
   def getCurrentGameUnitId: String = currentGameUnitId
 
-  /** Decides the next game unit id. This method is called after an action is
-   * executed. It should return the id of the next game unit that will play.
-   */
   def main(args: Array[String]): Unit = {
 
     GameApi.run(args)
