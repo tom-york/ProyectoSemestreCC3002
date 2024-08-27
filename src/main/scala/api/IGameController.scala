@@ -39,7 +39,9 @@ trait IGameController {
     *   the actions that the game unit can do, or None if the game unit is not
     *   found
     */
-  def findActionsByGameUnitId(id: String): Option[JsVal]
+  def findActionsByGameUnitId(id: String): Option[JsVal] = Some(
+    JsObj("actions" -> JsArr())
+  )
 
   /** Executes an action.
     *
@@ -52,8 +54,10 @@ trait IGameController {
     * @return
     *   a message that describes the result of the action
     */
-  def doAction(actionId: String, sourceId: String, targetId: String): String
+  def doAction(actionId: String, sourceId: String, targetId: String): String = {
+    "TODO"
+  }
 
   /** Resets the game. All configurations and parameters should be reset too. */
-  def reset(): Unit
+  def reset(): Unit = {}
 }
