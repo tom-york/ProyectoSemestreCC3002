@@ -1,11 +1,10 @@
 package model.players
-
 import model.units.Units
 
-trait Player {
+class Player(unitList: List[Units], defeatState: Boolean) extends IPlayer {
 
-  def getUnitList: List[Units]
+  override def getUnitList: List[Units] = unitList
 
-  def isDefeated: Boolean
-
+  override def isDefeated: Boolean = defeatState
+  
 }

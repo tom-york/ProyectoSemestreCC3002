@@ -1,6 +1,6 @@
 package model.items
 
-import model.players.Player
+import model.players.IPlayer
 
 trait Weapon extends Item {
   
@@ -10,5 +10,5 @@ trait Weapon extends Item {
   
   def getWeight: Int
   
-  def getOwner: Player
+  def getOwner: IPlayer
 }
