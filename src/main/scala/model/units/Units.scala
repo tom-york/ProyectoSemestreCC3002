@@ -1,6 +1,6 @@
 package model.units
 
-trait IUnit {
+trait Units {
 
   def getName: String
 
