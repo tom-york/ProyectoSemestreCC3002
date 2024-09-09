@@ -3,7 +3,7 @@ package model.items
 import munit.FunSuite
 import model.units.Knight
 
-class WeaponTest {
+class WeaponTest extends FunSuite {
   private val sword1: Sword = new Sword()
   private val wand1: Wand = new Wand()
   private val name = "weapon"
@@ -41,8 +41,8 @@ class WeaponTest {
   }
 
   test("A weapon has an owner.") {
-    assertEquals(sword1.getOwner, 30)
-    assertEquals(wand1.getOwner, 30)
+    assertEquals(sword1.getOwner, owner1)
+    assertEquals(wand1.getOwner, owner1)
   }
 
   test("A magical weapon has magic attack points.") {

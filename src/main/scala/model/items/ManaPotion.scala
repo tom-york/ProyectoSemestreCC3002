@@ -1,5 +1,5 @@
 package model.items
 
-class ManaPotion {
+class ManaPotion extends Potion {
 
 }

@@ -1,7 +1,7 @@
 package model.units
 
 import munit.FunSuite
-import model.items.{Item, Weapon}
+import model.items.{Item, ManaPotion, Sword, Weapon}
 
 
 class CharacterTest extends FunSuite{
@@ -13,8 +13,9 @@ class CharacterTest extends FunSuite{
   private val defensePoints = 60
   private val weight = 30
   private val manaPoints = 30
-  private val weapon = _
-  private val itemInventory: List[Item] =
+  private val weapon = new Sword
+  private val item1 = new ManaPotion
+  private val itemInventory: List[Item] = List(weapon, item1)
 
   override def beforeEach(context: BeforeEach): Unit = {
     knight1.setName(name)
@@ -55,7 +56,12 @@ class CharacterTest extends FunSuite{
 
   test("A character has a weapon slot.") {
     assertEquals(knight1.getWeapon, weapon)
-    assertEquals(blackWizard1.getWeight, weapon)
+    assertEquals(blackWizard1.getWeapon, weapon)
+  }
+
+  test("A character has an item inventory.") {
+    assertEquals(knight1.getItemInventory, itemInventory)
+    assertEquals(blackWizard1.getItemInventory, itemInventory)
   }
 
   test("A magical characters has mana points.") {
