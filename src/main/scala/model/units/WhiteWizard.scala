@@ -1,5 +1,5 @@
 package model.units
 
-class WhiteWizard {
+class WhiteWizard extends AbstractMagicCharacter{
 
 }

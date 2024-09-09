@@ -1,10 +1,11 @@
 package model.units
 
-import model.items.{Item, Weapon}
 import munit.FunSuite
+import model.items.{Item, Weapon}
+
 
 class CharacterTest extends FunSuite{
-  //all normal characters extend from the same abstract, without new functions, so test will be apply to only one type of normal characters
+  //all normal characters extend from the same abstract, without new functions, so test will be applied to only one type of normal characters
   private val knight1: Knight = new Knight()
   private val blackWizard1: BlackWizard = new BlackWizard()
   private val name = "character"
@@ -12,7 +13,7 @@ class CharacterTest extends FunSuite{
   private val defensePoints = 60
   private val weight = 30
   private val manaPoints = 30
-  private val weapon = new Weapon()
+  private val weapon = _
   private val itemInventory: List[Item] =
 
   override def beforeEach(context: BeforeEach): Unit = {
