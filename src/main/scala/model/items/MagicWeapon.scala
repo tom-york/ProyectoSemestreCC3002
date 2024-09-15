@@ -1,6 +1,6 @@
 package model.items
 
-class MagicWeapon extends Weapon {
+abstract class MagicWeapon extends Weapon {
 
   private var magicAttackPoints: Int = _
 

@@ -1,6 +1,6 @@
 package model.units
 
-class AbstractMagicCharacter extends AbstractCharacter {
+abstract class AbstractMagicCharacter extends AbstractCharacter {
 
   private var manaPoints: Int = _
 

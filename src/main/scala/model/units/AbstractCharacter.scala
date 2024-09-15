@@ -3,7 +3,7 @@ package model.units
 import model.items.{Item, Weapon}
 
 
-class AbstractCharacter extends AbstractUnit {
+abstract class AbstractCharacter extends AbstractUnit {
   
   private var weaponSlot: Weapon = _
   
