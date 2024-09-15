@@ -1,6 +1,8 @@
 package model.items
 
-trait Item {
+import api.GameObject
+
+trait Item extends GameObject{
   
   def getName: String
 

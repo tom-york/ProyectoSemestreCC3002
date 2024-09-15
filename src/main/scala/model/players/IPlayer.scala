@@ -1,8 +1,9 @@
 package model.players
 
+import api.GameObject
 import model.units.Units
 
-trait IPlayer {
+trait IPlayer extends GameObject{
 
   def getUnitList: List[Units]
 

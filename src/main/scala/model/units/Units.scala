@@ -1,6 +1,9 @@
 package model.units
 
-trait Units {
+import api.GameObject
+
+trait Units extends GameObject{
+  
   def setName(sName: String): Unit
 
   def setHp(sHp: Int): Unit
