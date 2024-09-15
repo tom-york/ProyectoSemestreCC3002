@@ -1,7 +1,8 @@
 package model.items
 
+import model.items.Weapons.{Sword, Wand}
+import model.units.Characters.Knight
 import munit.FunSuite
-import model.units.Knight
 
 class WeaponTest extends FunSuite {
   private val sword1: Sword = new Sword()
