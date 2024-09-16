@@ -54,4 +54,22 @@ class PanelTest extends FunSuite{
     panel4.setSouth(panelVacio)
     panel4.setEast(panelVacio)
   }
+
+  test("A panel has a set of coordinates.") {
+    assertEquals(panel1.getCoordinates, (1, 1))
+  }
+  test("A panel has a list of units.") {
+    assertEquals(panel1.getCoordinates, (1, 1))
+  }
+  test("A panel has to have a way to recognize its neighbours.") {
+    assertEquals(panel1.getNorth, panelVacio)
+    assertEquals(panel1.getWest, panelVacio)
+    assertEquals(panel1.getSouth, panel3)
+    assertEquals(panel1.getEast, panel2)
+
+    assertEquals(panel4.getNorth, panel2)
+    assertEquals(panel4.getWest, panel3)
+    assertEquals(panel4.getSouth, panelVacio)
+    assertEquals(panel4.getEast, panelVacio)
+  }  
 }
