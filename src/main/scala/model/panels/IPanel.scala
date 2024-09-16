@@ -1,7 +1,7 @@
 package model.panels
 
 import model.units.Units
-import scala.collection.immutable.Map
+
 
 trait IPanel {
   def setCoordinates(x: Int, y: Int): Unit
@@ -15,4 +15,16 @@ trait IPanel {
   def setSouth(panel: Panel): Unit
 
   def setEast(panel: Panel): Unit
+
+  def getCoordinates: (Int, Int)
+
+  def getUnits: List[Units]
+
+  def getNorth: Panel
+
+  def getWest: Panel
+
+  def getSouth: Panel
+
+  def getEast: Panel
 }

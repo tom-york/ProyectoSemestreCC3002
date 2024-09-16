@@ -1,7 +1,11 @@
 package model.actions
 
-trait Action {
-  def setName(name: String): Unit
+abstract class Action {
+  private var actionName: String = _
   
-  def getName: String
+  def setName(name: String): Unit = {
+    actionName = name 
+  }
+
+  def getName: String = actionName
 }

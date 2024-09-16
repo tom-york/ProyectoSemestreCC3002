@@ -1,5 +1,5 @@
 package model.actions
 
-class Attack {
+class Attack extends Action {
 
 }

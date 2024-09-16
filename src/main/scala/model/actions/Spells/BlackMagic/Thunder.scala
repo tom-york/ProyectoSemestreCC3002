@@ -1,5 +1,7 @@
 package model.actions.Spells.BlackMagic
 
-class Thunder {
+import model.actions.Action
+
+class Thunder extends Action {
 
 }
