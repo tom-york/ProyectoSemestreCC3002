@@ -1,6 +1,6 @@
 package model.panels
 
-import model.units.Enemy
+import model.units.{Enemy, Units}
 import munit.FunSuite
 
 class PanelTest extends FunSuite{
@@ -15,7 +15,7 @@ class PanelTest extends FunSuite{
   enemy1.setDp(60)
   enemy1.setWeight(30)
   enemy1.setAtk(40)
-  val unitList: List[Unit] = List(enemy1)
+  val unitList: List[Units] = List(enemy1)
 
   override def beforeEach(context: BeforeEach): Unit = {
     panel1 = new Panel
@@ -24,7 +24,7 @@ class PanelTest extends FunSuite{
     panel4 = new Panel
     panelVacio = new Panel
 
-    panelVacio.empty()
+    panelVacio.empty(true)
 
     panel1.setCoordinates(1, 1)
     panel1.setUnits(unitList)
@@ -59,7 +59,7 @@ class PanelTest extends FunSuite{
     assertEquals(panel1.getCoordinates, (1, 1))
   }
   test("A panel has a list of units.") {
-    assertEquals(panel1.getCoordinates, (1, 1))
+    assertEquals(panel1.getUnits, unitList)
   }
   test("A panel has to have a way to recognize its neighbours.") {
     assertEquals(panel1.getNorth, panelVacio)
