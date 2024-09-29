@@ -1,14 +1,6 @@
 package model.units
 
-abstract class AbstractUnit extends Units {
-
-  private var name: String = _
-
-  private var healthPoints: Int = _
-
-  private var defensePoints: Int = _
-
-  private var weight: Int = _
+abstract class AbstractUnit(private var name: String, private var healthPoints: Int, private var defensePoints: Int, private var weight: Int)  extends Units {
 
   override def setName(sName: String): Unit = {
     name = sName

@@ -9,8 +9,8 @@ import model.units.Characters.{BlackWizard, Knight}
 
 class CharacterTest extends FunSuite{
   //all normal characters extend from the same abstract, without new functions, so test will be applied to only one type of normal characters
-  private val knight1: Knight = new Knight()
-  private val blackWizard1: BlackWizard = new BlackWizard()
+  private var knight1: Knight = _
+  private var blackWizard1: BlackWizard = _
   private val name = "character"
   private val healthPoints = 90
   private val defensePoints = 60
@@ -21,20 +21,8 @@ class CharacterTest extends FunSuite{
   private val itemInventory: List[Item] = List(weapon, item1)
 
   override def beforeEach(context: BeforeEach): Unit = {
-    knight1.setName(name)
-    knight1.setHp(healthPoints)
-    knight1.setDp(defensePoints)
-    knight1.setWeight(weight)
-    knight1.setWeapon(Some(weapon))
-    knight1.setItemInventory(itemInventory)
-
-    blackWizard1.setName(name)
-    blackWizard1.setHp(healthPoints)
-    blackWizard1.setDp(defensePoints)
-    blackWizard1.setWeight(weight)
-    blackWizard1.setWeapon(Some(weapon))
-    blackWizard1.setItemInventory(itemInventory)
-    blackWizard1.setMp(manaPoints)
+    knight1 = new Knight(name, healthPoints, defensePoints, weight, Some(weapon), itemInventory)
+    blackWizard1 = new BlackWizard(name, healthPoints, defensePoints, weight, Some(weapon), itemInventory, manaPoints)
   }
 
   test("A character has a name.") {

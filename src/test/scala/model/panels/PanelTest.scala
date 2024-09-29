@@ -8,12 +8,7 @@ class PanelTest extends FunSuite{
   var panel2: Panel = _
   var panel3: Panel = _
   var panel4: Panel = _
-  var enemy1: Enemy = new Enemy()
-  enemy1.setName("juan")
-  enemy1.setHp(90)
-  enemy1.setDp(60)
-  enemy1.setWeight(30)
-  enemy1.setAtk(40)
+  var enemy1: Enemy = new Enemy("juan", 90, 60, 30, 40)
   val unitList: List[Units] = List(enemy1)
 
   override def beforeEach(context: BeforeEach): Unit = {

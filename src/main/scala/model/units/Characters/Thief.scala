@@ -1,9 +1,10 @@
 package model.units.Characters
 
+import model.items.{Item, Weapon}
 import model.units.AbstractCharacter
 import util.Json.{*, given}
 
-class Thief extends AbstractCharacter {
+class Thief(name: String, healthPoints: Int, defensePoints: Int, weight: Int, weaponSlot: Option[Weapon], itemInventory: List[Item]) extends AbstractCharacter(name, healthPoints, defensePoints, weight, weaponSlot, itemInventory) {
 
   override def id: String = "Thief"
 

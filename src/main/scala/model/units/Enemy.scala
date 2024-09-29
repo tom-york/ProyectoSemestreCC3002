@@ -2,9 +2,7 @@ package model.units
 
 import util.Json.{*, given}
 
-class Enemy extends AbstractUnit {
-
-  private var attackPoints: Int = _
+class Enemy(name: String, healthPoints: Int, defensePoints: Int, weight: Int, private var attackPoints: Int) extends AbstractUnit(name, healthPoints, defensePoints, weight) {
 
   def setAtk(sAtk: Int): Unit = {
     attackPoints = sAtk

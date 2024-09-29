@@ -3,12 +3,8 @@ package model.units
 import model.items.{Item, Weapon}
 
 
-abstract class AbstractCharacter extends AbstractUnit {
+abstract class AbstractCharacter(name: String, healthPoints: Int, defensePoints: Int, weight: Int, private var weaponSlot: Option[Weapon], private var itemInventory: List[Item]) extends AbstractUnit(name, healthPoints, defensePoints, weight) {
   
-  private var weaponSlot: Option[Weapon] = _
-  
-  private var itemInventory: List[Item] = _
-
   def setWeapon(weapon: Option[Weapon]): Unit = {
     weaponSlot = weapon
   }
