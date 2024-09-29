@@ -1,9 +1,10 @@
 package model.items.Weapons
 
 import model.items.MagicWeapon
+import model.units.AbstractCharacter
 import util.Json.{*, given}
 
-class Wand extends MagicWeapon {
+class Wand(name: String, attackPoints: Int, weight: Int, owner: AbstractCharacter, magicAttackPoints: Int) extends MagicWeapon(name, attackPoints, weight, owner, magicAttackPoints) {
 
   override def id: String = "Wand"
 

@@ -3,7 +3,7 @@ package model.items.Potions
 import model.items.Potion
 import util.Json.{*, given}
 
-class ManaPotion extends Potion {
+class ManaPotion(name: String) extends Potion(name) {
 
   override def id: String = "ManaPotion"
 

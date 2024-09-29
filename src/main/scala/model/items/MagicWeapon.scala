@@ -1,12 +1,12 @@
 package model.items
 
-abstract class MagicWeapon extends Weapon {
+import model.units.AbstractCharacter
 
-  private var magicAttackPoints: Int = _
+abstract class MagicWeapon(name: String, attackPoints: Int, weight: Int, owner: AbstractCharacter, private var magicAttackPoints: Int) extends Weapon(name, attackPoints, weight, owner) {
 
-  def setMagicAttackPoints(newMap: Int): Unit = {
+  def setMagicAttackPoints(newMAp: Int): Unit = {
     
-    magicAttackPoints = newMap
+    magicAttackPoints = newMAp
     
   }
 

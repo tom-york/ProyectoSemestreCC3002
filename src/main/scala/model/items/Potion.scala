@@ -1,8 +1,6 @@
 package model.items
 
-abstract class Potion extends Item {
-
-  private var name: String = _
+abstract class Potion(private var name: String) extends Item {
 
   def setName(newName: String): Unit = {
     name = newName

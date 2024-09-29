@@ -2,15 +2,7 @@ package model.items
 
 import model.units.AbstractCharacter
 
-abstract class Weapon extends Item {
-
-  private var name: String = _
-
-  private var attackPoints: Int = _
-
-  private var weight: Int = _
-
-  private var owner: AbstractCharacter = _
+abstract class Weapon(private var name: String, private var attackPoints: Int, private var weight: Int, private var owner: AbstractCharacter) extends Item {
   
   def setName(newName: String): Unit = {
     name = newName

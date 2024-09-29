@@ -5,25 +5,18 @@ import model.units.Characters.Knight
 import munit.FunSuite
 
 class WeaponTest extends FunSuite {
-  private val sword1: Sword = new Sword()
-  private val wand1: Wand = new Wand()
+  private var sword1: Sword = _
+  private var wand1: Wand = _
   private val name = "weapon"
   private val attackPoints = 90
   private val weight = 30
   private val magicAttackPoints = 30
-  private val owner1: Knight = Knight()
+  private val owner1: Knight = Knight("juan", 90, 60, 30, None, List())
 
   override def beforeEach(context: BeforeEach): Unit = {
-    sword1.setName(name)
-    sword1.setAttackPoints(attackPoints)
-    sword1.setWeight(weight)
-    sword1.setOwner(owner1)
+    sword1 = new Sword(name, attackPoints, weight, owner1)
 
-    wand1.setName(name)
-    wand1.setAttackPoints(attackPoints)
-    wand1.setWeight(weight)
-    wand1.setOwner(owner1)
-    wand1.setMagicAttackPoints(magicAttackPoints)  
+    wand1 = new Wand(name, attackPoints, weight, owner1, magicAttackPoints)
   }
 
   test("A weapon has a name.") {

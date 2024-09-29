@@ -4,11 +4,11 @@ import model.items.Potions.ManaPotion
 import munit.FunSuite
 
 class PotionTest extends FunSuite{
-  private val potion1: ManaPotion = new ManaPotion()
+  private var potion1: ManaPotion = _
   private val name = "potion"
 
   override def beforeEach(context: BeforeEach): Unit = {
-    potion1.setName(name)
+    potion1 = new ManaPotion(name)
   }
 
   test("A potion has a name.") {

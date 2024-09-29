@@ -16,8 +16,8 @@ class CharacterTest extends FunSuite{
   private val defensePoints = 60
   private val weight = 30
   private val manaPoints = 30
-  private val weapon = new Sword
-  private val item1 = new ManaPotion
+  private val weapon = new Sword("weapon", 90, 30, knight1)
+  private val item1 = new ManaPotion("potion")
   private val itemInventory: List[Item] = List(weapon, item1)
 
   override def beforeEach(context: BeforeEach): Unit = {
