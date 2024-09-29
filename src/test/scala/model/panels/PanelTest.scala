@@ -8,7 +8,6 @@ class PanelTest extends FunSuite{
   var panel2: Panel = _
   var panel3: Panel = _
   var panel4: Panel = _
-  var panelVacio: Panel = _
   var enemy1: Enemy = new Enemy()
   enemy1.setName("juan")
   enemy1.setHp(90)
@@ -18,41 +17,10 @@ class PanelTest extends FunSuite{
   val unitList: List[Units] = List(enemy1)
 
   override def beforeEach(context: BeforeEach): Unit = {
-    panel1 = new Panel
-    panel2 = new Panel
-    panel3 = new Panel
-    panel4 = new Panel
-    panelVacio = new Panel
-
-    panelVacio.empty(true)
-
-    panel1.setCoordinates(1, 1)
-    panel1.setUnits(unitList)
-    panel1.setNorth(panelVacio)
-    panel1.setWest(panelVacio)
-    panel1.setSouth(panel3)
-    panel1.setEast(panel2)
-
-    panel2.setCoordinates(2, 1)
-    panel2.setUnits(unitList)
-    panel2.setNorth(panelVacio)
-    panel2.setWest(panel1)
-    panel2.setSouth(panel4)
-    panel2.setEast(panelVacio)
-
-    panel3.setCoordinates(1, 2)
-    panel3.setUnits(unitList)
-    panel3.setNorth(panel1)
-    panel3.setWest(panelVacio)
-    panel3.setSouth(panelVacio)
-    panel3.setEast(panel4)
-
-    panel4.setCoordinates(2, 2)
-    panel4.setUnits(unitList)
-    panel4.setNorth(panel2)
-    panel4.setWest(panel3)
-    panel4.setSouth(panelVacio)
-    panel4.setEast(panelVacio)
+    panel1 = new Panel((1, 1), unitList, None, None, Some(panel3), Some(panel2))
+    panel2 = new Panel((2, 1), unitList, None, Some(panel1), Some(panel4), None)
+    panel3 = new Panel((1, 2), unitList, Some(panel1), None, None, Some(panel4))
+    panel4 = new Panel((2, 2), unitList, Some(panel2), Some(panel3), None, None)
   }
 
   test("A panel has a set of coordinates.") {
@@ -62,14 +30,14 @@ class PanelTest extends FunSuite{
     assertEquals(panel1.getUnits, unitList)
   }
   test("A panel has to have a way to recognize its neighbours.") {
-    assertEquals(panel1.getNorth, panelVacio)
-    assertEquals(panel1.getWest, panelVacio)
-    assertEquals(panel1.getSouth, panel3)
-    assertEquals(panel1.getEast, panel2)
+    assertEquals(panel1.getNorth, None)
+    assertEquals(panel1.getWest, None)
+    assertEquals(panel1.getSouth, Some(panel3))
+    assertEquals(panel1.getEast, Some(panel2))
 
-    assertEquals(panel4.getNorth, panel2)
-    assertEquals(panel4.getWest, panel3)
-    assertEquals(panel4.getSouth, panelVacio)
-    assertEquals(panel4.getEast, panelVacio)
+    assertEquals(panel4.getNorth, Some(panel2))
+    assertEquals(panel4.getWest, Some(panel3))
+    assertEquals(panel4.getSouth, None)
+    assertEquals(panel4.getEast, None)
   }  
 }
