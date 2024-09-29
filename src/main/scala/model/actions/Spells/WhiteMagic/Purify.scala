@@ -1,7 +1,7 @@
 package model.actions.Spells.WhiteMagic
 
-import model.actions.Action
+import model.actions.Spells.Spell
 
-class Purify extends Action {
+class Purify(name: String) extends Spell(name) {
 
 }

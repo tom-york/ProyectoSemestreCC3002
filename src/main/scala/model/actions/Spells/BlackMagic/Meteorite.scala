@@ -1,7 +1,7 @@
 package model.actions.Spells.BlackMagic
 
-import model.actions.Action
+import model.actions.Spells.Spell
 
-class Meteorite extends Action {
+class Meteorite(name: String) extends Spell(name) {
 
 }

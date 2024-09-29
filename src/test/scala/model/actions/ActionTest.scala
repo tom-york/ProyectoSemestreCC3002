@@ -3,22 +3,25 @@ package model.actions
 import model.actions.Use.{Consume, Equip}
 import model.items.Potions.ManaPotion
 import model.items.Weapons.*
+import model.units.Characters.Knight
 import munit.FunSuite
 
 class ActionTest extends FunSuite{
-  private val potion1 = new ManaPotion
-  private val weapon1 = new Bow
-  private val equip = new Equip
-  private val consume = new Consume
+  private val potion1: ManaPotion = new ManaPotion("Potion")
+  private val weapon1: Bow = new Bow("weapon", 90, 30, new Knight("lolo", 30, 30, 30, None, List()))
+  private var equip: Equip = _
+  private var consume: Consume = _
 
   override def beforeEach(context: BeforeEach): Unit = {
-    equip.setName("equip1")
+    equip = new Equip("eq", List(weapon1))
+    consume = new Consume("co", List(potion1))
   }
 
   test("An action has a name.") {
-    assertEquals(equip.getName, "equip1")
+    assertEquals(equip.getName, "eq")
   }
-  
-  //test("An action that uses items has to have a list of the objects that it can use.") {
-  //}
+
+  test("An action that uses items has to have a list of the objects that it can use.") {
+    assertEquals(equip.getUsableList, List(weapon1))
+  }
 }

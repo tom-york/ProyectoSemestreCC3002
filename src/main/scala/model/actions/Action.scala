@@ -1,7 +1,6 @@
 package model.actions
 
-abstract class Action {
-  private var actionName: String = _
+abstract class Action(private var actionName: String) {
   
   def setName(name: String): Unit = {
     actionName = name 

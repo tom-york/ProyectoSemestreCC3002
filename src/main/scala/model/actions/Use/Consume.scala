@@ -1,8 +1,7 @@
 package model.actions.Use
 
-import model.actions.Action
 import model.items.Potion
 
-class Consume extends Action {
+class Consume(name: String, usableItems: List[Potion]) extends UsageAction(name, usableItems) {
 
 }

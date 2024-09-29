@@ -1,5 +1,5 @@
 package model.actions
 
-class Move extends Action {
+class Move(name: String) extends Action(name) {
 
 }
