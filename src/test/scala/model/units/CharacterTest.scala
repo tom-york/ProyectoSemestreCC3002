@@ -25,14 +25,14 @@ class CharacterTest extends FunSuite{
     knight1.setHp(healthPoints)
     knight1.setDp(defensePoints)
     knight1.setWeight(weight)
-    knight1.setWeapon(weapon)
+    knight1.setWeapon(Some(weapon))
     knight1.setItemInventory(itemInventory)
 
     blackWizard1.setName(name)
     blackWizard1.setHp(healthPoints)
     blackWizard1.setDp(defensePoints)
     blackWizard1.setWeight(weight)
-    blackWizard1.setWeapon(weapon)
+    blackWizard1.setWeapon(Some(weapon))
     blackWizard1.setItemInventory(itemInventory)
     blackWizard1.setMp(manaPoints)
   }
@@ -58,8 +58,8 @@ class CharacterTest extends FunSuite{
   }
 
   test("A character has a weapon slot.") {
-    assertEquals(knight1.getWeapon, weapon)
-    assertEquals(blackWizard1.getWeapon, weapon)
+    assertEquals(knight1.getWeapon, Some(weapon))
+    assertEquals(blackWizard1.getWeapon, Some(weapon))
   }
 
   test("A character has an item inventory.") {
