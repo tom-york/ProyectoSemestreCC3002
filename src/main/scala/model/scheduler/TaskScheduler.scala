@@ -1,5 +1,5 @@
 package model.scheduler
 
-class TaskScheduler {
+class TaskScheduler extends ITaskScheduler {
 
 }

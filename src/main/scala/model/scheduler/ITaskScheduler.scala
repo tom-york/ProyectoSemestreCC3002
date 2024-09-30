@@ -7,6 +7,8 @@ trait ITaskScheduler {
   def addUnit(units: Units): Unit
 
   def removeUnit(unit: Units): Unit
+  
+  def getSchedulerContent: Map[Units, (Double, Double)]
 
   def calculateActionBarMax(): Unit
 
