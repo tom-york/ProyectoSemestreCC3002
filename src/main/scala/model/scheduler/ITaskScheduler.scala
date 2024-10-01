@@ -14,7 +14,7 @@ trait ITaskScheduler {
 
   def restartActionBar(unit: Units): Unit
   
-  def increaseActionBars(): Unit
+  def increaseActionBars(k: Int): Unit
 
   def isActionBarComplete(unit: Units): Boolean
 
