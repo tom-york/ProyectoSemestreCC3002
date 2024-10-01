@@ -2,19 +2,21 @@ package model.scheduler
 
 import model.units.Units
 
+import scala.collection.mutable
+
 trait ITaskScheduler {
 
-  def addUnit(units: Units): Unit
+  def addUnit(unit: Units): Unit
 
   def removeUnit(unit: Units): Unit
   
-  def getSchedulerContent: Map[Units, (Double, Double)]
+  def getSchedulerContent: mutable.Map[Units, ActionBar]
 
   def calculateActionBarMax(): Unit
 
   def restartActionBar(unit: Units): Unit
   
-  def increaseActionBars(k: Int): Unit
+  def increaseActionBars(k: Double): Unit
 
   def isActionBarComplete(unit: Units): Boolean
 
