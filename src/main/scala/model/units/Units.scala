@@ -19,5 +19,7 @@ trait Units extends GameObject{
   def getDp: Int
 
   def getWeight: Int
+  
+  def calculateActionBarMax: Double
 
 }

@@ -16,5 +16,11 @@ abstract class AbstractCharacter(name: String, healthPoints: Int, defensePoints:
   def getWeapon: Option[Weapon] = weaponSlot
   
   def getItemInventory: List[Item] = itemInventory
-  
+
+  def calculateActionBarMax: Double = {
+    if (weaponSlot.isDefined) {
+      weight + 0.5 * weaponSlot.get.getWeight
+    } 
+    else weight
+  }
 }

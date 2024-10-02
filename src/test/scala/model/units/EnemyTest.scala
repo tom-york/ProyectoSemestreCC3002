@@ -30,5 +30,9 @@ class EnemyTest extends FunSuite {
 
   test("An enemy has attack points.") {
     assertEquals(enemy.getAtk, 40)
-  }  
+  }
+
+  test("An enemy can calculate the maximum for its action bar.") {
+    assertEquals(enemy.calculateActionBarMax, 30.0)
+  }
 }

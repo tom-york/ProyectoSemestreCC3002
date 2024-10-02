@@ -22,4 +22,6 @@ class Enemy(name: String, healthPoints: Int, defensePoints: Int, weight: Int, pr
       JsObj("name" -> "weight", "value" -> getWeight),
     )
   )
+
+  def calculateActionBarMax: Double = (weight).toDouble
 }

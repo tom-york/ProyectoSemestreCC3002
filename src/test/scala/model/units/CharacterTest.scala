@@ -22,7 +22,7 @@ class CharacterTest extends FunSuite{
 
   override def beforeEach(context: BeforeEach): Unit = {
     knight1 = new Knight(name, healthPoints, defensePoints, weight, Some(weapon), itemInventory)
-    blackWizard1 = new BlackWizard(name, healthPoints, defensePoints, weight, Some(weapon), itemInventory, manaPoints)
+    blackWizard1 = new BlackWizard(name, healthPoints, defensePoints, weight, None, itemInventory, manaPoints)
   }
 
   test("A character has a name.") {
@@ -47,7 +47,7 @@ class CharacterTest extends FunSuite{
 
   test("A character has a weapon slot.") {
     assertEquals(knight1.getWeapon, Some(weapon))
-    assertEquals(blackWizard1.getWeapon, Some(weapon))
+    assertEquals(blackWizard1.getWeapon, None)
   }
 
   test("A character has an item inventory.") {
@@ -57,5 +57,10 @@ class CharacterTest extends FunSuite{
 
   test("A magical characters has mana points.") {
     assertEquals(blackWizard1.getMp, 30)
+  }
+
+  test("A character can calculate the maximum for its action bar"){
+    assertEquals(knight1.calculateActionBarMax, 45.0)
+    assertEquals(blackWizard1.calculateActionBarMax, 30.0)
   }
 }
