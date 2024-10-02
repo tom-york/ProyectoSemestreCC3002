@@ -1,17 +1,19 @@
 package model.panels
 
 import model.units.Units
+
 import scala.collection.immutable.Map
+import scala.collection.mutable.ArrayBuffer
 
 class Panel extends IPanel {
   private var coordinates: (Int, Int) = _
-  private var unitList: List[Units] = _
+  private var unitArray: ArrayBuffer[Units] = _
   private var neighbours: Map[String, Option[Panel]] = Map.empty
 
-  def this(c: (Int, Int), l: List[Units], north: Option[Panel], west: Option[Panel], south: Option[Panel], east: Option[Panel]) = {
+  def this(c: (Int, Int), a: ArrayBuffer[Units], north: Option[Panel], west: Option[Panel], south: Option[Panel], east: Option[Panel]) = {
     this()
     coordinates = c
-    unitList = l
+    unitArray = a
     neighbours = neighbours + ("north" -> north) + ("west" -> west) + ("south" -> south) + ("east" -> east)
   }
 
@@ -19,8 +21,8 @@ class Panel extends IPanel {
     coordinates = (x, y)
   }
   
-  def setUnits(uList: List[Units]): Unit = {
-    unitList = uList
+  def setUnits(uArray: ArrayBuffer[Units]): Unit = {
+    unitArray = uArray
   }
 
   def setNorth(panel: Option[Panel]): Unit = {
@@ -41,7 +43,7 @@ class Panel extends IPanel {
 
   def getCoordinates: (Int, Int) = coordinates
 
-  def getUnits: List[Units] = unitList
+  def getUnits: ArrayBuffer[Units] = unitArray
   
   def getNorth: Option[Panel] = neighbours("north")
 
@@ -53,7 +55,7 @@ class Panel extends IPanel {
 
   override def equals(other: Any): Boolean = {
     other match {
-      case p: Panel => coordinates == p.getCoordinates && unitList == p.getUnits
+      case p: Panel => coordinates == p.getCoordinates && unitArray == p.getUnits
       case _ => false
     }
   }

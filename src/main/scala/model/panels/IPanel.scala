@@ -2,11 +2,13 @@ package model.panels
 
 import model.units.Units
 
+import scala.collection.mutable.ArrayBuffer
+
 
 trait IPanel {
   def setCoordinates(x: Int, y: Int): Unit
 
-  def setUnits(uList: List[Units]): Unit
+  def setUnits(uArray: ArrayBuffer[Units]): Unit
   
   def setNorth(panel: Option[Panel]): Unit
 
@@ -18,7 +20,7 @@ trait IPanel {
 
   def getCoordinates: (Int, Int)
 
-  def getUnits: List[Units]
+  def getUnits: ArrayBuffer[Units]
 
   def getNorth: Option[Panel]
 
