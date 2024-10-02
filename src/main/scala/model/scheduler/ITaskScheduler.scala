@@ -3,6 +3,7 @@ package model.scheduler
 import model.units.Units
 
 import scala.collection.mutable
+import scala.collection.mutable.ArrayBuffer
 
 trait ITaskScheduler {
 
@@ -20,7 +21,7 @@ trait ITaskScheduler {
 
   def isActionBarComplete(unit: Units): Boolean
 
-  def getCompleteActionBarUnits: List[Units]
+  def getCompleteActionBarUnits: ArrayBuffer[Units]
 
   def getCurrentUnit: Units
   

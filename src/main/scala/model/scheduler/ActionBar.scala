@@ -13,6 +13,10 @@ class ActionBar extends IActionBar {
   def setCurrent(x: Double): Unit = {
     current = x
   }
+  
+  def increaseCurrent(x: Double): Unit = {
+    current += x
+  }
 
   def getTuple: (Double, Double) = (max, current)
 

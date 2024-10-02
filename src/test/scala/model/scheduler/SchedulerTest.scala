@@ -3,8 +3,10 @@ package model.scheduler
 import model.items.Weapons.{Sword, Wand}
 import model.units.Characters.{Knight, WhiteWizard}
 import model.units.Enemy
-import scala.collection.mutable
+
 import munit.FunSuite
+
+import scala.collection.mutable.ArrayBuffer
 
 class SchedulerTest extends FunSuite {
   private var scheduler1: TaskScheduler = _
@@ -77,9 +79,9 @@ class SchedulerTest extends FunSuite {
 
   test("A scheduler should be able to return all units that have completed their action bars in order.") {
     scheduler1.calculateActionBarMax()
-    assertEquals(scheduler1.getCompleteActionBarUnits, List())
+    assertEquals(scheduler1.getCompleteActionBarUnits, ArrayBuffer())
     scheduler1.increaseActionBars(45)
-    assertEquals(scheduler1.getCompleteActionBarUnits, List(character1, enemy1))
+    assertEquals(scheduler1.getCompleteActionBarUnits, ArrayBuffer(character1, enemy1))
   }
 
   test("A scheduler should be able to return all units that have completed their action bars in order.") {
