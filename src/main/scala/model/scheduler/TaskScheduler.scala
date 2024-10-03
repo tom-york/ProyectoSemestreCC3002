@@ -43,12 +43,14 @@ class TaskScheduler extends ITaskScheduler {
   }
 
   def getCompleteActionBarUnits: ArrayBuffer[Units] = {
-    var completedArray: ArrayBuffer[Units] = ArrayBuffer()
+    var completedArray: ArrayBuffer[(Units, ActionBar)] = ArrayBuffer()
     for ((unit, actionBar) <- schedulerMap) {
       if (isActionBarComplete(unit)) {
+        completedArray.append((unit, actionBar))
       }
     }
-    completedArray
+    completedArray = completedArray.sortBy(element => -(element._2.getCurrent - element._2.getMax))
+    completedArray.map(_._1)
   }
 
   def getCurrentUnit: Units = getCompleteActionBarUnits.head
