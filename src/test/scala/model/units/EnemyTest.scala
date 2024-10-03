@@ -18,6 +18,7 @@ class EnemyTest extends FunSuite {
 
   test("An enemy has health points.") {
     assertEquals(enemy.getHp, 90)
+
   }
 
   test("An enemy has damage points.") {
@@ -30,6 +31,8 @@ class EnemyTest extends FunSuite {
 
   test("An enemy has attack points.") {
     assertEquals(enemy.getAtk, 40)
+    enemy.setAtk(90)
+    assertEquals(enemy.getAtk, 90)
   }
 
   test("An enemy can calculate the maximum for its action bar.") {
