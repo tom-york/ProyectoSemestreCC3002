@@ -1,6 +1,6 @@
 package model.items
 
-import model.units.AbstractCharacter
+import model.units.Character
 
 trait Weapon extends Item {
 
@@ -8,12 +8,12 @@ trait Weapon extends Item {
 
   def setWeight(newWeight: Int): Unit
 
-  def setOwner(newOwner: AbstractCharacter): Unit
+  def setOwner(newOwner: Character): Unit
 
   def getAttackPoints: Int
 
   def getWeight: Int
 
-  def getOwner: AbstractCharacter
+  def getOwner: Character
 
 }

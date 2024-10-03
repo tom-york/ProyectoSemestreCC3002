@@ -1,10 +1,10 @@
 package model.items.Weapons
 
-import model.items.Weapon
-import model.units.AbstractCharacter
+import model.items.AbstractWeapon
+import model.units.Character
 import util.Json.{*, given}
 
-class Bow(name: String, attackPoints: Int, weight: Int, owner: AbstractCharacter) extends Weapon(name, attackPoints, weight, owner) {
+class Bow(name: String, attackPoints: Int, weight: Int, owner: Character) extends AbstractWeapon(name, attackPoints, weight, owner) {
 
   override def id: String = "Bow"
 

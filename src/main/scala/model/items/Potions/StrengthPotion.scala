@@ -1,9 +1,9 @@
 package model.items.Potions
 
-import model.items.Potion
+import model.items.AbstractPotion
 import util.Json.{*, given}
 
-class StrengthPotion(name: String) extends Potion(name) {
+class StrengthPotion(name: String) extends AbstractPotion(name) {
 
   override def id: String = "StrengthPotion"
 

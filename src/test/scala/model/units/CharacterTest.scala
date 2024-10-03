@@ -3,7 +3,7 @@ package model.units
 import model.items.Potions.ManaPotion
 import model.items.Weapons.Sword
 import munit.FunSuite
-import model.items.{Item, AbstractWeapon}
+import model.items.{Item, Weapon}
 import model.units.Characters.*
 
 
