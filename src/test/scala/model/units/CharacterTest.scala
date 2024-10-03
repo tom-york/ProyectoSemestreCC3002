@@ -1,10 +1,13 @@
 package model.units
 
-import model.items.Potions.ManaPotion
-import model.items.Weapons.Sword
+import model.items.Potions.MagicPotions.ManaPotion
+import model.items.Weapons.Weapon
 import munit.FunSuite
-import model.items.{Item, Weapon}
+import model.items.Item
+import model.items.Weapons.NormalWeapons.Sword
 import model.units.Characters.*
+import model.units.Characters.MagicCharacters.{BlackWizard, WhiteWizard}
+import model.units.Characters.NormalCharacters.{Archer, Knight, Thief}
 
 
 class CharacterTest extends FunSuite{

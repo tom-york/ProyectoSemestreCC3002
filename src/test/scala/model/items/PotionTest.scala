@@ -1,6 +1,6 @@
 package model.items
 
-import model.items.Potions.ManaPotion
+import model.items.Potions.MagicPotions.ManaPotion
 import munit.FunSuite
 
 class PotionTest extends FunSuite{

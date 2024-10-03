@@ -1,9 +1,10 @@
 package model.actions
 
-import model.actions.Use.{Consume, Equip}
-import model.items.Potions.ManaPotion
+import model.actions.Usage.{Consume, Equip}
+import model.items.Potions.MagicPotions.ManaPotion
 import model.items.Weapons.*
-import model.units.Characters.Knight
+import model.items.Weapons.NormalWeapons.Bow
+import model.units.Characters.NormalCharacters.Knight
 import munit.FunSuite
 
 class ActionTest extends FunSuite{

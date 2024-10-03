@@ -1,7 +1,8 @@
 package model.items
 
-import model.items.Weapons.{Sword, Wand}
-import model.units.Characters.Knight
+import model.items.Weapons.MagicWeapons.Wand
+import model.items.Weapons.NormalWeapons.Sword
+import model.units.Characters.NormalCharacters.Knight
 import munit.FunSuite
 
 class WeaponTest extends FunSuite {

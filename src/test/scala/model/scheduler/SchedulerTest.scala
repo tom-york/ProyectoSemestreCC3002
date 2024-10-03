@@ -1,7 +1,9 @@
 package model.scheduler
 
-import model.items.Weapons.{Sword, Wand}
-import model.units.Characters.{Knight, WhiteWizard}
+import model.items.Weapons.MagicWeapons.Wand
+import model.items.Weapons.NormalWeapons.Sword
+import model.units.Characters.MagicCharacters.WhiteWizard
+import model.units.Characters.NormalCharacters.Knight
 import model.units.Enemy
 
 import munit.FunSuite
