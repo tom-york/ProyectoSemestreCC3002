@@ -1,13 +1,16 @@
 package model.items
 
-import model.items.Weapons.MagicWeapons.Wand
-import model.items.Weapons.NormalWeapons.Sword
+import model.items.Weapons.MagicWeapons.*
+import model.items.Weapons.NormalWeapons.*
 import model.units.Characters.NormalCharacters.Knight
 import munit.FunSuite
 
 class WeaponTest extends FunSuite {
   private var sword1: Sword = _
+  private var bow1: Bow = _
+  private var dagger1: Dagger = _
   private var wand1: Wand = _
+  private var staff1: Staff = _
   private val name = "weapon"
   private val attackPoints = 90
   private val weight = 30
@@ -16,8 +19,10 @@ class WeaponTest extends FunSuite {
 
   override def beforeEach(context: BeforeEach): Unit = {
     sword1 = new Sword(name, attackPoints, weight, owner1)
-
+    bow1 = new Bow(name, attackPoints, weight, owner1)
+    dagger1 = new Dagger(name, attackPoints, weight, owner1)
     wand1 = new Wand(name, attackPoints, weight, owner1, magicAttackPoints)
+    staff1 = new Staff(name, attackPoints, weight, owner1, magicAttackPoints)
   }
 
   test("A weapon has a name.") {
