@@ -33,6 +33,7 @@ abstract class AbstractCharacter(name: String, healthPoints: Int, defensePoints:
       JsObj("name" -> "hp", "value" -> getHp.toString),
       JsObj("name" -> "dp", "value" -> getDp.toString),
       JsObj("name" -> "weight", "value" -> getWeight.toString),
-    )
+    ),
+    "img" -> "mockImage.gif"
   )
 }

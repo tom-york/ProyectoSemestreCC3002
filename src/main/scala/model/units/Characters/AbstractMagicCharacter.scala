@@ -20,6 +20,7 @@ abstract class AbstractMagicCharacter(name: String, healthPoints: Int, defensePo
       JsObj("name" -> "dp", "value" -> getDp.toString),
       JsObj("name" -> "mp", "value" -> getMp.toString),
       JsObj("name" -> "weight", "value" -> getWeight.toString),
-    )
+    ),
+    "img" -> "mockImage.gif"
   )
 }

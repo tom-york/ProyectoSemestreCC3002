@@ -97,17 +97,20 @@ class CharacterTest extends FunSuite{
 
     val knightJson = JsObj(
       "id" -> JsStr("Knight"),
-      "attributes" -> attributesJsArr
+      "attributes" -> attributesJsArr,
+      "img" -> "mockImage.gif"
     )
 
     val archerJson = JsObj(
       "id" -> JsStr("Archer"),
-      "attributes" -> attributesJsArr
+      "attributes" -> attributesJsArr,
+      "img" -> "mockImage.gif"
     )
 
     val thiefJson = JsObj(
       "id" -> JsStr("Thief"),
-      "attributes" -> attributesJsArr
+      "attributes" -> attributesJsArr,
+      "img" -> "mockImage.gif"
     )
 
     val blackJson = JsObj(
@@ -118,7 +121,8 @@ class CharacterTest extends FunSuite{
         JsObj("name" -> "dp", "value" -> "60"),
         JsObj("name" -> "mp", "value" -> "30"),
         JsObj("name" -> "weight", "value" -> "30"),
-      )
+      ),
+      "img" -> "mockImage.gif"
     )
 
     val whiteJson = JsObj(
@@ -129,7 +133,8 @@ class CharacterTest extends FunSuite{
         JsObj("name" -> "dp", "value" -> "60"),
         JsObj("name" -> "mp", "value" -> "30"),
         JsObj("name" -> "weight", "value" -> "30"),
-      )
+      ),
+      "img" -> "mockImage.gif"
     )
 
     assertEquals(knight1.toJson, knightJson)

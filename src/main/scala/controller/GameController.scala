@@ -112,7 +112,7 @@ object GameController extends IGameController {
    * that can do actions, in other words, it's their turn.
    */
 
-  var currentGameUnitId: String = "c1"
+  private var currentGameUnitId: String = "c1"
 
   def getCurrentGameUnitId: String = currentGameUnitId
 
