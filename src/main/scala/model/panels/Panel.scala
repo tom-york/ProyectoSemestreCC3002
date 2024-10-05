@@ -4,6 +4,7 @@ import model.units.Units
 
 import scala.collection.immutable.Map
 import scala.collection.mutable.ArrayBuffer
+import util.Json.{*, given}
 
 class Panel extends IPanel {
   private var coordinates: (Int, Int) = _
@@ -52,6 +53,15 @@ class Panel extends IPanel {
   def getSouth: Option[Panel] = neighbours("south")
 
   def getEast: Option[Panel] = neighbours("east")
+
+  override def id: String = "Panel"
+
+  override def toJson: JsObj = JsObj(
+    "id" -> id,
+    "x" -> getCoordinates(0),
+    "y" -> getCoordinates(1),
+    "storage" -> JsArr(unitArray.map(_.toJson))
+  )
 
   override def equals(other: Any): Boolean = {
     other match {

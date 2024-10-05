@@ -5,7 +5,7 @@ import model.items.Weapons.NormalWeapons.Sword
 import model.units.Characters.MagicCharacters.WhiteWizard
 import model.units.Characters.NormalCharacters.Knight
 import model.units.Enemy
-
+import util.Json.{*, given}
 import munit.FunSuite
 
 import scala.collection.mutable.ArrayBuffer

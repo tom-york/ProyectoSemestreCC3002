@@ -1,6 +1,6 @@
 package model.items.Potions
 
-import model.items.Potions.Potion
+import util.Json.{*, given}
 
 abstract class AbstractPotion(private var name: String) extends Potion {
 
@@ -9,5 +9,10 @@ abstract class AbstractPotion(private var name: String) extends Potion {
   }
 
   def getName: String = name
-  
+
+  override def toJson: JsObj = JsObj(
+    "id" -> this.id,
+    "name" -> getName
+  )
+
 }

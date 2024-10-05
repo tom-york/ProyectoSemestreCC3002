@@ -16,12 +16,12 @@ class Enemy(name: String, healthPoints: Int, defensePoints: Int, weight: Int, pr
     "id" -> id,
     "attributes" -> JsArr(
       JsObj("name" -> "name", "value" -> getName),
-      JsObj("name" -> "hp", "value" -> getHp),
-      JsObj("name" -> "atk", "value" -> getAtk),
-      JsObj("name" -> "dp", "value" -> getDp),
-      JsObj("name" -> "weight", "value" -> getWeight),
+      JsObj("name" -> "hp", "value" -> getHp.toString),
+      JsObj("name" -> "atk", "value" -> getAtk.toString),
+      JsObj("name" -> "dp", "value" -> getDp.toString),
+      JsObj("name" -> "weight", "value" -> getWeight.toString),
     )
   )
 
-  def calculateActionBarMax: Double = (weight).toDouble
+  def calculateActionBarMax: Double = weight.toDouble
 }

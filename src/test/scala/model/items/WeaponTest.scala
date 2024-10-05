@@ -4,6 +4,7 @@ import model.items.Weapons.MagicWeapons.*
 import model.items.Weapons.NormalWeapons.*
 import model.units.Characters.NormalCharacters.Knight
 import munit.FunSuite
+import util.Json.{*, given}
 
 class WeaponTest extends FunSuite {
   private var sword1: Sword = _
@@ -60,5 +61,33 @@ class WeaponTest extends FunSuite {
     staff1.setMagicAttackPoints(40)
     assertEquals(staff1.getMagicAttackPoints, 40)
   }
-  
+
+  test("Weapon JSON test") {
+    val swordJson = JsObj(
+      "id" -> "Sword",
+      "name" -> "weapon"
+    )
+    val bowJson = JsObj(
+      "id" -> "Bow",
+      "name" -> "weapon"
+    )
+    val daggerJson = JsObj(
+      "id" -> "Dagger",
+      "name" -> "weapon",
+    )
+    val wandJson = JsObj(
+      "id" -> "Wand",
+      "name" -> "weapon",
+    )
+    val staffJson = JsObj(
+      "id" -> "Staff",
+      "name" -> "weapon",
+    )
+    
+    assertEquals(sword1.toJson, swordJson)
+    assertEquals(bow1.toJson, bowJson)
+    assertEquals(dagger1.toJson, daggerJson)
+    assertEquals(wand1.toJson, wandJson)
+    assertEquals(staff1.toJson, staffJson)
+  }
 }

@@ -1,11 +1,12 @@
 package model.panels
 
+import api.GameObject
 import model.units.Units
 
 import scala.collection.mutable.ArrayBuffer
 
 
-trait IPanel {
+trait IPanel extends GameObject{
   def setCoordinates(x: Int, y: Int): Unit
 
   def setUnits(uArray: ArrayBuffer[Units]): Unit

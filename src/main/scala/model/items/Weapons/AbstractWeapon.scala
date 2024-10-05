@@ -1,6 +1,7 @@
 package model.items.Weapons
 
 import model.units.Characters.Character
+import util.Json.{*, given}
 
 abstract class AbstractWeapon(private var name: String, private var attackPoints: Int, private var weight: Int, private var owner: Character) extends Weapon {
   
@@ -27,5 +28,9 @@ abstract class AbstractWeapon(private var name: String, private var attackPoints
   def getWeight: Int = weight
 
   def getOwner: Character = owner
-  
+
+  override def toJson: JsObj = JsObj(
+    "id" -> this.id,
+    "name" -> getName
+  )
 }

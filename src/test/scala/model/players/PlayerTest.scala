@@ -2,6 +2,7 @@ package model.players
 
 import model.units.Enemy
 import munit.FunSuite
+import util.Json.{*, given}
 
 class PlayerTest extends FunSuite {
   var player1: Player = _
@@ -26,5 +27,16 @@ class PlayerTest extends FunSuite {
   test("A player can be defeated") {
     assertEquals(player1.isDefeated, true)
     assertEquals(player2.isDefeated, false)
+  }
+
+  test("Player JSON test") {
+    val player2Json = JsObj(
+      "id" -> "Player",
+      "characters" -> JsArr(
+        enemy1.toJson,
+        enemy2.toJson
+      )
+    )
+    assertEquals(player2.toJson, player2Json)
   }
 }

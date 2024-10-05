@@ -13,7 +13,6 @@ class Player(unitList: List[Units], defeatState: Boolean) extends IPlayer {
 
   override def toJson: JsObj = JsObj(
     "id" -> id,
-    "characters" -> JsArr(
-    )
+    "characters" -> JsArr(unitList.map(_.toJson))
   )
 }

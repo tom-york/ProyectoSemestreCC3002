@@ -8,7 +8,7 @@ import model.items.Weapons.NormalWeapons.Sword
 import model.units.Characters.*
 import model.units.Characters.MagicCharacters.{BlackWizard, WhiteWizard}
 import model.units.Characters.NormalCharacters.{Archer, Knight, Thief}
-
+import util.Json.{*, given}
 
 class CharacterTest extends FunSuite{
   //all normal characters extend from the same abstract, without new functions, so test will be applied to only one type of normal characters
@@ -16,7 +16,7 @@ class CharacterTest extends FunSuite{
   private var blackWizard1: BlackWizard = _
   private var whiteWizard1: WhiteWizard = _
   private var thief1: Thief = _
-  private var archer: Archer = _
+  private var archer1: Archer = _
   private val name = "character"
   private val healthPoints = 90
   private val defensePoints = 60
@@ -29,7 +29,7 @@ class CharacterTest extends FunSuite{
   override def beforeEach(context: BeforeEach): Unit = {
     knight1 = new Knight(name, healthPoints, defensePoints, weight, Some(weapon), itemInventory)
     thief1 = new Thief(name, healthPoints, defensePoints, weight, None, itemInventory)
-    archer = new Archer(name, healthPoints, defensePoints, weight, Some(weapon), List())
+    archer1 = new Archer(name, healthPoints, defensePoints, weight, Some(weapon), List())
     blackWizard1 = new BlackWizard(name, healthPoints, defensePoints, weight, None, itemInventory, manaPoints)
     whiteWizard1 = new WhiteWizard(name, healthPoints, defensePoints, weight, None, itemInventory, manaPoints)
   }
@@ -85,5 +85,58 @@ class CharacterTest extends FunSuite{
   test("A character can calculate the maximum for its action bar"){
     assertEquals(knight1.calculateActionBarMax, 45.0)
     assertEquals(blackWizard1.calculateActionBarMax, 30.0)
+  }
+
+  test("Character JSON test") {
+    val attributesJsArr = JsArr(
+      JsObj("name" -> "name", "value" -> "character"),
+      JsObj("name" -> "hp", "value" -> "90"),
+      JsObj("name" -> "dp", "value" -> "60"),
+      JsObj("name" -> "weight", "value" -> "30"),
+    )
+
+    val knightJson = JsObj(
+      "id" -> JsStr("Knight"),
+      "attributes" -> attributesJsArr
+    )
+
+    val archerJson = JsObj(
+      "id" -> JsStr("Archer"),
+      "attributes" -> attributesJsArr
+    )
+
+    val thiefJson = JsObj(
+      "id" -> JsStr("Thief"),
+      "attributes" -> attributesJsArr
+    )
+
+    val blackJson = JsObj(
+      "id" -> JsStr("BlackWizard"),
+      "attributes" -> JsArr(
+        JsObj("name" -> "name", "value" -> "character"),
+        JsObj("name" -> "hp", "value" -> "90"),
+        JsObj("name" -> "dp", "value" -> "60"),
+        JsObj("name" -> "mp", "value" -> "30"),
+        JsObj("name" -> "weight", "value" -> "30"),
+      )
+    )
+
+    val whiteJson = JsObj(
+      "id" -> JsStr("WhiteWizard"),
+      "attributes" -> JsArr(
+        JsObj("name" -> "name", "value" -> "character"),
+        JsObj("name" -> "hp", "value" -> "90"),
+        JsObj("name" -> "dp", "value" -> "60"),
+        JsObj("name" -> "mp", "value" -> "30"),
+        JsObj("name" -> "weight", "value" -> "30"),
+      )
+    )
+
+    assertEquals(knight1.toJson, knightJson)
+    assertEquals(archer1.toJson, archerJson)
+    assertEquals(thief1.toJson, thiefJson)
+    assertEquals(whiteWizard1.toJson, whiteJson)
+    assertEquals(blackWizard1.toJson, blackJson)
+
   }
 }
