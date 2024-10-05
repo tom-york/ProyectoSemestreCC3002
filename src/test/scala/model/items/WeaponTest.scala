@@ -28,25 +28,37 @@ class WeaponTest extends FunSuite {
   test("A weapon has a name.") {
     assertEquals(sword1.getName, "weapon")
     assertEquals(wand1.getName, "weapon")
+    sword1.setName("master sword")
+    assertEquals(sword1.getName, "master sword")
   }
 
   test("A weapon has attack points.") {
     assertEquals(sword1.getAttackPoints, 90)
     assertEquals(wand1.getAttackPoints, 90)
+    wand1.setAttackPoints(120)
+    assertEquals(wand1.getAttackPoints, 120)
   }
 
   test("A weapon has a certain weight.") {
     assertEquals(sword1.getWeight, 30)
     assertEquals(wand1.getWeight, 30)
+    sword1.setWeight(100)
+    assertEquals(sword1.getWeight, 100)
   }
 
   test("A weapon has an owner.") {
     assertEquals(sword1.getOwner, owner1)
-    assertEquals(wand1.getOwner, owner1)
+    assertEquals(dagger1.getOwner, owner1)
+    val owner2: Knight = new Knight("kn", 90, 90, 90, None, List())
+    dagger1.setOwner(owner2)
+    assertEquals(dagger1.getOwner, owner2)
   }
 
   test("A magical weapon has magic attack points.") {
     assertEquals(wand1.getMagicAttackPoints, 30)
+    assertEquals(staff1.getMagicAttackPoints, 30)
+    staff1.setMagicAttackPoints(40)
+    assertEquals(staff1.getMagicAttackPoints, 40)
   }
   
 }

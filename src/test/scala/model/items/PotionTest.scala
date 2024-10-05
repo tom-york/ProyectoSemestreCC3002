@@ -20,5 +20,7 @@ class PotionTest extends FunSuite{
 
   test("A potion has a name.") {
     assertEquals(mana1.getName, "potion")
+    mana1.setName("mana potion")
+    assertEquals(mana1.getName, "mana potion")
   }
 }
