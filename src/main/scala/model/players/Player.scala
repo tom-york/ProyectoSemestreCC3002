@@ -4,7 +4,7 @@ import model.units.Units
 import util.Json.{*, given}
 
 // Concrete class representing a player, implementing the IPlayer interface
-class Player(unitList: List[Units], defeatState: Boolean) extends IPlayer {
+class Player(private var unitList: List[Units], private var defeatState: Boolean) extends IPlayer {
 
   // Returns the list of units assigned to the player
   override def getUnitList: List[Units] = unitList
