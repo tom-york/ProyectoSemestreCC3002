@@ -1,79 +1,91 @@
-# Tarea 0 - Introducción a Scala y Git
+# Final Reality Tactics
 
-La idea de esta primera entrega es que se familiaricen con el lenguaje Scala, 
-así como el manejo de Git. La finalidad es que sean capaces de ejecutar tanto el
-_front-end_ (opcional) como el _back-end_ del proyecto.
+This is a Scala-based structure for a turn-based RPG that revolves around units, players, items, and a task scheduler. The project is designed to handle game mechanics such as action bars, panels, weapons, potions, and player management.
 
-## GameController
+## Table of Contents
 
-Esta entrega consiste en crear de manera _hard-coded_ un estado de juego inicial
-para que después lo puedan visualizar con el _front-end_.
+- [Project Structure](#project-structure)
+- [Usage](#usage)
+    - [Creating Units](#creating-units)
+    - [Task Scheduler](#task-scheduler)
+    - [Panels](#panels)
+    - [Weapons and Items](#weapons-and-items)
 
-Dentro del repositorio se encuentra un archivo llamado GameController y otro
-IGameController. El segundo corresponde a la **interface** o **trait** del
-primero y cumple con ser una pauta de lo que deben implementar para esta
-entrega.
+## Project Structure
 
-GameController cuenta con una implementación muy básica de ejemplo, donde se
-incluye una unidad del juego y un panel o casilla. Ustedes deben recrear el
-siguiente escenario:
-
-![resultado.jpg](resultado.jpg)
-
-Donde hay:
-- Tres personajes:
-   1. "Relm" cuyo id es "c1", tiene 100 puntos de "hp" y 50 de "atk".
-   2. "Setzer" cuyo id es "c2", tiene 150 puntos de "hp", 40 de "atk" y 10 de
-   "def".
-   3. "Terra" cuyo id es "c3", tiene 200 puntos de "hp", 30 de "atk", 20 de
-   "def", y 20 de "mp".
-
-- Cuatro paneles:
-   1. Panel "p1" en (1, 1) donde está Relm
-   2. Panel "p2" en (2, 1) donde está Setzer
-   3. Panel "p3" en (2, 2) donde no hay nadie
-   4. Panel "p4" en (1, 2) donde está Terra
-
-## Git
-Para la correcta inicialización de su trabajo en este proyecto, debe realizar
-las siguientes instrucciones:
-
-1. Seguir el enlace de *GitHub Classroom* que se les ha entregado para crear un
-repositorio privado con los archivos base del proyecto.
-
-2. Clonar el repositorio en su computador. Para esto, utilice el comando
-``git clone <url>``. Una vez situado en el directorio en el que trabajará
-
-**IMPORTANTE**: Usted debe abrir IntelliJ desde la carpeta que clonó, es decir,
-la que tenga el nombre PENDIENTE. Hacerlo desde la carpeta que contiene a esta
-no permitirá el correcto funcionamiento de la aplicación.
-
-3. Crear una rama llamada ``entrega-final-0``.
-
-   - Para esto, utilice el comando ``git branch <branch_name>``. En este caso,
-   sería ``git branch entrega-final-0``.
-   
-   - Para que su progreso pueda ser almacenado en dicha rama (y no en la rama
-   main u otras), debe utilizar el comando ``git checkout <branch_name>``. En
-   este caso, sería ``git checkout entrega-final-0``. A esto se le conoce
-   comúnmente como "cambiarse de rama".
-
-*Tenga en cuenta que el cuerpo docente tiene acceso total a su repositorio.*
-
-## Entrega
-Para subir su entrega, deberá crear un *pull request* desde la rama
-``entrega-final-0`` a la rama ``main`` llamado ``Tarea 0 - Entrega Final``.
-
-Es importante que **no hagan merge** de la rama ``entrega-final-0`` a la rama
-``main`` para que el cuerpo docente pueda revisar su *pull request*.
-
-Por *U-Cursos* debe entregar un único archivo llamado ``entrega-final-0.txt``
-con el siguiente contenido:
+The project is organized into several packages, each of which encapsulates core features of the game:
 
 ```
-Nombre: <Nombre completo>
-Pull Request: <Link del pull request>
+├── api
+│   └── GameObject.scala       # Base trait for all game objects
+├── model
+│   ├── items                  # Contains items, weapons, and potions
+│   ├── panels                 # Contains panel objects and interactions
+│   ├── players                # Defines players and their logic
+│   ├── scheduler              # Handles task scheduling and action bar management
+│   └── units                  # Contains unit definitions (characters, enemies)
+└── util
+    └── Json.scala             # Utility to convert objects into JSON
 ```
 
-La realización de esta entrega es **obligatoria** y corresponde al 10% de la 
-nota de Tareas.
+### Core Modules:
+
+1. **api**: Defines the `GameObject` trait, which every entity in the game implements. This trait is the root of the game's object hierarchy.
+
+2. **model.items**: Defines different types of game items, including:
+    - `Item`: The base interface for all items.
+    - `Weapon` and `MagicWeapon`: Extend `Item` with properties like `attackPoints`, `weight`, and `magicAttackPoints`.
+    - `Potion`: Represents usable items in the game, like potions.
+
+3. **model.panels**: Handles the game's panel system. A `Panel` contains units and can be connected to other panels (north, south, east, west).
+
+4. **model.players**: Contains the `Player` and `IPlayer` traits, defining core methods for managing units and tracking defeat states.
+
+5. **model.scheduler**: Implements the task scheduler system with action bars for units.
+    - `TaskScheduler`: Stores units and tracks their action bar progress.
+    - `ActionBar`: Manages the state of each unit's action bar.
+
+6. **model.units**: Defines `Units`, which includes both enemies and characters. Characters can wield items, weapons, and magical items.
+
+7. **util.Json**: A utility package for converting objects to JSON format, useful for saving/loading game states.
+
+## Usage
+
+### Creating Units
+
+You can create different types of units in the game such as enemies and characters, each with their own attributes like health points (HP), defense points (DP), and weight. Here's an example of creating an `Enemy`:
+
+```scala
+val enemy = new Enemy("Orc", 100, 50, 20, 30)
+println(enemy.getName)  // Outputs: Orc
+```
+
+### Task Scheduler
+
+The `TaskScheduler` is used to manage the order of unit actions based on their action bars. You can add units, calculate their action bar maximums, and increase their action bars over time.
+
+```scala
+val scheduler = new TaskScheduler
+scheduler.addUnit(enemy)
+scheduler.calculateActionBarMax()
+scheduler.increaseActionBars(5.0)
+```
+
+### Panels
+
+Panels represent tiles or locations in the game. You can create a panel and connect it to neighboring panels (north, south, east, west), and add units to it.
+
+```scala
+val panel = new Panel((0, 0), ArrayBuffer(enemy), None, None, None, None)
+panel.setNorth(Some(new Panel((0, 1), ArrayBuffer())))
+```
+
+### Weapons and Items
+
+You can create weapons, assign them to characters, and manage their attack points and weights.
+
+```scala
+val sword = new AbstractWeapon("Sword", 10, 5, character)
+sword.setAttackPoints(15)
+println(sword.getAttackPoints)  // Outputs: 15
+```
