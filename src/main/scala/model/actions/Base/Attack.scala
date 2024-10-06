@@ -5,8 +5,10 @@ import spray.json.JsObject
 import util.Json.{*, given}
 
 class Attack(name: String) extends Action(name){
-  override def id: String = "Attack"
+  
+  override def id: String = "Attack" // Identifier for this action
 
+  // Converts the action and its details to a JSON object
   override def toJson: JsObj = JsObj(
     "id" -> id,
     "action" -> "base→attack"

@@ -4,16 +4,14 @@ import model.items.Item
 import model.items.Weapons.Weapon
 import model.units.Units
 
+// Trait defining additional behavior for character units, including weapons and items
 trait Character extends Units {
-  
-  def setWeapon(weapon: Option[Weapon]): Unit
 
-  def setItemInventory(itemList: List[Item]): Unit 
+  def setWeapon(weapon: Option[Weapon]): Unit  // Set the character's weapon
+  def setItemInventory(itemList: List[Item]): Unit  // Set the character's inventory of items
 
-  def getWeapon: Option[Weapon] 
+  def getWeapon: Option[Weapon]  // Get the character's weapon
+  def getItemInventory: List[Item]  // Get the character's inventory of items
 
-  def getItemInventory: List[Item] 
-
-  def calculateActionBarMax: Double 
-  
+  def calculateActionBarMax: Double  // Calculate the action bar max based on the character's weight and weapon
 }

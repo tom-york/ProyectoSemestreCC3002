@@ -5,29 +5,29 @@ import model.units.Units
 
 import scala.collection.mutable.ArrayBuffer
 
+// Interface defining a panel in the game, extending GameObject
+trait IPanel extends GameObject {
+  def setCoordinates(x: Int, y: Int): Unit // Sets the coordinates of the panel
 
-trait IPanel extends GameObject{
-  def setCoordinates(x: Int, y: Int): Unit
+  def setUnits(uArray: ArrayBuffer[Units]): Unit // Sets the units present on the panel
 
-  def setUnits(uArray: ArrayBuffer[Units]): Unit
-  
-  def setNorth(panel: Option[Panel]): Unit
+  def setNorth(panel: Option[Panel]): Unit // Sets the northern neighbor panel
 
-  def setWest(panel: Option[Panel]): Unit
+  def setWest(panel: Option[Panel]): Unit // Sets the western neighbor panel
 
-  def setSouth(panel: Option[Panel]): Unit
+  def setSouth(panel: Option[Panel]): Unit // Sets the southern neighbor panel
 
-  def setEast(panel: Option[Panel]): Unit
+  def setEast(panel: Option[Panel]): Unit // Sets the eastern neighbor panel
 
-  def getCoordinates: (Int, Int)
+  def getCoordinates: (Int, Int) // Retrieves the coordinates of the panel
 
-  def getUnits: ArrayBuffer[Units]
+  def getUnits: ArrayBuffer[Units] // Retrieves the units on the panel
 
-  def getNorth: Option[Panel]
+  def getNorth: Option[Panel] // Retrieves the northern neighbor panel
 
-  def getWest: Option[Panel]
+  def getWest: Option[Panel] // Retrieves the western neighbor panel
 
-  def getSouth: Option[Panel]
+  def getSouth: Option[Panel] // Retrieves the southern neighbor panel
 
-  def getEast: Option[Panel]
+  def getEast: Option[Panel] // Retrieves the eastern neighbor panel
 }

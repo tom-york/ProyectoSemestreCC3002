@@ -1,7 +1,9 @@
 package model.units
 
-abstract class AbstractUnit(private var name: String, private var healthPoints: Int, private var defensePoints: Int, private var weight: Int)  extends Units {
+// Abstract class implementing the Units trait with basic fields and methods
+abstract class AbstractUnit(private var name: String, private var healthPoints: Int, private var defensePoints: Int, private var weight: Int) extends Units {
 
+  // Setters for the unit's properties
   override def setName(sName: String): Unit = {
     name = sName
   }
@@ -18,12 +20,9 @@ abstract class AbstractUnit(private var name: String, private var healthPoints: 
     weight = sWeight
   }
 
+  // Getters for the unit's properties
   override def getName: String = name
-
   override def getHp: Int = healthPoints
-
   override def getDp: Int = defensePoints
-
   override def getWeight: Int = weight
-
 }
