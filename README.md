@@ -17,7 +17,7 @@ The project is organized into several packages, each of which encapsulates core 
 
 ```
 ├── api
-│   └── GameObject.scala       # Base trait for all game objects
+│   └── GameObject.scala       # Base trait for all game objects for the visualizer
 ├── model
 │   ├── items                  # Contains items, weapons, and potions
 │   ├── panels                 # Contains panel objects and interactions
@@ -30,7 +30,7 @@ The project is organized into several packages, each of which encapsulates core 
 
 ### Core Modules:
 
-1. **api**: Defines the `GameObject` trait, which every entity in the game implements. This trait is the root of the game's object hierarchy.
+1. **api**: Defines the `GameObject` trait, which every entity in the game implements for the visualizer. This trait is the root of the game's object hierarchy.
 
 2. **model.items**: Defines different types of game items, including:
     - `Item`: The base interface for all items.
