@@ -28,7 +28,7 @@ trait IGameController {
   /** Decides the next game unit id. This method is called after an action is
     * executed. It should return the id of the next game unit that will play.
     */
-  def decideNextGameUnitId: String = "c2"
+  def decideNextGameUnitId: String
 
   /** Returns the actions that a character can do. It receives the id of the
     * character and returns the actions that the character can do.
@@ -39,9 +39,7 @@ trait IGameController {
     *   the actions that the game unit can do, or None if the game unit is not
     *   found
     */
-  def findActionsByGameUnitId(id: String): Option[JsVal] = Some(
-    JsObj("actions" -> JsArr())
-  )
+  def findActionsByGameUnitId(id: String): Option[JsVal]
 
   /** Executes an action.
     *
@@ -54,10 +52,8 @@ trait IGameController {
     * @return
     *   a message that describes the result of the action
     */
-  def doAction(actionId: String, sourceId: String, targetId: String): String = {
-    "TODO"
-  }
+  def doAction(actionId: String, sourceId: String, targetId: String): String
 
   /** Resets the game. All configurations and parameters should be reset too. */
-  def reset(): Unit = {}
+  def reset(): Unit
 }
