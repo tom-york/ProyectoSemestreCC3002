@@ -37,8 +37,6 @@ class CharacterTest extends FunSuite{
   test("A character has a name.") {
     assertEquals(knight1.getName, "character")
     assertEquals(blackWizard1.getName, "character")
-    knight1.setName("the black knight")
-    assertEquals(knight1.getName, "the black knight")
   }
 
   test("A character has health points.") {

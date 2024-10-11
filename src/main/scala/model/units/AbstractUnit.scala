@@ -1,13 +1,11 @@
 package model.units
 
+import api.{Source, Target}
+
 // Abstract class implementing the Units trait with basic fields and methods
-abstract class AbstractUnit(private var name: String, private var healthPoints: Int, private var defensePoints: Int, private var weight: Int) extends Units {
+abstract class AbstractUnit(override val name: String, private var healthPoints: Int, private var defensePoints: Int, private var weight: Int) extends Units with Source with Target {
 
   // Setters for the unit's properties
-  override def setName(sName: String): Unit = {
-    name = sName
-  }
-
   override def setHp(sHp: Int): Unit = {
     healthPoints = sHp
   }
