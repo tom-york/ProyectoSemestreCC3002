@@ -27,7 +27,7 @@ object GameController extends IGameController {
   /** Decides the next game unit id. This method is called after an action is
    * executed. It should return the id of the next game unit that will play.
    */
-  def decideNextGameUnitId: String =
+  def decideNextGameUnitId: String = _
 
   /** Returns the actions that a character can do. It receives the id of the
    * character and returns the actions that the character can do.
@@ -38,7 +38,7 @@ object GameController extends IGameController {
    * the actions that the game unit can do, or None if the game unit is not
    * found
    */
-  def findActionsByGameUnitId(id: String): Option[JsVal] =
+  def findActionsByGameUnitId(id: String): Option[JsVal] = _
 
   /** Executes an action.
    *
