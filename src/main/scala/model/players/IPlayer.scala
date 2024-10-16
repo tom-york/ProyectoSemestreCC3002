@@ -9,6 +9,8 @@ trait IPlayer extends GameObject {
   // Retrieves the list of units belonging to the player
   def getUnitList: List[Units]
 
+  def getID: String
+
   // Checks if the player is defeated
   def isDefeated: Boolean
 }

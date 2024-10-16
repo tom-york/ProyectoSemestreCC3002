@@ -54,7 +54,7 @@ class PanelTest extends FunSuite{
 
   test("Panel JSON test") {
     val panel1Json = JsObj(
-      "id" -> "Panel",
+      "id" -> panel1.getID,
       "x" -> 1,
       "y" -> 1,
       "storage" -> JsArr(

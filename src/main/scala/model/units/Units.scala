@@ -16,6 +16,7 @@ trait Units extends GameObject {
   def getHp: Int
   def getDp: Int
   def getWeight: Int
+  def getID: String
 
   // Calculates the maximum action bar for the unit
   def calculateActionBarMax: Double

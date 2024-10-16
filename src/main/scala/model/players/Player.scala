@@ -3,9 +3,13 @@ package model.players
 import model.units.Units
 import util.Json.{*, given}
 
-// Concrete class representing a player, implementing the IPlayer interface
-class Player(private var unitList: List[Units], private var defeatState: Boolean) extends IPlayer {
+import java.util.UUID
 
+// Concrete class representing a player, implementing the IPlayer interface
+class Player(private var unitList: List[Units]) extends IPlayer {
+  
+  private var defeatState: Boolean = false
+  
   // Returns the list of units assigned to the player
   override def getUnitList: List[Units] = unitList
 
@@ -13,7 +17,9 @@ class Player(private var unitList: List[Units], private var defeatState: Boolean
   override def isDefeated: Boolean = defeatState
 
   // Returns the unique identifier of the player
-  override def id: String = "Player"
+  protected val id: String = UUID.randomUUID().toString
+
+  override def getID: String = id
 
   // Serializes the player's data (including units) to JSON format
   override def toJson: JsObj = JsObj(

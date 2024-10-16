@@ -5,6 +5,7 @@ import model.units.Units
 import scala.collection.immutable.Map
 import scala.collection.mutable.ArrayBuffer
 import util.Json.{*, given}
+import java.util.UUID
 
 // Class representing a game panel, implementing the IPanel interface
 class Panel extends IPanel {
@@ -69,8 +70,10 @@ class Panel extends IPanel {
   def getEast: Option[Panel] = neighbours("east")
 
   // Returns the unique identifier of the panel
-  override def id: String = "Panel"
+  protected val id: String = UUID.randomUUID().toString
 
+  override def getID: String = id
+  
   // Serializes the panel's data to JSON format
   override def toJson: JsObj = JsObj(
     "id" -> id,

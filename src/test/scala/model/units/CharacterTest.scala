@@ -94,25 +94,25 @@ class CharacterTest extends FunSuite{
     )
 
     val knightJson = JsObj(
-      "id" -> JsStr("Knight"),
+      "id" -> knight1.getID,
       "attributes" -> attributesJsArr,
       "img" -> "mockImage.gif"
     )
 
     val archerJson = JsObj(
-      "id" -> JsStr("Archer"),
+      "id" -> archer1.getID,
       "attributes" -> attributesJsArr,
       "img" -> "mockImage.gif"
     )
 
     val thiefJson = JsObj(
-      "id" -> JsStr("Thief"),
+      "id" -> thief1.getID,
       "attributes" -> attributesJsArr,
       "img" -> "mockImage.gif"
     )
 
     val blackJson = JsObj(
-      "id" -> JsStr("BlackWizard"),
+      "id" -> blackWizard1.getID,
       "attributes" -> JsArr(
         JsObj("name" -> "name", "value" -> "character"),
         JsObj("name" -> "hp", "value" -> "90"),
@@ -124,7 +124,7 @@ class CharacterTest extends FunSuite{
     )
 
     val whiteJson = JsObj(
-      "id" -> JsStr("WhiteWizard"),
+      "id" -> whiteWizard1.getID,
       "attributes" -> JsArr(
         JsObj("name" -> "name", "value" -> "character"),
         JsObj("name" -> "hp", "value" -> "90"),

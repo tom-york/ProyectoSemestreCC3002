@@ -2,6 +2,8 @@ package model.units
 
 import api.{Source, Target}
 
+import java.util.UUID
+
 // Abstract class implementing the Units trait with basic fields and methods
 abstract class AbstractUnit(override val name: String, private var healthPoints: Int, private var defensePoints: Int, private var weight: Int) extends Units with Source with Target {
 
@@ -23,4 +25,8 @@ abstract class AbstractUnit(override val name: String, private var healthPoints:
   override def getHp: Int = healthPoints
   override def getDp: Int = defensePoints
   override def getWeight: Int = weight
+
+  protected val id: String = UUID.randomUUID().toString
+
+  override def getID: String = id
 }

@@ -30,4 +30,6 @@ trait IPanel extends GameObject {
   def getSouth: Option[Panel] // Retrieves the southern neighbor panel
 
   def getEast: Option[Panel] // Retrieves the eastern neighbor panel
+
+  def getID: String
 }

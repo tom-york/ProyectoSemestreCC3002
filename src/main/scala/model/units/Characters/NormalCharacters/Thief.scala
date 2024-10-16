@@ -5,7 +5,5 @@ import model.items.Weapons.Weapon
 import model.units.Characters.AbstractCharacter
 
 class Thief(name: String, healthPoints: Int, defensePoints: Int, weight: Int, weaponSlot: Option[Weapon], itemInventory: List[Item]) extends AbstractCharacter(name, healthPoints, defensePoints, weight, weaponSlot, itemInventory) {
-
-  override def id: String = "Thief" // Identifier for this character
   
 }
