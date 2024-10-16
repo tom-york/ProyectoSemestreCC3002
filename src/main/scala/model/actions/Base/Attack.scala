@@ -1,10 +1,10 @@
 package model.actions.Base
 
-import model.actions.Action
+import model.actions.AbstractAction
 import spray.json.JsObject
 import util.Json.{*, given}
 
-class Attack(name: String) extends Action(name){
+class Attack(name: String) extends AbstractAction(name){
   
   override def id: String = "Attack" // Identifier for this action
 

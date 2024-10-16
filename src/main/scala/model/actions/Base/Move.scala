@@ -1,9 +1,9 @@
 package model.actions.Base
 
-import model.actions.Action
+import model.actions.AbstractAction
 import util.Json.{*, given}
 
-class Move(name: String) extends Action(name) {
+class Move(name: String) extends AbstractAction(name) {
 
   override def id: String = "2" // Identifier for this action
 

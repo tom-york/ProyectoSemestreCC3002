@@ -1,6 +1,7 @@
 package model.units
 
 import api.{Source, Target}
+import model.actions.Action
 
 import java.util.UUID
 
@@ -27,4 +28,8 @@ abstract class AbstractUnit(override val name: String, private var healthPoints:
   override def getWeight: Int = weight
 
   val id: String = UUID.randomUUID().toString
+  
+  def doAction(action: Action, target: Target): Unit = {
+    action.apply(this, target)
+  }
 }

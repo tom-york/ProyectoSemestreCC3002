@@ -1,8 +1,8 @@
 package model.actions.Spells
 
-import model.actions.Action
+import model.actions.AbstractAction
 
 // Abstract class for actions involving spells
-abstract class Spell(name: String) extends Action(name) {
+abstract class Spell(name: String) extends AbstractAction(name) {
 
 }

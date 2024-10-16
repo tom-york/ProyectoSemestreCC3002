@@ -1,15 +1,12 @@
 package model.actions
 
-import api.GameObject
+import api.{Source, Target}
 
-// Abstract class implementing IAction, defines basic action behavior
-abstract class Action(private var actionName: String) extends GameObject{
-
-  // Sets the action's name
-  def setName(name: String): Unit = {
-    actionName = name 
-  }
-
-  // Returns the action's name
-  def getName: String = actionName
+// Trait defining basic actions with a name
+trait Action {
+  def setName(name: String): Unit // Sets the action's name
+  
+  def getName: String // Retrieves the action's name
+  
+  def apply(src: Source, tgt: Target): Unit 
 }

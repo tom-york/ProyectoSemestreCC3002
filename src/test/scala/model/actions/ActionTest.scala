@@ -49,7 +49,7 @@ class ActionTest extends FunSuite{
 
   }
 
-  test("Action JSON test") {
+  test("AbstractAction JSON test") {
     val moveJson = JsObj(
       "id" -> "Move",
       "action" -> "base→move"
