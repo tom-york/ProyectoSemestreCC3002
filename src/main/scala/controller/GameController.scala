@@ -1,33 +1,43 @@
 package controller
 
 import api.{GameApi, IGameController}
+import model.players.Player
+import model.scheduler.TaskScheduler
 import util.Json.{*, given}
 
 object GameController extends IGameController {
   /* write your code here */
+  private val gameScheduler: TaskScheduler = new TaskScheduler()
+  private val player1: Player = new Player(List())
+  private val player2: Player = new Player(List())
   /** Returns the players of the game. In this version of the project, there are
    * strictly two players. Each player should send the information of his game
    * units.
    */
-  def getPlayers: JsVal = _
+  def getPlayers: JsVal = {
+    JsArr(
+      player1.toJson,
+      player2.toJson
+    )
+  }
 
   /** Returns the game panels. These panels are basically the map where the game
    * units will be interacting with.
    */
-  def getGamePanels: JsVal = _
+  def getGamePanels: JsVal = {
+    JsArr()
+  }
 
   /** Returns the id of the current game unit. The current game unit is the unit
    * that can do actions, in other words, it's their turn.
    */
 
-  private var currentGameUnitId: String = "c1"
-
-  def getCurrentGameUnitId: String = currentGameUnitId
+  def getCurrentGameUnitId: String = gameScheduler.getCurrentUnit.id
 
   /** Decides the next game unit id. This method is called after an action is
    * executed. It should return the id of the next game unit that will play.
    */
-  def decideNextGameUnitId: String = _
+  def decideNextGameUnitId: String = "placeholder"
 
   /** Returns the actions that a character can do. It receives the id of the
    * character and returns the actions that the character can do.
@@ -38,7 +48,7 @@ object GameController extends IGameController {
    * the actions that the game unit can do, or None if the game unit is not
    * found
    */
-  def findActionsByGameUnitId(id: String): Option[JsVal] = _
+  def findActionsByGameUnitId(id: String): Option[JsVal] = None
 
   /** Executes an action.
    *
@@ -51,10 +61,10 @@ object GameController extends IGameController {
    * @return
    * a message that describes the result of the action
    */
-  def doAction(actionId: String, sourceId: String, targetId: String): String = _
+  def doAction(actionId: String, sourceId: String, targetId: String): String = "placeholder"
 
   /** Resets the game. All configurations and parameters should be reset too. */
-  def reset(): Unit = _
+  def reset(): Unit = None
 
   def main(args: Array[String]): Unit = {
 
