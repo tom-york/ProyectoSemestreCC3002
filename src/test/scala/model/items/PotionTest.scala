@@ -27,19 +27,19 @@ class PotionTest extends FunSuite{
 
   test("Potion JSON test") {
     val manaJson = JsObj(
-      "id" -> "ManaPotion",
+      "id" -> mana1.id,
       "name" -> "potion"
     )
     val magicForceJson = JsObj(
-      "id" -> "MagicForcePotion",
+      "id" -> magicForce1.id,
       "name" -> "potion"
     )
     val strengthJson = JsObj(
-      "id" -> "StrengthPotion",
+      "id" -> strength1.id,
       "name" -> "potion"
     )
     val healingJson = JsObj(
-      "id" -> "HealingPotion",
+      "id" -> healing1.id,
       "name" -> "potion"
     )
     assertEquals(mana1.toJson, manaJson)

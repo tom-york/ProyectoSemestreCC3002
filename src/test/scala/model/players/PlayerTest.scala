@@ -31,7 +31,7 @@ class PlayerTest extends FunSuite {
 
   test("Player JSON test") {
     val player2Json = JsObj(
-      "id" -> "Player",
+      "id" -> player2.id,
       "characters" -> JsArr(
         enemy1.toJson,
         enemy2.toJson

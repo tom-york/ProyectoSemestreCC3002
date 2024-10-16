@@ -64,23 +64,23 @@ class WeaponTest extends FunSuite {
 
   test("Weapon JSON test") {
     val swordJson = JsObj(
-      "id" -> "Sword",
+      "id" -> sword1.id,
       "name" -> "weapon"
     )
     val bowJson = JsObj(
-      "id" -> "Bow",
+      "id" -> bow1.id,
       "name" -> "weapon"
     )
     val daggerJson = JsObj(
-      "id" -> "Dagger",
+      "id" -> dagger1.id,
       "name" -> "weapon",
     )
     val wandJson = JsObj(
-      "id" -> "Wand",
+      "id" -> wand1.id,
       "name" -> "weapon",
     )
     val staffJson = JsObj(
-      "id" -> "Staff",
+      "id" -> staff1.id,
       "name" -> "weapon",
     )
     

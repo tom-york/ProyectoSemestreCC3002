@@ -6,7 +6,6 @@ import api.GameObject
 trait Units extends GameObject {
 
   // Setters for name, health points, defense points, and weight
-  def setName(sName: String): Unit
   def setHp(sHp: Int): Unit
   def setDp(sDp: Int): Unit
   def setWeight(sWeight: Int): Unit
@@ -16,7 +15,6 @@ trait Units extends GameObject {
   def getHp: Int
   def getDp: Int
   def getWeight: Int
-  def getID: String
 
   // Calculates the maximum action bar for the unit
   def calculateActionBarMax: Double

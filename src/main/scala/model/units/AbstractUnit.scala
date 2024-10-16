@@ -26,7 +26,5 @@ abstract class AbstractUnit(override val name: String, private var healthPoints:
   override def getDp: Int = defensePoints
   override def getWeight: Int = weight
 
-  protected val id: String = UUID.randomUUID().toString
-
-  override def getID: String = id
+  val id: String = UUID.randomUUID().toString
 }

@@ -70,10 +70,8 @@ class Panel extends IPanel {
   def getEast: Option[Panel] = neighbours("east")
 
   // Returns the unique identifier of the panel
-  protected val id: String = UUID.randomUUID().toString
+  val id: String = UUID.randomUUID().toString
 
-  override def getID: String = id
-  
   // Serializes the panel's data to JSON format
   override def toJson: JsObj = JsObj(
     "id" -> id,

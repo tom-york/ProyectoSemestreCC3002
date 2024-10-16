@@ -8,5 +8,6 @@ trait Item extends GameObject with Target {
   // Getter and setter for the item's name
   def getName: String
   def setName(newName: String): Unit
+
 }
 

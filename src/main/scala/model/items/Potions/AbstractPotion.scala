@@ -2,6 +2,8 @@ package model.items.Potions
 
 import util.Json.{*, given}
 
+import java.util.UUID
+
 // Abstract class implementing the Potion trait, defining a basic potion
 abstract class AbstractPotion(private var name: String) extends Potion {
 
@@ -12,9 +14,11 @@ abstract class AbstractPotion(private var name: String) extends Potion {
 
   def getName: String = name
 
+  val id: String = UUID.randomUUID().toString
+  
   // Serialize the potion to JSON format
   override def toJson: JsObj = JsObj(
-    "id" -> this.id,
+    "id" -> id,
     "name" -> getName
   )
 }

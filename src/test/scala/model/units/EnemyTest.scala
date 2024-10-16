@@ -42,7 +42,7 @@ class EnemyTest extends FunSuite {
 
   test("Enemy JSON test") {
     val expectedJson = JsObj(
-      "id" -> "Enemy",
+      "id" -> enemy.id,
       "attributes" -> JsArr(
         JsObj("name" -> "name", "value" -> "juan"),
         JsObj("name" -> "hp", "value" -> "90"),

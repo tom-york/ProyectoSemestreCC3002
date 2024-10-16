@@ -17,9 +17,7 @@ class Player(private var unitList: List[Units]) extends IPlayer {
   override def isDefeated: Boolean = defeatState
 
   // Returns the unique identifier of the player
-  protected val id: String = UUID.randomUUID().toString
-
-  override def getID: String = id
+  val id: String = UUID.randomUUID().toString
 
   // Serializes the player's data (including units) to JSON format
   override def toJson: JsObj = JsObj(

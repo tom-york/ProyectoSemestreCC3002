@@ -3,6 +3,8 @@ package model.items.Weapons
 import model.units.Characters.Character
 import util.Json.{*, given}
 
+import java.util.UUID
+
 // Abstract class implementing the Weapon trait, defining a basic weapon
 abstract class AbstractWeapon(private var name: String, private var attackPoints: Int, private var weight: Int, private var owner: Character) extends Weapon {
 
@@ -29,9 +31,11 @@ abstract class AbstractWeapon(private var name: String, private var attackPoints
   def getWeight: Int = weight
   def getOwner: Character = owner
 
+  val id: String = UUID.randomUUID().toString
+
   // Serialize the weapon to JSON format
   override def toJson: JsObj = JsObj(
-    "id" -> this.id,
+    "id" -> id,
     "name" -> getName
   )
 }

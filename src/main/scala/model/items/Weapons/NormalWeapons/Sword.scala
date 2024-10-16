@@ -5,6 +5,4 @@ import model.units.Characters.Character
 
 class Sword(name: String, attackPoints: Int, weight: Int, owner: Character) extends AbstractWeapon(name, attackPoints, weight, owner) {
 
-  override def id: String = "Sword" // Identifier for this weapon
-
 }

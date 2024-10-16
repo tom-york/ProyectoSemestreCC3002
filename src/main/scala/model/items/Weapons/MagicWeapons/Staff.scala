@@ -5,6 +5,4 @@ import model.units.Characters.Character
 
 class Staff(name: String, attackPoints: Int, weight: Int, owner: Character, magicAttackPoints: Int) extends AbstractMagicWeapon(name, attackPoints, weight, owner, magicAttackPoints) {
 
-  override def id: String = "Staff" // Identifier for this magic weapon
-
 }
