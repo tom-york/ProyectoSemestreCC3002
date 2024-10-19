@@ -1,0 +1,16 @@
+package model.actions.base
+
+import model.actions.AbstractAction
+import spray.json.JsObject
+import util.Json.{*, given}
+
+class Attack(name: String) extends AbstractAction(name){
+  
+  override def id: String = "Attack" // Identifier for this action
+
+  // Converts the action and its details to a JSON object
+  override def toJson: JsObj = JsObj(
+    "id" -> id,
+    "action" -> "base→attack"
+  )
+}

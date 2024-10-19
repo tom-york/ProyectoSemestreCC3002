@@ -1,8 +1,8 @@
 package model.items
 
-import model.items.Weapons.MagicWeapons.*
-import model.items.Weapons.NormalWeapons.*
-import model.units.Characters.NormalCharacters.Knight
+import model.items.weapons.magic.*
+import model.items.weapons.normal.*
+import model.units.characters.normal.Knight
 import munit.FunSuite
 import util.Json.{*, given}
 

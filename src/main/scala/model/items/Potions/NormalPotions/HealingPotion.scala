@@ -1,7 +1,0 @@
-package model.items.Potions.NormalPotions
-
-import model.items.Potions.AbstractPotion
-
-class HealingPotion(name: String) extends AbstractPotion(name) {
-  
-}

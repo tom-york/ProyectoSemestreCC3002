@@ -1,13 +1,13 @@
 package model.actions
 
-import model.actions.Base.*
-import model.actions.Spells.BlackMagic
-import model.actions.Spells.BlackMagic.*
-import model.actions.Spells.WhiteMagic.*
-import model.actions.Usage.*
-import model.items.Potions.MagicPotions.ManaPotion
-import model.items.Weapons.NormalWeapons.Bow
-import model.units.Characters.NormalCharacters.Knight
+import model.actions.base.*
+import model.actions.spells.black
+import model.actions.spells.black.*
+import model.actions.spells.white.*
+import model.actions.usage.*
+import model.items.potions.magic.ManaPotion
+import model.items.weapons.normal.Bow
+import model.units.characters.normal.Knight
 import munit.FunSuite
 import util.Json.{*, given}
 
@@ -70,19 +70,19 @@ class ActionTest extends FunSuite{
     )
     val meteoriteJson = JsObj(
       "id" -> "Meteorite",
-      "action" -> "spell→blackMagic→meteorite"
+      "action" -> "spell→black→meteorite"
     )
     val thunderJson = JsObj(
       "id" -> "Thunder",
-      "action" -> "spell→blackMagic→thunder"
+      "action" -> "spell→black→thunder"
     )
     val healJson = JsObj(
       "id" -> "Heal",
-      "action" -> "spell→whiteMagic→heal"
+      "action" -> "spell→white→heal"
     )
     val purifyJson = JsObj(
       "id" -> "Purify",
-      "action" -> "spell→whiteMagic→purify"
+      "action" -> "spell→white→purify"
     )
     assertEquals(move.toJson, moveJson)
     assertEquals(attack.toJson, attackJson)

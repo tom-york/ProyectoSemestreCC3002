@@ -1,7 +1,7 @@
 package model.items
 
-import model.items.Potions.MagicPotions.*
-import model.items.Potions.NormalPotions.*
+import model.items.potions.magic.*
+import model.items.potions.normal.*
 import munit.FunSuite
 import util.Json.{*, given}
 
