@@ -5,7 +5,7 @@ import util.Json.{*, given}
 
 class Purify(name: String) extends Spell(name) {
   
-  override def id: String = "Purify" // Identifier for this action
+  override def id: String = "6" // Identifier for this action
 
   // Converts the action and its details to a JSON object
   override def toJson: JsObj = JsObj(

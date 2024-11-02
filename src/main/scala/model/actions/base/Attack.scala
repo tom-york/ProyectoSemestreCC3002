@@ -18,7 +18,7 @@ class Attack(name: String) extends AbstractAction(name){
     tgt.beAttacked(enemy.getDp)
   }
 
-  override def id: String = "Attack" // Identifier for this action
+  override def id: String = "1" // Identifier for this action
 
   // Converts the action and its details to a JSON object
   override def toJson: JsObj = JsObj(
