@@ -15,4 +15,6 @@ trait Weapon extends Item {
   def getAttackPoints: Int
   def getWeight: Int
   def getOwner: Character
+  
+  def getTotalAttack: Int
 }
