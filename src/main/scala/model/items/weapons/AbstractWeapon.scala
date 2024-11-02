@@ -30,7 +30,8 @@ abstract class AbstractWeapon(private var name: String, private var attackPoints
   def getAttackPoints: Int = attackPoints
   def getWeight: Int = weight
   def getOwner: Character = owner
-
+  override def getTotalAttack: Int = attackPoints
+  
   val id: String = UUID.randomUUID().toString
 
   // Serialize the weapon to JSON format
