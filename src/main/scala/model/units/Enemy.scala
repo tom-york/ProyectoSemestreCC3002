@@ -1,5 +1,7 @@
 package model.units
 
+import api.Target
+import model.actions.Action
 import util.Json.{*, given}
 
 // Class representing an enemy unit, extending AbstractUnit and adding attack points
@@ -26,4 +28,8 @@ class Enemy(name: String, healthPoints: Int, defensePoints: Int, weight: Int, pr
 
   // Calculates the maximum action bar value based on weight
   def calculateActionBarMax: Double = weight.toDouble
+
+  def doAction(action: Action, target: Target): Unit = {
+    action.enemyExecute(this, target)
+  }
 }
