@@ -1,14 +1,14 @@
 package model.units.characters.magic
 
-import model.items.Item
-import model.items.weapons.Weapon
 import model.units.characters.AbstractMagicCharacter
 import model.actions.Action
 import model.actions.base.*
 import model.actions.spells.white.*
 import model.actions.usage.*
+import model.items.Item
 import model.items.weapons.normal.Bow
 import model.items.weapons.magic.*
+import model.items.weapons.Weapon
 
 class WhiteWizard(name: String, healthPoints: Int, defensePoints: Int, weight: Int, weaponSlot: Option[Weapon], itemInventory: List[Item], manaPoints: Int) extends AbstractMagicCharacter(name, healthPoints, defensePoints, weight, weaponSlot, itemInventory, manaPoints) {
   private val compatibleWeapons: List[Weapon] = List(new Bow(this), new Wand(this), new Staff(this))
