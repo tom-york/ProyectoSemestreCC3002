@@ -2,6 +2,9 @@ package model.units.characters
 
 import model.items.Item
 import model.items.weapons.Weapon
+import model.items.potions.Potion
+import model.items.potions.magic.*
+import model.items.potions.normal.*
 import util.Json.{*, given}
 
 // Abstract class for magic characters, extending AbstractCharacter and adding mana points
@@ -13,6 +16,8 @@ abstract class AbstractMagicCharacter(name: String, healthPoints: Int, defensePo
   }
 
   def getMp: Int = manaPoints
+
+  protected val compatibleConsumables: List[Potion] = List(new HealingPotion("HealPot"), new StrengthPotion("StrengthPot"), new ManaPotion("ManaPot"), new MagicForcePotion("MagicPot"))
 
   // Serialize the magic character's attributes to JSON
   override def toJson: JsObj = JsObj(
