@@ -3,7 +3,7 @@ package model.actions.spells.black
 import model.actions.spells.Spell
 import util.Json.{*, given}
 
-class Meteorite(name: String) extends Spell(name) {
+class Meteorite(name: String = "Meteorite") extends Spell(name) {
   
   override def id: String = "3" // Identifier for this action
 

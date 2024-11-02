@@ -8,7 +8,7 @@ import model.units.characters.Character
 import spray.json.JsObject
 import util.Json.{*, given}
 
-class Attack(name: String) extends AbstractAction(name){
+class Attack(name: String = "Attack") extends AbstractAction(name){
 
   override def characterExecute(character: Character, tgt: Target): Unit = {
     tgt.beAttacked(character.getWeapon.getOrElse(throw new WeaponNotPresent(character)).getTotalAttack)

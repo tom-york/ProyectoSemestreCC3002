@@ -3,7 +3,7 @@ package model.actions.base
 import model.actions.AbstractAction
 import util.Json.{*, given}
 
-class Move(name: String) extends AbstractAction(name) {
+class Move(name: String = "Move") extends AbstractAction(name) {
 
   override def id: String = "2" // Identifier for this action
 

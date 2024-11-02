@@ -4,7 +4,7 @@ import model.items.potions.Potion
 import util.Json.{*, given}
 
 // Concrete class for consuming potions, extending UsageAction
-class Consume(name: String, usableItems: List[Potion]) extends UsageAction(name, usableItems) {
+class Consume(name: String = "Consume", usableItems: List[Potion]) extends UsageAction(name, usableItems) {
 
   override def id: String = "7" // Identifier for this action
  

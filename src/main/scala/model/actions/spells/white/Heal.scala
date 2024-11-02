@@ -3,7 +3,7 @@ package model.actions.spells.white
 import model.actions.spells.Spell
 import util.Json.{*, given}
 
-class Heal(name: String) extends Spell(name) {
+class Heal(name: String = "Heal") extends Spell(name) {
 
   override def id: String = "5" // Identifier for this action
   

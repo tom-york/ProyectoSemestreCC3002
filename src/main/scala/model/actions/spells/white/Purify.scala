@@ -3,7 +3,7 @@ package model.actions.spells.white
 import model.actions.spells.Spell
 import util.Json.{*, given}
 
-class Purify(name: String) extends Spell(name) {
+class Purify(name: String = "Purify") extends Spell(name) {
   
   override def id: String = "6" // Identifier for this action
 
