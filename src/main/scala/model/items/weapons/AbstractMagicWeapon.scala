@@ -10,7 +10,6 @@ abstract class AbstractMagicWeapon(name: String, attackPoints: Int, weight: Int,
     magicAttackPoints = newMAp
   }
 
-  def getMagicAttackPoints: Int = magicAttackPoints
-  override def getTotalAttack: Int = attackPoints + magicAttackPoints
+  override def getMagicAttackPoints: Int = magicAttackPoints
   
 }

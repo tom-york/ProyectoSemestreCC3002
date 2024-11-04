@@ -1,8 +1,8 @@
 package model.items.weapons
 
-import model.exceptions.InvalidActionTarget
+import model.exceptions.{InvalidActionTarget, MagicWeaponNotPresent}
 import model.units.Units
-import model.units.characters.Character
+import model.units.characters.{Character, MagicCharacter}
 import util.Json.{*, given}
 
 import java.util.UUID
@@ -32,7 +32,8 @@ abstract class AbstractWeapon(private var name: String, private var attackPoints
   def getAttackPoints: Int = attackPoints
   def getWeight: Int = weight
   def getOwner: Character = owner
-  override def getTotalAttack: Int = attackPoints
+  
+  override def getMagicAttackPoints: Int = throw new MagicWeaponNotPresent()
   
   val id: String = UUID.randomUUID().toString
 
@@ -50,7 +51,11 @@ abstract class AbstractWeapon(private var name: String, private var attackPoints
     throw new InvalidActionTarget("Weapon", "Attack")
   }
 
-  override def unitConsume(unit: Units): Unit = {
+  override def characterConsume(character: Character): Unit = {
+    throw new InvalidActionTarget("Weapon", "Consume")
+  }
+
+  override def magicCharacterConsume(character: MagicCharacter): Unit = {
     throw new InvalidActionTarget("Weapon", "Consume")
   }
 }

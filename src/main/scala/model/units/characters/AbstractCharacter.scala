@@ -23,6 +23,8 @@ abstract class AbstractCharacter(name: String, healthPoints: Int, defensePoints:
   }
 
   def getItemInventory: List[Item] = itemInventory
+  
+  override def getTotalDamage: Int = weaponSlot.getOrElse(throw new WeaponNotPresent(this)).getAttackPoints
 
   // Calculates the action bar max, adding half the weapon weight if a weapon is equipped
   def calculateActionBarMax: Double = {

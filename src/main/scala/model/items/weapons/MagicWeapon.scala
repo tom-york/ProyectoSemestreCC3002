@@ -7,5 +7,4 @@ trait MagicWeapon extends Item {
 
   // Setter and getter for the magic attack points
   def setMagicAttackPoints(newMAp: Int): Unit
-  def getMagicAttackPoints: Int
 }

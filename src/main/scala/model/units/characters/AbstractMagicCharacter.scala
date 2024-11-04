@@ -40,7 +40,7 @@ abstract class AbstractMagicCharacter(name: String, healthPoints: Int, defensePo
     magicForceMultiplier = 1.0
   }
   
-  override def getTotalDamage: Int = Math.round(weaponSlot.getOrElse(throw new WeaponNotPresent(this)).getTotalAttack * magicForceMultiplier)
+  def getMagicDamage: Int = Math.round(weaponSlot.getOrElse(throw new WeaponNotPresent(this)).getMagicAttackPoints * magicForceMultiplier)
 
   protected val compatibleConsumables: List[Potion] = List(new HealingPotion("HealPot"), new StrengthPotion("StrengthPot"), new ManaPotion("ManaPot"), new MagicForcePotion("MagicPot"))
 

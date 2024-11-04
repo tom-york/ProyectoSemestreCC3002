@@ -12,7 +12,6 @@ import model.items.weapons.Weapon
 import model.panels.IPanel
 
 abstract class AbstractNormalCharacter(name: String, healthPoints: Int, defensePoints: Int, weight: Int, panel: IPanel, weaponSlot: Option[Weapon], itemInventory: List[Item]) extends AbstractCharacter(name, healthPoints, defensePoints, weight, panel, weaponSlot, itemInventory) {
-  override def getTotalDamage: Int = weaponSlot.getOrElse(throw new WeaponNotPresent(this)).getTotalAttack
   
   protected def compatibleWeapons: List[Weapon]
   
