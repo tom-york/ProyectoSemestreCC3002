@@ -7,13 +7,20 @@ import model.panels.IPanel
 import java.util.UUID
 
 // Abstract class implementing the Units trait with basic fields and methods
-abstract class AbstractUnit(override val name: String, private var healthPoints: Int, private var defensePoints: Int, private var weight: Int, private var panel: IPanel) extends Units with Source with Target {
+abstract class AbstractUnit(override val name: String, private val maxHealthPoints: Int, private var defensePoints: Int, private var weight: Int, private var panel: IPanel) extends Units with Source with Target {
 
+  private var healthPoints: Int = maxHealthPoints
+  
   panel.addUnit(this)
   
   // Setters for the unit's properties
   override def setHp(sHp: Int): Unit = {
-    healthPoints = sHp
+    if (0 <= sHp && sHp <= maxHealthPoints) {
+      healthPoints = sHp
+    }
+    else {
+      throw new IllegalArgumentException("Either the new HP is negative or over the maximum HP allowed")
+    }
   }
 
   override def setDp(sDp: Int): Unit = {
