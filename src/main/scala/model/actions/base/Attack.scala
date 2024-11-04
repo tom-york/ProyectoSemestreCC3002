@@ -11,15 +11,15 @@ import util.Json.{*, given}
 class Attack(name: String = "Attack") extends AbstractAction(name){
 
   override def normalCharacterExecute(character: Character, tgt: Target): Unit = {
-    tgt.beAttacked(character.getWeapon.getOrElse(throw new WeaponNotPresent(character)).getTotalAttack)
+    tgt.beAttacked(character.getTotalDamage)
   }
 
   override def magicCharacterExecute(character: MagicCharacter, tgt: Target): Unit = {
-    tgt.beAttacked(character.getWeapon.getOrElse(throw new WeaponNotPresent(character)).getTotalAttack)
+    tgt.beAttacked(character.getTotalDamage)
   }
 
   override def enemyExecute(enemy: Enemy, tgt: Target): Unit = {
-    tgt.beAttacked(enemy.getDp)
+    tgt.beAttacked(enemy.getTotalDamage)
   }
 
   override def id: String = "1" // Identifier for this action
