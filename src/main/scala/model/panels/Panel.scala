@@ -1,14 +1,17 @@
 package model.panels
 
+import api.Target
+import model.exceptions.NotAdjacentPanel
 import model.units.Units
 
 import scala.collection.immutable.Map
 import scala.collection.mutable.ArrayBuffer
 import util.Json.{*, given}
+
 import java.util.UUID
 
 // Class representing a game panel, implementing the IPanel interface
-class Panel extends IPanel {
+class Panel extends IPanel with Target{
   private var coordinates: (Int, Int) = _ // Stores the coordinates of the panel
   private var unitArray: ArrayBuffer[Units] = _ // Stores the units present on the panel
   private var neighbours: Map[String, Option[Panel]] = Map.empty // Stores the neighboring panels
@@ -58,16 +61,15 @@ class Panel extends IPanel {
   def getUnits: ArrayBuffer[Units] = unitArray
 
   // Retrieves the northern neighbor panel
-  def getNorth: Option[Panel] = neighbours("north")
+  def getNeighbours: List[Panel] = neighbours.values.flatMap(_.toList).toList
 
-  // Retrieves the western neighbor panel
-  def getWest: Option[Panel] = neighbours("west")
+  def addUnit(unit: Units): Unit = {
+    unitArray.append(unit)
+  }
 
-  // Retrieves the southern neighbor panel
-  def getSouth: Option[Panel] = neighbours("south")
-
-  // Retrieves the eastern neighbor panel
-  def getEast: Option[Panel] = neighbours("east")
+  def removeUnit(unit: Units): Unit = {
+    unitArray -= unit
+  }
 
   // Returns the unique identifier of the panel
   val id: String = UUID.randomUUID().toString
@@ -85,6 +87,15 @@ class Panel extends IPanel {
     other match {
       case p: Panel => coordinates == p.getCoordinates && unitArray == p.getUnits
       case _ => false
+    }
+  }
+
+  override def moveUnit(unit: Units): Unit = {
+    if (unit.getPanel.getNeighbours.contains(this)) {
+      unit.movePanel(this)
+    }
+    else {
+      throw new NotAdjacentPanel(this)
     }
   }
 }
