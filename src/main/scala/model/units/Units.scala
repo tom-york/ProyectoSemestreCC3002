@@ -1,6 +1,7 @@
 package model.units
 
 import api.GameObject
+import model.panels.IPanel
 
 // Trait defining common behavior for units in the game
 trait Units extends GameObject {
@@ -15,6 +16,9 @@ trait Units extends GameObject {
   def getHp: Int
   def getDp: Int
   def getWeight: Int
+  def getPanel: IPanel
+  
+  def movePanel(newPanel: IPanel): Unit
 
   // Calculates the maximum action bar for the unit
   def calculateActionBarMax: Double
