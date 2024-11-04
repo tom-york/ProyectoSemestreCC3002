@@ -23,12 +23,9 @@ trait IPanel extends GameObject {
 
   def getUnits: ArrayBuffer[Units] // Retrieves the units on the panel
 
-  def getNorth: Option[Panel] // Retrieves the northern neighbor panel
-
-  def getWest: Option[Panel] // Retrieves the western neighbor panel
-
-  def getSouth: Option[Panel] // Retrieves the southern neighbor panel
-
-  def getEast: Option[Panel] // Retrieves the eastern neighbor panel
-
+  def getNeighbours: List[Panel] // Retrieves the northern neighbor panel
+  
+  def addUnit(unit: Units): Unit
+  
+  def removeUnit(unit: Units): Unit
 }
