@@ -1,6 +1,6 @@
 package model.items.weapons
 
-import model.exceptions.InvalidTarget
+import model.exceptions.InvalidActionTarget
 import model.units.Units
 import model.units.characters.Character
 import util.Json.{*, given}
@@ -43,10 +43,14 @@ abstract class AbstractWeapon(private var name: String, private var attackPoints
   )
 
   override def moveUnit(unit: Units): Unit = {
-    throw new InvalidTarget("Weapon", "Move")
+    throw new InvalidActionTarget("Weapon", "Move")
   }
 
   override def beAttacked(attackDmg: Int): Unit = {
-    throw new InvalidTarget("Weapon", "Attack")
+    throw new InvalidActionTarget("Weapon", "Attack")
+  }
+
+  override def unitConsume(unit: Units): Unit = {
+    throw new InvalidActionTarget("Weapon", "Consume")
   }
 }

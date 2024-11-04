@@ -1,6 +1,6 @@
 package model.items.potions
 
-import model.exceptions.InvalidTarget
+import model.exceptions.InvalidActionTarget
 import model.units.Units
 import util.Json.{*, given}
 
@@ -25,10 +25,10 @@ abstract class AbstractPotion(private var name: String) extends Potion {
   )
 
   override def moveUnit(unit: Units): Unit = {
-    throw new InvalidTarget("Potion", "Move")
+    throw new InvalidActionTarget("Potion", "Move")
   }
 
   override def beAttacked(attackDmg: Int): Unit = {
-    throw new InvalidTarget("Potion", "Attack")
+    throw new InvalidActionTarget("Potion", "Attack")
   }
 }
