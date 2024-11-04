@@ -13,7 +13,7 @@ class Consume(name: String = "Consume", usableItems: List[Potion]) extends Usage
   }
 
   override def magicCharacterExecute(character: MagicCharacter, tgt: Target): Unit = {
-    tgt.unitConsume(character)
+    tgt.unitMagicConsume(character)
   }
 
   override def enemyExecute(enemy: Enemy, tgt: Target): Unit = {
