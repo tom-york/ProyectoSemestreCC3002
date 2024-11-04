@@ -2,11 +2,12 @@ package model.units.characters
 
 import model.items.Item
 import model.items.weapons.Weapon
+import model.panels.IPanel
 import model.units.AbstractUnit
 import util.Json.{*, given}
 
 // Abstract class for characters, implementing the Character trait and adding weapon and item inventory
-abstract class AbstractCharacter(name: String, healthPoints: Int, defensePoints: Int, weight: Int, private var weaponSlot: Option[Weapon], private var itemInventory: List[Item]) extends AbstractUnit(name, healthPoints, defensePoints, weight) with Character {
+abstract class AbstractCharacter(name: String, healthPoints: Int, defensePoints: Int, weight: Int, panel: IPanel, private var weaponSlot: Option[Weapon], private var itemInventory: List[Item]) extends AbstractUnit(name, healthPoints, defensePoints, weight, panel) with Character {
 
   // Setter and getter for the weapon slot
   def setWeapon(weapon: Option[Weapon]): Unit = {

@@ -1,14 +1,17 @@
 package model.units.characters
 
+import api.Target
+import model.actions.Action
 import model.items.Item
 import model.items.weapons.Weapon
 import model.items.potions.Potion
 import model.items.potions.magic.*
 import model.items.potions.normal.*
+import model.panels.IPanel
 import util.Json.{*, given}
 
 // Abstract class for magic characters, extending AbstractCharacter and adding mana points
-abstract class AbstractMagicCharacter(name: String, healthPoints: Int, defensePoints: Int, weight: Int, weaponSlot: Option[Weapon], itemInventory: List[Item], private var manaPoints: Int) extends AbstractCharacter(name, healthPoints, defensePoints, weight, weaponSlot, itemInventory) with MagicCharacter {
+abstract class AbstractMagicCharacter(name: String, healthPoints: Int, defensePoints: Int, weight: Int, panel: IPanel, weaponSlot: Option[Weapon], itemInventory: List[Item], private var manaPoints: Int) extends AbstractCharacter(name, healthPoints, defensePoints, weight, panel, weaponSlot, itemInventory) with MagicCharacter {
 
   // Setter and getter for the character's mana points
   def setMp(manaP: Int): Unit = {
@@ -31,4 +34,8 @@ abstract class AbstractMagicCharacter(name: String, healthPoints: Int, defensePo
     ),
     "img" -> "mockImage.gif"
   )
+
+  def doAction(action: Action, target: Target): Unit = {
+    action.magicCharacterExecute(this, target)
+  }
 }

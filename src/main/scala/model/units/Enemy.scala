@@ -2,10 +2,12 @@ package model.units
 
 import api.Target
 import model.actions.Action
+import model.actions.base.{Attack, Move}
+import model.panels.IPanel
 import util.Json.{*, given}
 
 // Class representing an enemy unit, extending AbstractUnit and adding attack points
-class Enemy(name: String, healthPoints: Int, defensePoints: Int, weight: Int, private var attackPoints: Int) extends AbstractUnit(name, healthPoints, defensePoints, weight) {
+class Enemy(name: String, healthPoints: Int, defensePoints: Int, weight: Int, panel: IPanel, private var attackPoints: Int) extends AbstractUnit(name, healthPoints, defensePoints, weight, panel) {
 
   // Setter and getter for the unit's attack points
   def setAtk(sAtk: Int): Unit = {
@@ -32,4 +34,6 @@ class Enemy(name: String, healthPoints: Int, defensePoints: Int, weight: Int, pr
   def doAction(action: Action, target: Target): Unit = {
     action.enemyExecute(this, target)
   }
+
+  override val actions: List[Action] = List(new Attack("enemyAttack"), new Move("enemyMove"))
 }
