@@ -4,13 +4,17 @@ import api.{Source, Target}
 import model.actions.AbstractAction
 import model.exceptions.*
 import model.units.Enemy
-import model.units.characters.Character
+import model.units.characters.*
 import spray.json.JsObject
 import util.Json.{*, given}
 
 class Attack(name: String = "Attack") extends AbstractAction(name){
 
-  override def characterExecute(character: Character, tgt: Target): Unit = {
+  override def normalCharacterExecute(character: Character, tgt: Target): Unit = {
+    tgt.beAttacked(character.getWeapon.getOrElse(throw new WeaponNotPresent(character)).getTotalAttack)
+  }
+
+  override def magicCharacterExecute(character: MagicCharacter, tgt: Target): Unit = {
     tgt.beAttacked(character.getWeapon.getOrElse(throw new WeaponNotPresent(character)).getTotalAttack)
   }
 

@@ -2,7 +2,7 @@ package model.actions
 
 import api.{Source, Target}
 import model.units.Enemy
-import model.units.characters.Character
+import model.units.characters.{Character, MagicCharacter}
 
 // Trait defining basic actions with a name
 trait Action {
@@ -12,5 +12,7 @@ trait Action {
 
   def enemyExecute(enemy: Enemy, tgt: Target): Unit
 
-  def characterExecute(character: Character, tgt: Target): Unit
+  def normalCharacterExecute(character: Character, tgt: Target): Unit
+  
+  def magicCharacterExecute(magicCharacter: MagicCharacter, tgt: Target): Unit
 }
