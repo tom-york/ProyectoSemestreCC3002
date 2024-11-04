@@ -1,5 +1,7 @@
 package model.items.potions
 
+import model.exceptions.InvalidTarget
+import model.units.Units
 import util.Json.{*, given}
 
 import java.util.UUID
@@ -21,4 +23,12 @@ abstract class AbstractPotion(private var name: String) extends Potion {
     "id" -> id,
     "name" -> getName
   )
+
+  override def moveUnit(unit: Units): Unit = {
+    throw new InvalidTarget("Potion", "Move")
+  }
+
+  override def beAttacked(attackDmg: Int): Unit = {
+    throw new InvalidTarget("Potion", "Attack")
+  }
 }
