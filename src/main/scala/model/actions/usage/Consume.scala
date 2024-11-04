@@ -10,11 +10,11 @@ import util.Json.{*, given}
 // Concrete class for consuming potions, extending UsageAction
 class Consume(name: String = "Consume", usableItems: List[Potion]) extends UsageAction(name, usableItems) {
   override def normalCharacterExecute(character: Character, tgt: Target): Unit = {
-    tgt.unitConsume(character)
+    tgt.characterConsume(character)
   }
 
   override def magicCharacterExecute(character: MagicCharacter, tgt: Target): Unit = {
-    tgt.unitMagicConsume(character)
+    tgt.magicCharacterConsume(character)
   }
 
   override def enemyExecute(enemy: Enemy, tgt: Target): Unit = {
