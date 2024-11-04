@@ -17,7 +17,7 @@ trait Units extends GameObject {
   def getDp: Int
   def getWeight: Int
   def getPanel: IPanel
-  
+  def getMaxHp: Int
   def getTotalDamage: Int
   
   def movePanel(newPanel: IPanel): Unit

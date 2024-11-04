@@ -43,6 +43,7 @@ abstract class AbstractUnit(override val name: String, private val maxHealthPoin
   override def getDp: Int = defensePoints
   override def getWeight: Int = weight
   override def getPanel: IPanel = panel
+  override def getMaxHp: Int = maxHealthPoints
 
   val id: String = UUID.randomUUID().toString
 
