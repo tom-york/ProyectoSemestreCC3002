@@ -30,6 +30,8 @@ abstract class AbstractMagicCharacter(name: String, healthPoints: Int, defensePo
   
   def getMp: Int = manaPoints
 
+  def getMaxMp: Int = maxManaPoints
+  
   def magicForcePotionEffect(): Unit = {
     magicForceMultiplier = 1.5
   }
