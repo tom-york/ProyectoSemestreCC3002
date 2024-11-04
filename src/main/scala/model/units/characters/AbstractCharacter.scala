@@ -1,5 +1,6 @@
 package model.units.characters
 
+import model.exceptions.WeaponNotPresent
 import model.items.Item
 import model.items.weapons.Weapon
 import model.panels.IPanel
@@ -30,6 +31,8 @@ abstract class AbstractCharacter(name: String, healthPoints: Int, defensePoints:
     } else weight
   }
 
+  override def getTotalDamage: Int = weaponSlot.getOrElse(throw new WeaponNotPresent(this)).getTotalAttack
+  
   // Serialize the character's attributes and inventory to JSON
   override def toJson: JsObj = JsObj(
     "id" -> this.id,

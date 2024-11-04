@@ -2,6 +2,7 @@ package model.units.characters
 
 import api.Target
 import model.actions.Action
+import model.exceptions.WeaponNotPresent
 import model.items.Item
 import model.items.weapons.Weapon
 import model.items.potions.Potion
@@ -13,12 +14,24 @@ import util.Json.{*, given}
 // Abstract class for magic characters, extending AbstractCharacter and adding mana points
 abstract class AbstractMagicCharacter(name: String, healthPoints: Int, defensePoints: Int, weight: Int, panel: IPanel, weaponSlot: Option[Weapon], itemInventory: List[Item], private var manaPoints: Int) extends AbstractCharacter(name, healthPoints, defensePoints, weight, panel, weaponSlot, itemInventory) with MagicCharacter {
 
+  private var magicForceMultiplier: Float = 1.0
+  
   // Setter and getter for the character's mana points
   def setMp(manaP: Int): Unit = {
     manaPoints = manaP
   }
 
   def getMp: Int = manaPoints
+
+  def magicForcePotionEffect(): Unit = {
+    magicForceMultiplier = 1.5
+  }
+  
+  def magicForceReset(): Unit = {
+    magicForceMultiplier = 1.0
+  }
+  
+  override def getTotalDamage: Int = Math.round(weaponSlot.getOrElse(throw new WeaponNotPresent(this)).getTotalAttack * magicForceMultiplier)
 
   protected val compatibleConsumables: List[Potion] = List(new HealingPotion("HealPot"), new StrengthPotion("StrengthPot"), new ManaPotion("ManaPot"), new MagicForcePotion("MagicPot"))
 

@@ -18,6 +18,8 @@ trait Units extends GameObject {
   def getWeight: Int
   def getPanel: IPanel
   
+  def getTotalDamage: Int
+  
   def movePanel(newPanel: IPanel): Unit
 
   // Calculates the maximum action bar for the unit

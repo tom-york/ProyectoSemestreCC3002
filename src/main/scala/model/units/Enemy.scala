@@ -16,6 +16,8 @@ class Enemy(name: String, healthPoints: Int, defensePoints: Int, weight: Int, pa
 
   def getAtk: Int = attackPoints
 
+  override def getTotalDamage: Int = attackPoints
+  
   // Serialize the enemy's attributes to JSON
   override def toJson: JsObj = JsObj(
     "id" -> id,

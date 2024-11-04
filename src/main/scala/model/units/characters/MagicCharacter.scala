@@ -7,4 +7,6 @@ trait MagicCharacter extends Character {
 
   def setMp(manaP: Int): Unit  // Set the character's mana points
   def getMp: Int  // Get the character's mana points
+  def magicForcePotionEffect(): Unit
+  def magicForceReset(): Unit
 }
