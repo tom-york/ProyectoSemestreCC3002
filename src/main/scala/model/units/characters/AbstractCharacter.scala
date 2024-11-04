@@ -30,8 +30,6 @@ abstract class AbstractCharacter(name: String, healthPoints: Int, defensePoints:
       weight + 0.5 * weaponSlot.get.getWeight
     } else weight
   }
-
-  override def getTotalDamage: Int = weaponSlot.getOrElse(throw new WeaponNotPresent(this)).getTotalAttack
   
   // Serialize the character's attributes and inventory to JSON
   override def toJson: JsObj = JsObj(
