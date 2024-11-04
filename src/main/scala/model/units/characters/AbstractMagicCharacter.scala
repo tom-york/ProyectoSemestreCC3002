@@ -12,15 +12,22 @@ import model.panels.IPanel
 import util.Json.{*, given}
 
 // Abstract class for magic characters, extending AbstractCharacter and adding mana points
-abstract class AbstractMagicCharacter(name: String, healthPoints: Int, defensePoints: Int, weight: Int, panel: IPanel, weaponSlot: Option[Weapon], itemInventory: List[Item], private var manaPoints: Int) extends AbstractCharacter(name, healthPoints, defensePoints, weight, panel, weaponSlot, itemInventory) with MagicCharacter {
+abstract class AbstractMagicCharacter(name: String, healthPoints: Int, defensePoints: Int, weight: Int, panel: IPanel, weaponSlot: Option[Weapon], itemInventory: List[Item], private var maxManaPoints: Int) extends AbstractCharacter(name, healthPoints, defensePoints, weight, panel, weaponSlot, itemInventory) with MagicCharacter {
+
+  private var manaPoints: Int = maxManaPoints
 
   private var magicForceMultiplier: Float = 1.0
   
   // Setter and getter for the character's mana points
-  def setMp(manaP: Int): Unit = {
-    manaPoints = manaP
+  override def setMp(manaP: Int): Unit = {
+    if (0 <= manaP && manaP <= maxManaPoints) {
+      manaPoints = manaP
+    }
+    else {
+      throw new IllegalArgumentException("Either the new Mana Points value is negative or over the maximum allowed")
+    }
   }
-
+  
   def getMp: Int = manaPoints
 
   def magicForcePotionEffect(): Unit = {
