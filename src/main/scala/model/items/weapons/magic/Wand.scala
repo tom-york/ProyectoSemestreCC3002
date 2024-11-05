@@ -7,4 +7,8 @@ class Wand(name: String, attackPoints: Int, weight: Int, owner: Character, magic
   def this(owner: Character) = {
     this("Wand", 69, 69, owner, 69)
   }
+
+  override def equipWeapon(character: Character): Unit = {
+    character.equipWand(this)
+  }
 }

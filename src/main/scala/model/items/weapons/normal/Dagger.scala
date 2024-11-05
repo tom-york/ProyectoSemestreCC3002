@@ -7,4 +7,8 @@ class Dagger(name: String, attackPoints: Int, weight: Int, owner: Character) ext
   def this(owner: Character) = {
     this("Dagger", 69, 69, owner)
   }
+
+  override def equipWeapon(character: Character): Unit = {
+    character.equipDagger(this)
+  }
 }

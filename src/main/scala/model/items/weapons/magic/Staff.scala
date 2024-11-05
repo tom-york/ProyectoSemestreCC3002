@@ -7,4 +7,8 @@ class Staff(name: String, attackPoints: Int, weight: Int, owner: Character, magi
   def this(owner: Character) = {
     this("Staff", 69, 69, owner, 69)
   }
+
+  override def equipWeapon(character: Character): Unit = {
+    character.equipStaff(this)
+  }
 }
