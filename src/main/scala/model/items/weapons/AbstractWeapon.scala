@@ -55,7 +55,7 @@ abstract class AbstractWeapon(private var name: String, private var attackPoints
     throw new InvalidActionTarget("Weapon", "Consume")
   }
 
-  override def magicCharacterConsume(character: MagicCharacter): Unit = {
+  override def magicCharacterConsume(magicCharacter: MagicCharacter): Unit = {
     throw new InvalidActionTarget("Weapon", "Consume")
   }
 }

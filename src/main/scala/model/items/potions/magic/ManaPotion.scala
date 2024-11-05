@@ -10,15 +10,15 @@ class ManaPotion(name: String) extends AbstractPotion(name) {
     throw new InvalidSourceTarget(character.getName, "Mana Potion")
   }
 
-  override def magicCharacterConsume(character: MagicCharacter): Unit = {
-    val currentMP: Int  = character.getMp
-    val maxMP: Int  = character.getMaxMp
+  override def magicCharacterConsume(magicCharacter: MagicCharacter): Unit = {
+    val currentMP: Int  = magicCharacter.getMp
+    val maxMP: Int  = magicCharacter.getMaxMp
     val calculateEffects: Float = currentMP + Math.round(maxMP * 0.3)
     if (Math.round(calculateEffects) < maxMP) {
-      character.setMp(Math.round(calculateEffects))
+      magicCharacter.setMp(Math.round(calculateEffects))
     }
     else {
-      character.setMp(maxMP)
+      magicCharacter.setMp(maxMP)
     }
   }
 }

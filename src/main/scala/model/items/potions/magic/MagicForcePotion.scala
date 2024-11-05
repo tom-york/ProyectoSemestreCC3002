@@ -11,7 +11,7 @@ class MagicForcePotion(name: String) extends AbstractPotion(name) {
     throw new InvalidSourceTarget(character.getName, "Magic Force Potion")
   }
 
-  override def magicCharacterConsume(character: MagicCharacter): Unit = {
-    character.magicForcePotionEffect()
+  override def magicCharacterConsume(magicCharacter: MagicCharacter): Unit = {
+    magicCharacter.magicForcePotionEffect()
   }
 }

@@ -13,12 +13,12 @@ class Heal(name: String = "Heal") extends Spell(name) {
     throw new InvalidSourceAction(character.getName, this.getName)
   }
 
-  override def magicCharacterExecute(character: MagicCharacter, tgt: Target): Unit = {
-    val currentManaPoints = character.getMp
+  override def magicCharacterExecute(magicCharacter: MagicCharacter, tgt: Target): Unit = {
+    val currentManaPoints = magicCharacter.getMp
     if (currentManaPoints >= 20) {
-      tgt.healUnit(character)
+      tgt.healUnit(magicCharacter)
     }
-    else throw new InsufficientManaPoints(character, "Heal")
+    else throw new InsufficientManaPoints(magicCharacter, "Heal")
   }
 
   override def enemyExecute(enemy: Enemy, tgt: Target): Unit = {

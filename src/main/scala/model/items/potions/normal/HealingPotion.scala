@@ -17,7 +17,7 @@ class HealingPotion(name: String) extends AbstractPotion(name) {
     }  
   }
 
-  override def magicCharacterConsume(character: MagicCharacter): Unit = {
-    characterConsume(character)
+  override def magicCharacterConsume(magicCharacter: MagicCharacter): Unit = {
+    characterConsume(magicCharacter)
   }
 }

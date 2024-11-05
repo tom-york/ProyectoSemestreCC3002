@@ -14,8 +14,8 @@ class Attack(name: String = "Attack") extends AbstractAction(name){
     tgt.beAttacked(character.getTotalDamage)
   }
 
-  override def magicCharacterExecute(character: MagicCharacter, tgt: Target): Unit = {
-    tgt.beAttacked(character.getTotalDamage)
+  override def magicCharacterExecute(magicCharacter: MagicCharacter, tgt: Target): Unit = {
+    tgt.beAttacked(magicCharacter.getTotalDamage)
   }
 
   override def enemyExecute(enemy: Enemy, tgt: Target): Unit = {

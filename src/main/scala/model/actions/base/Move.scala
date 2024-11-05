@@ -11,8 +11,8 @@ class Move(name: String = "Move") extends AbstractAction(name) {
     tgt.moveUnit(character)
   }
 
-  override def magicCharacterExecute(character: MagicCharacter, tgt: Target): Unit = {
-    tgt.moveUnit(character)
+  override def magicCharacterExecute(magicCharacter: MagicCharacter, tgt: Target): Unit = {
+    tgt.moveUnit(magicCharacter)
   }
 
   override def enemyExecute(enemy: Enemy, tgt: Target): Unit = {

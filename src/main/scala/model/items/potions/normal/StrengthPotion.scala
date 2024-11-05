@@ -10,7 +10,7 @@ class StrengthPotion(name: String) extends AbstractPotion(name) {
     character.setDp(Math.round(character.getDp * multiplier))
   }
 
-  override def magicCharacterConsume(character: MagicCharacter): Unit = {
-    characterConsume(character)
+  override def magicCharacterConsume(magicCharacter: MagicCharacter): Unit = {
+    characterConsume(magicCharacter)
   }
 }

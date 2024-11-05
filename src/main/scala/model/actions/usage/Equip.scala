@@ -12,8 +12,8 @@ class Equip(name: String = "Equip", usableItems: List[Weapon]) extends UsageActi
     tgt.equipWeapon(character)
   }
 
-  override def magicCharacterExecute(character: MagicCharacter, tgt: Target): Unit = {
-    normalCharacterExecute(character, tgt)  
+  override def magicCharacterExecute(magicCharacter: MagicCharacter, tgt: Target): Unit = {
+    normalCharacterExecute(magicCharacter, tgt)  
   }
 
   override def enemyExecute(enemy: Enemy, tgt: Target): Unit = {
