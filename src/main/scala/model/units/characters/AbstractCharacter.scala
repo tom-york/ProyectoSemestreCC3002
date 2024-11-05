@@ -1,6 +1,6 @@
 package model.units.characters
 
-import model.exceptions.WeaponNotPresent
+import model.exceptions.{DefeatedTarget, InvalidActionTarget, WeaponNotPresent}
 import model.items.Item
 import model.items.weapons.Weapon
 import model.panels.IPanel
@@ -45,9 +45,24 @@ abstract class AbstractCharacter(name: String, healthPoints: Int, defensePoints:
     "img" -> "mockImage.gif"
   )
 
-  override def healUnit(magicCharacter: MagicCharacter): Unit = {
-    val healingPercentage: Float = 1.2
-    val magicDamageFraction: Float = magicCharacter.getMagicDamage / 4
-    val healingAmount: Int = Math.round((getMaxHp * healingPercentage) + magicDamageFraction)
+  override def healCharacter(magicCharacter: MagicCharacter): Unit = {
+    if (healthPoints == 0) {
+      throw new DefeatedTarget(this)
+    }
+    else {
+      val healingPercentage: Float = 1.2
+      val magicDamageFraction: Float = magicCharacter.getMagicDamage / 4
+      val healingTotal: Int = getHp + Math.round((getMaxHp * healingPercentage) + magicDamageFraction)
+      if (healingTotal < getMaxHp) {
+        setHp(healingTotal)
+      }
+      else {
+        setHp(getMaxHp)
+      }
+    }
+  }
+
+  override def purifyEnemy(magicCharacter: MagicCharacter): Unit = {
+    throw new InvalidActionTarget("Character", "Purify")
   }
 }

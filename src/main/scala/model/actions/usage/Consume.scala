@@ -1,9 +1,7 @@
 package model.actions.usage
 
 import api.Target
-import model.exceptions.{InvalidSourceAction, InvalidSourceTarget}
 import model.items.potions.Potion
-import model.units.Enemy
 import model.units.characters.{Character, MagicCharacter}
 import util.Json.{*, given}
 
@@ -15,10 +13,6 @@ class Consume(name: String = "Consume", usableItems: List[Potion]) extends Usage
 
   override def magicCharacterExecute(magicCharacter: MagicCharacter, tgt: Target): Unit = {
     tgt.magicCharacterConsume(magicCharacter)
-  }
-
-  override def enemyExecute(enemy: Enemy, tgt: Target): Unit = {
-    throw new InvalidSourceAction(enemy.getName, this.getName)
   }
   
   override def id: String = "7" // Identifier for this action

@@ -24,4 +24,5 @@ trait Units extends GameObject {
 
   // Calculates the maximum action bar for the unit
   def calculateActionBarMax: Double
+  def beAttacked(attackDmg: Int): Unit
 }

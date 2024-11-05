@@ -12,4 +12,7 @@ abstract class AbstractAction(private var actionName: String) extends Action wit
 
   // Returns the action's name
   def getName: String = actionName
+  
+  def getId: String = this.id
+  
 }

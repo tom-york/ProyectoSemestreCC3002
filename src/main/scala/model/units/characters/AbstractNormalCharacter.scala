@@ -4,7 +4,7 @@ import api.Target
 import model.actions.Action
 import model.actions.base.*
 import model.actions.usage.*
-import model.exceptions.WeaponNotPresent
+import model.exceptions.{InsufficientHP, WeaponNotPresent}
 import model.items.Item
 import model.items.potions.Potion
 import model.items.potions.normal.*
@@ -20,6 +20,11 @@ abstract class AbstractNormalCharacter(name: String, healthPoints: Int, defenseP
   override val actions: List[Action] = List(new Attack(), new Move(), new Consume("Consume", compatibleConsumables), new Equip("Equip", this.compatibleWeapons))
 
   def doAction(action: Action, target: Target): Unit = {
-    action.normalCharacterExecute(this, target)
+    if (healthPoints <= 0) {
+      throw new InsufficientHP(this)
+    }
+    else {
+      action.normalCharacterExecute(this, target)
+    }
   }
 }

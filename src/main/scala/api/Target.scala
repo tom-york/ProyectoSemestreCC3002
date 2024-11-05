@@ -9,5 +9,8 @@ trait Target extends GameObject {
   def characterConsume(character: Character): Unit
   def magicCharacterConsume(magicCharacter: MagicCharacter): Unit
   def equipWeapon(character: Character): Unit
-  def healUnit(magicCharacter: MagicCharacter): Unit
+  def healCharacter(magicCharacter: MagicCharacter): Unit
+  def purifyEnemy(magicCharacter: MagicCharacter): Unit
+  def useMeteorite(magicCharacter: MagicCharacter): Unit
+  def useThunder(magicCharacter: MagicCharacter): Unit
 }

@@ -58,4 +58,20 @@ abstract class AbstractWeapon(private var name: String, private var attackPoints
   override def magicCharacterConsume(magicCharacter: MagicCharacter): Unit = {
     throw new InvalidActionTarget("Weapon", "Consume")
   }
+
+  override def healCharacter(magicCharacter: MagicCharacter): Unit = {
+    throw new InvalidActionTarget("Weapon", "Heal")
+  }
+
+  override def purifyEnemy(magicCharacter: MagicCharacter): Unit = {
+    throw new InvalidActionTarget("Weapon", "Purify")
+  }
+
+  override def useMeteorite(magicCharacter: MagicCharacter): Unit = {
+    throw new InvalidActionTarget("Weapon", "Meteorite")
+  }
+
+  override def useThunder(magicCharacter: MagicCharacter): Unit = {
+    throw new InvalidActionTarget("Weapon", "Thunder")
+  }
 }

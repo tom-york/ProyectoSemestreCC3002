@@ -1,7 +1,8 @@
 package model.items.potions
 
 import model.exceptions.InvalidActionTarget
-import model.units.Units
+import model.units.{Units, characters}
+import model.units.characters.MagicCharacter
 import util.Json.{*, given}
 
 import java.util.UUID
@@ -30,5 +31,25 @@ abstract class AbstractPotion(private var name: String) extends Potion {
 
   override def beAttacked(attackDmg: Int): Unit = {
     throw new InvalidActionTarget("Potion", "Attack")
+  }
+
+  override def equipWeapon(character: characters.Character): Unit = {
+    throw new InvalidActionTarget("Potion", "Equip")
+  }
+
+  override def healCharacter(magicCharacter: MagicCharacter): Unit = {
+    throw new InvalidActionTarget("Potion", "Heal")
+  }
+
+  override def purifyEnemy(magicCharacter: MagicCharacter): Unit = {
+    throw new InvalidActionTarget("Potion", "Purify")
+  }
+
+  override def useMeteorite(magicCharacter: MagicCharacter): Unit = {
+    throw new InvalidActionTarget("Potion", "Meteorite")
+  }
+
+  override def useThunder(magicCharacter: MagicCharacter): Unit = {
+    throw new InvalidActionTarget("Potion", "Thunder")
   }
 }

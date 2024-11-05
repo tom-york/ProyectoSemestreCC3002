@@ -1,8 +1,9 @@
 package model.panels
 
 import api.Target
-import model.exceptions.NotAdjacentPanel
-import model.units.Units
+import model.exceptions.{InvalidActionTarget, NotAdjacentPanel}
+import model.units.{Units, characters}
+import model.units.characters.MagicCharacter
 
 import scala.collection.immutable.Map
 import scala.collection.mutable.ArrayBuffer
@@ -97,5 +98,38 @@ class Panel extends IPanel with Target{
     else {
       throw new NotAdjacentPanel(this)
     }
+  }
+
+  override def useMeteorite(magicCharacter: MagicCharacter): Unit = {
+    val damageAmount: Int = magicCharacter.getMagicDamage
+    unitArray.foreach(_.beAttacked(damageAmount))
+  }
+
+  override def beAttacked(attackDmg: Int): Unit = {
+    throw new InvalidActionTarget("Panel", "Attack")
+  }
+
+  override def characterConsume(character: characters.Character): Unit = {
+    throw new InvalidActionTarget("Panel", "Consume")
+  }
+
+  override def magicCharacterConsume(magicCharacter: MagicCharacter): Unit = {
+    throw new InvalidActionTarget("Panel", "Consume")
+  }
+
+  override def equipWeapon(character: characters.Character): Unit = {
+    throw new InvalidActionTarget("Panel", "Equip")
+  }
+
+  override def healCharacter(magicCharacter: MagicCharacter): Unit = {
+    throw new InvalidActionTarget("Panel", "Heal")
+  }
+
+  override def purifyEnemy(magicCharacter: MagicCharacter): Unit = {
+    throw new InvalidActionTarget("Panel", "Purify")
+  }
+
+  override def useThunder(magicCharacter: MagicCharacter): Unit = {
+    throw new InvalidActionTarget("Panel", "Thunder")
   }
 }

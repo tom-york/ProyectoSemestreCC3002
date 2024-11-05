@@ -9,6 +9,8 @@ trait Action {
   def setName(name: String): Unit // Sets the action's name
   
   def getName: String // Retrieves the action's name
+  
+  def getId: String
 
   def enemyExecute(enemy: Enemy, tgt: Target): Unit
 

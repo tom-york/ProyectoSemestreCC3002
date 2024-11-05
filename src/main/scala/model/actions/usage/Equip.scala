@@ -15,10 +15,6 @@ class Equip(name: String = "Equip", usableItems: List[Weapon]) extends UsageActi
   override def magicCharacterExecute(magicCharacter: MagicCharacter, tgt: Target): Unit = {
     normalCharacterExecute(magicCharacter, tgt)  
   }
-
-  override def enemyExecute(enemy: Enemy, tgt: Target): Unit = {
-    throw new InvalidSourceAction(enemy.getName, this.getName)
-  }
   
   override def id: String = "8" // Identifier for this action
 

@@ -2,7 +2,7 @@ package model.units.characters
 
 import api.Target
 import model.actions.Action
-import model.exceptions.WeaponNotPresent
+import model.exceptions.{InsufficientHP, WeaponNotPresent}
 import model.items.Item
 import model.items.weapons.Weapon
 import model.items.potions.Potion
@@ -58,6 +58,11 @@ abstract class AbstractMagicCharacter(name: String, healthPoints: Int, defensePo
   )
 
   def doAction(action: Action, target: Target): Unit = {
-    action.magicCharacterExecute(this, target)
+    if (healthPoints <= 0) {
+      throw new InsufficientHP(this)
+    }
+    else {
+      action.magicCharacterExecute(this, target)
+    }
   }
 }
