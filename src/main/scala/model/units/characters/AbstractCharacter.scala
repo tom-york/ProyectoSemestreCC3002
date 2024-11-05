@@ -44,4 +44,10 @@ abstract class AbstractCharacter(name: String, healthPoints: Int, defensePoints:
     ),
     "img" -> "mockImage.gif"
   )
+
+  override def healUnit(magicCharacter: MagicCharacter): Unit = {
+    val healingPercentage: Float = 1.2
+    val magicDamageFraction: Float = magicCharacter.getMagicDamage / 4
+    val healingAmount: Int = Math.round((getMaxHp * healingPercentage) + magicDamageFraction)
+  }
 }

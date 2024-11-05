@@ -10,4 +10,5 @@ trait MagicCharacter extends Character {
   def getMaxMp: Int
   def magicForcePotionEffect(): Unit
   def magicForceReset(): Unit
+  def getMagicDamage: Int
 }
