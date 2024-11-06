@@ -12,6 +12,7 @@ class Meteorite(name: String = "Meteorite") extends Spell(name) {
     val currentManaPoints = magicCharacter.getMp
     if (currentManaPoints >= 50) {
       tgt.useMeteorite(magicCharacter)
+      magicCharacter.magicForceReset()
     }
     else throw new InsufficientManaPoints(magicCharacter, "Heal")
   }

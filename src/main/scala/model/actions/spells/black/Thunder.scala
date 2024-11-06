@@ -12,6 +12,7 @@ class Thunder(name: String = "Thunder") extends Spell(name) {
     val currentManaPoints = magicCharacter.getMp
     if (currentManaPoints >= 20) {
       tgt.useThunder(magicCharacter)
+      magicCharacter.magicForceReset()
     }
     else throw new InsufficientManaPoints(magicCharacter, "Heal")
   }

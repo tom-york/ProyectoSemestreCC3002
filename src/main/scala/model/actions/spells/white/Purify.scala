@@ -12,6 +12,7 @@ class Purify(name: String = "Purify") extends Spell(name) {
     val currentManaPoints = magicCharacter.getMp
     if (currentManaPoints >= 25) {
       tgt.purifyEnemy(magicCharacter)
+      magicCharacter.magicForceReset()
     }
     else throw new InsufficientManaPoints(magicCharacter, "Purify")
   }

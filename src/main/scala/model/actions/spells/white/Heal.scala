@@ -12,6 +12,7 @@ class Heal(name: String = "Heal") extends Spell(name) {
     val currentManaPoints = magicCharacter.getMp
     if (currentManaPoints >= 15) {
       tgt.healCharacter(magicCharacter)
+      magicCharacter.magicForceReset()
     }
     else throw new InsufficientManaPoints(magicCharacter, "Heal")
   }
