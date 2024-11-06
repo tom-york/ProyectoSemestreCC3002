@@ -3,10 +3,7 @@ package model.items.weapons.normal
 import model.items.weapons.AbstractWeapon
 import model.units.characters.Character
 
-class Bow(name: String, attackPoints: Int, weight: Int, owner: Character) extends AbstractWeapon(name, attackPoints, weight, owner) {
-  def this(owner: Character) = {
-    this("Bow", 69, 69, owner)
-  }
+class Bow(name: String = "Bow", attackPoints: Int = 69, weight: Int = 69) extends AbstractWeapon(name, attackPoints, weight) {
 
   override def equipWeapon(character: Character): Unit = {
     character.equipBow(this)

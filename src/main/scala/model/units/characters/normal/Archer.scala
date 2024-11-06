@@ -12,21 +12,21 @@ import model.panels.IPanel
 import model.units.characters.AbstractNormalCharacter
 
 class Archer(name: String, healthPoints: Int, defensePoints: Int, weight: Int, panel: IPanel, weaponSlot: Option[Weapon], itemInventory: List[Item]) extends AbstractNormalCharacter(name, healthPoints, defensePoints, weight, panel, weaponSlot, itemInventory) {
-  protected val compatibleWeapons: List[Weapon] = List(new Sword(this), new Bow(this), new Wand(this))
+  protected val compatibleWeapons: List[Weapon] = List(new Sword(), new Bow(), new Wand())
 
   override def equipStaff(weapon: Weapon): Unit = throw new IncompatibleWeapon(weapon, "Archer")
 
   override def equipWand(weapon: Weapon): Unit = {
-    this.setWeapon(Some(weapon))
+    weapon.setOwner(this)
   }
 
   override def equipBow(weapon: Weapon): Unit = {
-    this.setWeapon(Some(weapon))
+    weapon.setOwner(this)
   }
 
   override def equipDagger(weapon: Weapon): Unit = throw new IncompatibleWeapon(weapon, "Archer")
 
   override def equipSword(weapon: Weapon): Unit = {
-    this.setWeapon(Some(weapon))
+    weapon.setOwner(this)
   }
 }

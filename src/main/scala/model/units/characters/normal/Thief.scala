@@ -11,7 +11,7 @@ import model.panels.IPanel
 import model.units.characters.AbstractNormalCharacter
 
 class Thief(name: String, healthPoints: Int, defensePoints: Int, weight: Int, panel: IPanel, weaponSlot: Option[Weapon], itemInventory: List[Item]) extends AbstractNormalCharacter(name, healthPoints, defensePoints, weight, panel, weaponSlot, itemInventory) {
-  protected val compatibleWeapons: List[Weapon] = List(new Sword(this), new Dagger(this))
+  protected val compatibleWeapons: List[Weapon] = List(new Sword(), new Dagger())
 
   override def equipStaff(weapon: Weapon): Unit = throw new IncompatibleWeapon(weapon, "Thief")
 
@@ -20,10 +20,10 @@ class Thief(name: String, healthPoints: Int, defensePoints: Int, weight: Int, pa
   override def equipBow(weapon: Weapon): Unit = throw new IncompatibleWeapon(weapon, "Thief")
 
   override def equipDagger(weapon: Weapon): Unit = {
-    this.setWeapon(Some(weapon))
+    weapon.setOwner(this)
   }
 
   override def equipSword(weapon: Weapon): Unit = {
-    this.setWeapon(Some(weapon))
+    weapon.setOwner(this)
   }
 }

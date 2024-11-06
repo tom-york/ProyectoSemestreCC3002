@@ -13,22 +13,22 @@ import model.items.weapons.Weapon
 import model.panels.IPanel
 
 class BlackWizard(name: String, healthPoints: Int, defensePoints: Int, weight: Int, panel: IPanel, weaponSlot: Option[Weapon], itemInventory: List[Item], manaPoints: Int) extends AbstractMagicCharacter(name, healthPoints, defensePoints, weight, panel, weaponSlot, itemInventory, manaPoints) {
-  private val compatibleWeapons: List[Weapon] = List(new Dagger(this), new Wand(this), new Staff(this))
+  private val compatibleWeapons: List[Weapon] = List(new Dagger(), new Wand(), new Staff())
 
   override val actions: List[Action] = List(new Attack(), new Move(), new Consume("Consume", compatibleConsumables), new Equip("Equip", compatibleWeapons), new Meteorite(), new Thunder())
 
   override def equipStaff(weapon: Weapon): Unit = {
-    this.setWeapon(Some(weapon))
+    weapon.setOwner(this)
   }
 
   override def equipWand(weapon: Weapon): Unit = {
-    this.setWeapon(Some(weapon))
+    weapon.setOwner(this)
   }
 
   override def equipBow(weapon: Weapon): Unit = throw new IncompatibleWeapon(weapon, "Black Wizard")
 
   override def equipDagger(weapon: Weapon): Unit = {
-    this.setWeapon(Some(weapon))
+    weapon.setOwner(this)
   }
 
   override def equipSword(weapon: Weapon): Unit = throw new IncompatibleWeapon(weapon, "Black Wizard")

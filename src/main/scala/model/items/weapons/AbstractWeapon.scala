@@ -8,7 +8,8 @@ import util.Json.{*, given}
 import java.util.UUID
 
 // Abstract class implementing the Weapon trait, defining a basic weapon
-abstract class AbstractWeapon(private var name: String, private var attackPoints: Int, private var weight: Int, private var owner: Character) extends Weapon {
+abstract class AbstractWeapon(private var name: String, private var attackPoints: Int, private var weight: Int) extends Weapon {
+  private var owner: Option[Character] = None
 
   // Setters for the weapon's properties
   def setName(newName: String): Unit = {
@@ -24,14 +25,18 @@ abstract class AbstractWeapon(private var name: String, private var attackPoints
   }
 
   def setOwner(newOwner: Character): Unit = {
-    owner = newOwner
+    if (owner.isDefined) {
+      owner.get.setWeapon(None)
+    }
+    owner = Some(newOwner)
+    newOwner.setWeapon(Some(this))
   }
 
   // Getters for the weapon's properties
   def getName: String = name
   def getAttackPoints: Int = attackPoints
   def getWeight: Int = weight
-  def getOwner: Character = owner
+  def getOwner: Option[Character] = owner
   
   override def getMagicAttackPoints: Int = throw new MagicWeaponNotPresent()
   

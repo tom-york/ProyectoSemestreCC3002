@@ -14,7 +14,7 @@ trait Weapon extends Item {
   // Getters for weapon attributes
   def getAttackPoints: Int
   def getWeight: Int
-  def getOwner: Character
+  def getOwner: Option[Character]
   
   def getMagicAttackPoints: Int
 }
