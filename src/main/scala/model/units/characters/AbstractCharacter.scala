@@ -52,7 +52,7 @@ abstract class AbstractCharacter(name: String, healthPoints: Int, defensePoints:
       throw new DefeatedTarget(this)
     }
     else {
-      val healingPercentage: Float = 1.2
+      val healingPercentage: Float = 0.2
       val magicDamageFraction: Float = magicCharacter.getMagicDamage / 4
       val healingTotal: Int = getHp + Math.round((getMaxHp * healingPercentage) + magicDamageFraction)
       if (healingTotal < getMaxHp) {
