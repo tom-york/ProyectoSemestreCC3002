@@ -58,7 +58,7 @@ abstract class AbstractMagicCharacter(name: String, healthPoints: Int, defensePo
   )
 
   def doAction(action: Action, target: Target): Unit = {
-    if (healthPoints <= 0) {
+    if (getHp == 0) {
       throw new InsufficientHP(this)
     }
     else {

@@ -20,7 +20,7 @@ abstract class AbstractNormalCharacter(name: String, healthPoints: Int, defenseP
   override val actions: List[Action] = List(new Attack(), new Move(), new Consume("Consume", compatibleConsumables), new Equip("Equip", this.compatibleWeapons))
 
   def doAction(action: Action, target: Target): Unit = {
-    if (healthPoints <= 0) {
+    if (getHp == 0) {
       throw new InsufficientHP(this)
     }
     else {

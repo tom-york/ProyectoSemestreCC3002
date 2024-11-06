@@ -69,7 +69,7 @@ abstract class AbstractUnit(override val name: String, private val maxHealthPoin
   }
 
   override def useThunder(magicCharacter: MagicCharacter): Unit = {
-    if (healthPoints == 0) {
+    if (getHp == 0) {
       throw new DefeatedTarget(this)
     }
     else {

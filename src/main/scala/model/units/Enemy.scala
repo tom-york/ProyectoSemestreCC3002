@@ -36,7 +36,7 @@ class Enemy(name: String, healthPoints: Int, defensePoints: Int, weight: Int, pa
   def calculateActionBarMax: Double = weight.toDouble
 
   def doAction(action: Action, target: Target): Unit = {
-    if (healthPoints <= 0) {
+    if (getHp == 0) {
       throw new InsufficientHP(this)
     }
     else {
@@ -45,7 +45,7 @@ class Enemy(name: String, healthPoints: Int, defensePoints: Int, weight: Int, pa
   }
 
   override def purifyEnemy(magicCharacter: MagicCharacter): Unit = {
-    if (healthPoints == 0) {
+    if (getHp == 0) {
       throw new DefeatedTarget(this)
     }
     else {

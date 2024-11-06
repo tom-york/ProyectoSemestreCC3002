@@ -48,7 +48,7 @@ abstract class AbstractCharacter(name: String, healthPoints: Int, defensePoints:
   )
 
   override def healCharacter(magicCharacter: MagicCharacter): Unit = {
-    if (healthPoints == 0) {
+    if (getHp == 0) {
       throw new DefeatedTarget(this)
     }
     else {
