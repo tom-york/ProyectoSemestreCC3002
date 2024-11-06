@@ -12,7 +12,7 @@ import model.panels.IPanel
 import util.Json.{*, given}
 
 // Abstract class for magic characters, extending AbstractCharacter and adding mana points
-abstract class AbstractMagicCharacter(name: String, healthPoints: Int, defensePoints: Int, weight: Int, panel: IPanel, weaponSlot: Option[Weapon], itemInventory: List[Item], private var maxManaPoints: Int) extends AbstractCharacter(name, healthPoints, defensePoints, weight, panel, weaponSlot, itemInventory) with MagicCharacter {
+abstract class AbstractMagicCharacter(name: String, healthPoints: Int, defensePoints: Int, weight: Int, panel: IPanel, itemInventory: List[Item], private var maxManaPoints: Int) extends AbstractCharacter(name, healthPoints, defensePoints, weight, panel, itemInventory) with MagicCharacter {
 
   private var manaPoints: Int = maxManaPoints
 

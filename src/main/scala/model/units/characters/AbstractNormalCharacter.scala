@@ -11,7 +11,7 @@ import model.items.potions.normal.*
 import model.items.weapons.Weapon
 import model.panels.IPanel
 
-abstract class AbstractNormalCharacter(name: String, healthPoints: Int, defensePoints: Int, weight: Int, panel: IPanel, weaponSlot: Option[Weapon], itemInventory: List[Item]) extends AbstractCharacter(name, healthPoints, defensePoints, weight, panel, weaponSlot, itemInventory) {
+abstract class AbstractNormalCharacter(name: String, healthPoints: Int, defensePoints: Int, weight: Int, panel: IPanel, itemInventory: List[Item]) extends AbstractCharacter(name, healthPoints, defensePoints, weight, panel, itemInventory) {
   
   protected def compatibleWeapons: List[Weapon]
   
