@@ -1,14 +1,41 @@
 package model.scheduler
 
-// Interface defining the action bar, which tracks max and current values
+/**
+ * An interface defining the behavior of an action bar, which tracks the maximum and current values.
+ */
 trait IActionBar {
-  def setMax(x: Double): Unit  // Sets the maximum value of the action bar
+  /**
+   * Sets the maximum value of the action bar.
+   *
+   * @param x The new maximum value of the action bar.
+   */
+  def setMax(x: Double): Unit
 
-  def setCurrent(x: Double): Unit  // Sets the current value of the action bar
+  /**
+   * Sets the current value of the action bar.
+   *
+   * @param x The new current value of the action bar.
+   */
+  def setCurrent(x: Double): Unit
 
-  def getTuple: (Double, Double)  // Retrieves a tuple of (max, current) action bar values
+  /**
+   * Retrieves a tuple containing the maximum and current values of the action bar.
+   *
+   * @return A tuple of (max, current) action bar values.
+   */
+  def getTuple: (Double, Double)
 
-  def getMax: Double  // Returns the maximum action bar value
+  /**
+   * Retrieves the maximum value of the action bar.
+   *
+   * @return The maximum value of the action bar.
+   */
+  def getMax: Double
 
-  def getCurrent: Double  // Returns the current action bar value
+  /**
+   * Retrieves the current value of the action bar.
+   *
+   * @return The current value of the action bar.
+   */
+  def getCurrent: Double
 }

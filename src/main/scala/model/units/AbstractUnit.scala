@@ -8,14 +8,30 @@ import model.units.characters.{Character, MagicCharacter}
 
 import java.util.UUID
 
-// Abstract class implementing the Units trait with basic fields and methods
+/**
+ * Abstract class implementing the `Units` trait with basic fields and methods.
+ *
+ * This class provides the foundation for all unit entities in the game, including common properties and
+ * functionality such as health points, defense points, weight, panel management, and basic actions.
+ *
+ * @param name The name of the unit.
+ * @param maxHealthPoints The maximum health points of the unit.
+ * @param defensePoints The defense points of the unit.
+ * @param weight The weight of the unit.
+ * @param panel The panel associated with the unit.
+ */
 abstract class AbstractUnit(override val name: String, private val maxHealthPoints: Int, private var defensePoints: Int, private var weight: Int, private var panel: IPanel) extends Units {
 
   private var healthPoints: Int = maxHealthPoints
-  
+
   panel.addUnit(this)
-  
-  // Setters for the unit's properties
+
+  /**
+   * Sets the unit's health points.
+   *
+   * @param sHp The new health points value for the unit.
+   * @throws IllegalArgumentException if the new health points value is negative or exceeds the maximum.
+   */
   override def setHp(sHp: Int): Unit = {
     if (0 <= sHp && sHp <= maxHealthPoints) {
       healthPoints = sHp
@@ -25,31 +41,93 @@ abstract class AbstractUnit(override val name: String, private val maxHealthPoin
     }
   }
 
+  /**
+   * Sets the unit's defense points.
+   *
+   * @param sDp The new defense points value for the unit.
+   */
   override def setDp(sDp: Int): Unit = {
     defensePoints = sDp
   }
 
+  /**
+   * Sets the unit's weight.
+   *
+   * @param sWeight The new weight value for the unit.
+   */
   override def setWeight(sWeight: Int): Unit = {
     weight = sWeight
   }
-  
+
+  /**
+   * Moves the unit to a new panel.
+   *
+   * @param newPanel The new panel for the unit.
+   */
   override def movePanel(newPanel: IPanel): Unit = {
     panel.removeUnit(this)
     panel = newPanel
     panel.addUnit(this)
   }
 
-  // Getters for the unit's properties
+  /**
+   * Gets the unit's name.
+   *
+   * @return The name of the unit.
+   */
   override def getName: String = name
+
+  /**
+   * Gets the unit's current health points.
+   *
+   * @return The unit's current health points.
+   */
   override def getHp: Int = healthPoints
+
+  /**
+   * Gets the unit's defense points.
+   *
+   * @return The unit's defense points.
+   */
   override def getDp: Int = defensePoints
+
+  /**
+   * Gets the unit's weight.
+   *
+   * @return The unit's weight.
+   */
   override def getWeight: Int = weight
+
+  /**
+   * Gets the panel associated with the unit.
+   *
+   * @return The panel associated with the unit.
+   */
   override def getPanel: IPanel = panel
+
+  /**
+   * Gets the unit's maximum health points.
+   *
+   * @return The unit's maximum health points.
+   */
   override def getMaxHp: Int = maxHealthPoints
+
+  /**
+   * Gets the unit's unique identifier.
+   *
+   * @return The unit's unique identifier.
+   */
   override def getId: String = this.id
 
   val id: String = UUID.randomUUID().toString
 
+  /**
+   * Finds an action by its ID.
+   *
+   * @param actionId The ID of the action to find.
+   * @return The action with the specified ID.
+   * @throws NoIdFound If the action with the specified ID is not found.
+   */
   override def findActionById(actionId: String): Action = {
     val actionList: List[Action] = this.actions
     actionList.find(_.getId == actionId).getOrElse(
@@ -57,6 +135,11 @@ abstract class AbstractUnit(override val name: String, private val maxHealthPoin
     )
   }
 
+  /**
+   * Applies attack damage to the unit, reducing its health points.
+   *
+   * @param attackDmg The amount of attack damage.
+   */
   override def beAttacked(attackDmg: Int): Unit = {
     val netAttack: Int = attackDmg - defensePoints
     if (netAttack >= 0) {
@@ -69,6 +152,12 @@ abstract class AbstractUnit(override val name: String, private val maxHealthPoin
     }
   }
 
+  /**
+   * Applies the "Thunder" action to the unit, dealing magic damage.
+   *
+   * @param magicCharacter The magic character performing the "Thunder" action.
+   * @throws DefeatedTarget If the unit's health points are already 0.
+   */
   override def useThunder(magicCharacter: MagicCharacter): Unit = {
     if (getHp == 0) {
       throw new DefeatedTarget(this)
@@ -78,23 +167,53 @@ abstract class AbstractUnit(override val name: String, private val maxHealthPoin
       beAttacked(damageAmount)
     }
   }
-  
+
+  /**
+   * Throws an `InvalidActionTarget` exception, as the "Move" action is not valid for a generic unit.
+   *
+   * @param unit The unit to be moved.
+   * @throws InvalidActionTarget
+   */
   override def moveUnit(unit: Units): Unit = {
     throw new InvalidActionTarget("Unit", "Move")
   }
 
+  /**
+   * Throws an `InvalidActionTarget` exception, as the "Equip" action is not valid for a generic unit.
+   *
+   * @param character The character trying to equip a weapon.
+   * @throws InvalidActionTarget
+   */
   override def equipWeapon(character: characters.Character): Unit = {
     throw new InvalidActionTarget("Unit", "Equip")
   }
 
+  /**
+   * Throws an `InvalidActionTarget` exception, as the "Meteorite" action is not valid for a generic unit.
+   *
+   * @param magicCharacter The magic character trying to use the "Meteorite" action.
+   * @throws InvalidActionTarget
+   */
   override def useMeteorite(magicCharacter: MagicCharacter): Unit = {
     throw new InvalidActionTarget("Unit", "Meteorite")
   }
-  
+
+  /**
+   * Throws an `InvalidActionTarget` exception, as the "Consume" action is not valid for a generic unit.
+   *
+   * @param magicCharacter The magic character trying to consume an item.
+   * @throws InvalidActionTarget
+   */
   override def magicCharacterConsume(magicCharacter: MagicCharacter): Unit = {
     throw new InvalidActionTarget("Unit", "Consume")
   }
-  
+
+  /**
+   * Throws an `InvalidActionTarget` exception, as the "Consume" action is not valid for a generic unit.
+   *
+   * @param character The character trying to consume an item.
+   * @throws InvalidActionTarget
+   */
   override def characterConsume(character: Character): Unit = {
     throw new InvalidActionTarget("Unit", "Consume")
   }
