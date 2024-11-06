@@ -7,13 +7,16 @@ import model.actions.spells.white.*
 import model.actions.usage.*
 import model.items.potions.magic.ManaPotion
 import model.items.weapons.normal.Bow
+import model.panels.Panel
 import model.units.characters.normal.Knight
 import munit.FunSuite
 import util.Json.{*, given}
 
+import scala.collection.mutable.ArrayBuffer
+
 class ActionTest extends FunSuite{
   private val potion1: ManaPotion = new ManaPotion("Potion")
-  private val weapon1: Bow = new Bow("weapon", 90, 30, new Knight("lolo", 30, 30, 30, None, List()))
+  private var weapon1: Bow = _
   private var equip: Equip = _
   private var consume: Consume = _
   private var attack: Attack = _
@@ -24,6 +27,7 @@ class ActionTest extends FunSuite{
   private var purify: Purify = _
 
   override def beforeEach(context: BeforeEach): Unit = {
+    weapon1 = new Bow("weapon", 90, 30)
     equip = new Equip("eq", List(weapon1))
     consume = new Consume("co", List(potion1))
     attack = new Attack("at")
@@ -38,8 +42,6 @@ class ActionTest extends FunSuite{
     assertEquals(consume.getName, "co")
     consume.setName("consume")
     assertEquals(consume.getName, "consume")
-    
-    
   }
 
   test("An action that uses items has to have a list of the objects that it can use.") {
@@ -50,40 +52,41 @@ class ActionTest extends FunSuite{
   }
 
   test("AbstractAction JSON test") {
-    val moveJson = JsObj(
-      "id" -> "Move",
-      "action" -> "base→move"
-    )
     val attackJson = JsObj(
-      "id" -> "Attack",
+      "id" -> "1",
       "action" -> "base→attack"
     )
+    val moveJson = JsObj(
+      "id" -> "2",
+      "action" -> "base→move"
+    )
+    val meteoriteJson = JsObj(
+      "id" -> "3",
+      "action" -> "spell→black→meteorite"
+    )
+    val thunderJson = JsObj(
+      "id" -> "4",
+      "action" -> "spell→black→thunder"
+    )
+    val healJson = JsObj(
+      "id" -> "5",
+      "action" -> "spell→white→heal"
+    )
+    val purifyJson = JsObj(
+      "id" -> "6",
+      "action" -> "spell→white→purify"
+    )
     val equipJson = JsObj(
-      "id" -> "Equip",
+      "id" -> "8",
       "action" -> "usage→equip",
       "targets" -> JsArr(weapon1.toJson)
     )
     val consumeJson = JsObj(
-      "id" -> "Consume",
+      "id" -> "7",
       "action" -> "usage→consume",
       "targets" -> JsArr(potion1.toJson)
     )
-    val meteoriteJson = JsObj(
-      "id" -> "Meteorite",
-      "action" -> "spell→black→meteorite"
-    )
-    val thunderJson = JsObj(
-      "id" -> "Thunder",
-      "action" -> "spell→black→thunder"
-    )
-    val healJson = JsObj(
-      "id" -> "Heal",
-      "action" -> "spell→white→heal"
-    )
-    val purifyJson = JsObj(
-      "id" -> "Purify",
-      "action" -> "spell→white→purify"
-    )
+
     assertEquals(move.toJson, moveJson)
     assertEquals(attack.toJson, attackJson)
     assertEquals(equip.toJson, equipJson)

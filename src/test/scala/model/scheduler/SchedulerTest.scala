@@ -2,6 +2,7 @@ package model.scheduler
 
 import model.items.weapons.magic.Wand
 import model.items.weapons.normal.Sword
+import model.panels.Panel
 import model.units.characters.magic.WhiteWizard
 import model.units.characters.normal.Knight
 import model.units.Enemy
@@ -11,8 +12,9 @@ import munit.FunSuite
 import scala.collection.mutable.ArrayBuffer
 
 class SchedulerTest extends FunSuite {
+  private var panel1: Panel = _
   private var scheduler1: TaskScheduler = _
-  private val enemy1: Enemy = new Enemy("enemy1", 90, 30, 45, 50)
+  private var enemy1: Enemy = _
   //max action bar should be 45
   private var character1: Knight = _
   private var weapon1: Sword = _
@@ -20,11 +22,15 @@ class SchedulerTest extends FunSuite {
   private var weapon2: Wand = _
 
   override def beforeEach(context: BeforeEach): Unit = {
-    character1 = new Knight("knight", 80, 40, 35, Some(weapon1), List())
-    weapon1 = new Sword("sword", 40, 10, character1)
+    panel1 = new Panel((1, 1), ArrayBuffer())
+    enemy1 = new Enemy("enemy1", 90, 30, 45, panel1, 50)
+    character1 = new Knight("knight", 80, 40, 35, panel1, List())
+    weapon1 = new Sword("sword", 40, 10)
+    weapon1.setOwner(character1)
     //max action bar should be 35 + 0.5*10 = 40
-    character2 = new WhiteWizard("w wizard", 85, 30, 35, Some(weapon2), List(), 20)
-    weapon2 = new Wand("sword", 30, 5, character1, 15)
+    character2 = new WhiteWizard("w wizard", 85, 30, 35, panel1, List(), 20)
+    weapon2 = new Wand("sword", 30, 5, 15)
+    weapon2.setOwner(character2)
     scheduler1 = new TaskScheduler()
     scheduler1.addUnit(enemy1)
     scheduler1.addUnit(character1)

@@ -16,13 +16,12 @@ class Panel extends IPanel with Target{
   private var coordinates: (Int, Int) = _ // Stores the coordinates of the panel
   private var unitArray: ArrayBuffer[Units] = _ // Stores the units present on the panel
   private var neighbours: Map[String, Option[Panel]] = Map.empty // Stores the neighboring panels
-
+  neighbours = neighbours + ("north" -> None) + ("west" -> None) + ("south" -> None) + ("east" -> None)
   // Constructor for Panel with coordinates, units, and neighbors
-  def this(c: (Int, Int), a: ArrayBuffer[Units], north: Option[Panel], west: Option[Panel], south: Option[Panel], east: Option[Panel]) = {
+  def this(c: (Int, Int), a: ArrayBuffer[Units]) = {
     this()
     coordinates = c
     unitArray = a
-    neighbours = neighbours + ("north" -> north) + ("west" -> west) + ("south" -> south) + ("east" -> east)
   }
 
   // Sets the coordinates of the panel
@@ -62,7 +61,7 @@ class Panel extends IPanel with Target{
   def getUnits: ArrayBuffer[Units] = unitArray
 
   // Retrieves the northern neighbor panel
-  def getNeighbours: List[Panel] = neighbours.values.flatMap(_.toList).toList
+  def getNeighbours: List[Panel] = neighbours.values.flatMap(_.toList).toList.distinct
 
   def addUnit(unit: Units): Unit = {
     unitArray.append(unit)

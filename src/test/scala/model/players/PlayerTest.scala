@@ -1,22 +1,28 @@
 package model.players
 
+import model.panels.Panel
 import model.units.Enemy
 import munit.FunSuite
 import util.Json.{*, given}
 
+import scala.collection.mutable.ArrayBuffer
+
 class PlayerTest extends FunSuite {
-  var player1: Player = _
-  var player2: Player = _
-  var enemy1: Enemy = _
-  var enemy2: Enemy = _
+  private var panel1: Panel = _
+  private var player1: Player = _
+  private var player2: Player = _
+  private var enemy1: Enemy = _
+  private var enemy2: Enemy = _
 
   override def beforeEach(context: BeforeEach): Unit = {
-    enemy1 = new Enemy("juan", 90, 60, 30, 40)
+    panel1 = new Panel((1, 1), ArrayBuffer())
     
-    enemy2 = new Enemy("john", 91, 61, 31, 41)
+    enemy1 = new Enemy("juan", 90, 60, 30, panel1, 40)
     
-    player1 = new Player(List(), true)
-    player2 = new Player(List(enemy1, enemy2), false)
+    enemy2 = new Enemy("john", 91, 61, 31, panel1, 41)
+    
+    player1 = new Player(List())
+    player2 = new Player(List(enemy1, enemy2))
   }
 
   test("A player has a list of units") {
@@ -25,8 +31,9 @@ class PlayerTest extends FunSuite {
   }
 
   test("A player can be defeated") {
-    assertEquals(player1.isDefeated, true)
-    assertEquals(player2.isDefeated, false)
+    assertEquals(player1.isDefeated, false)
+    player2.setDefeatState(true)
+    assertEquals(player2.isDefeated, true)
   }
 
   test("Player JSON test") {

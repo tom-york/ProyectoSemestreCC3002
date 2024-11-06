@@ -1,15 +1,19 @@
 package model.units
 
+import model.panels.Panel
 import munit.FunSuite
 import util.Json.{*, given}
 
+import scala.collection.mutable.ArrayBuffer
+
 class EnemyTest extends FunSuite {
   
-  var enemy: Enemy = _
+  private var enemy: Enemy = _
+  private var panel1: Panel = _
 
   override def beforeEach(context: BeforeEach): Unit = {
-
-    enemy = new Enemy("juan", 90, 60, 30, 40)
+    panel1 = new Panel((1, 1), ArrayBuffer())
+    enemy = new Enemy("juan", 90, 60, 30, panel1, 40)
 
   }
   

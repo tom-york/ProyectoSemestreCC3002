@@ -4,11 +4,15 @@ import model.items.potions.magic.ManaPotion
 import model.items.weapons.Weapon
 import munit.FunSuite
 import model.items.Item
+import model.items.weapons.magic.Wand
 import model.items.weapons.normal.Sword
+import model.panels.Panel
 import model.units.characters.*
 import model.units.characters.magic.{BlackWizard, WhiteWizard}
 import model.units.characters.normal.{Archer, Knight, Thief}
 import util.Json.{*, given}
+
+import scala.collection.mutable.ArrayBuffer
 
 class CharacterTest extends FunSuite{
   //all normal characters extend from the same abstract, without new functions, so test will be applied to only one type of normal characters
@@ -22,16 +26,20 @@ class CharacterTest extends FunSuite{
   private val defensePoints = 60
   private val weight = 30
   private val manaPoints = 30
-  private val weapon = new Sword("weapon", 90, 30, knight1)
+  private val weapon = new Sword("weapon", 90, 30)
+  private val weapon2 = new Wand("wand", 30, 30, 30)
   private val item1 = new ManaPotion("potion")
   private val itemInventory: List[Item] = List(weapon, item1)
+  private var panel1: Panel = _
 
   override def beforeEach(context: BeforeEach): Unit = {
-    knight1 = new Knight(name, healthPoints, defensePoints, weight, Some(weapon), itemInventory)
-    thief1 = new Thief(name, healthPoints, defensePoints, weight, None, itemInventory)
-    archer1 = new Archer(name, healthPoints, defensePoints, weight, Some(weapon), List())
-    blackWizard1 = new BlackWizard(name, healthPoints, defensePoints, weight, None, itemInventory, manaPoints)
-    whiteWizard1 = new WhiteWizard(name, healthPoints, defensePoints, weight, None, itemInventory, manaPoints)
+    panel1 = new Panel((1, 1), ArrayBuffer())
+    knight1 = new Knight(name, healthPoints, defensePoints, weight, panel1, itemInventory)
+    weapon.setOwner(knight1)
+    thief1 = new Thief(name, healthPoints, defensePoints, weight, panel1, itemInventory)
+    archer1 = new Archer(name, healthPoints, defensePoints, weight, panel1, List())
+    blackWizard1 = new BlackWizard(name, healthPoints, defensePoints, weight, panel1, itemInventory, manaPoints)
+    whiteWizard1 = new WhiteWizard(name, healthPoints, defensePoints, weight, panel1, itemInventory, manaPoints)
   }
 
   test("A character has a name.") {
@@ -42,8 +50,8 @@ class CharacterTest extends FunSuite{
   test("A character has health points.") {
     assertEquals(knight1.getHp, 90)
     assertEquals(blackWizard1.getHp, 90)
-    blackWizard1.setHp(120)
-    assertEquals(blackWizard1.getHp, 120)
+    blackWizard1.setHp(70)
+    assertEquals(blackWizard1.getHp, 70)
   }
 
   test("A character has damage points.") {
@@ -76,8 +84,8 @@ class CharacterTest extends FunSuite{
 
   test("A magical characters has mana points.") {
     assertEquals(blackWizard1.getMp, 30)
-    blackWizard1.setMp(45)
-    assertEquals(blackWizard1.getMp, 45)
+    blackWizard1.setMp(25)
+    assertEquals(blackWizard1.getMp, 25)
   }
 
   test("A character can calculate the maximum for its action bar"){

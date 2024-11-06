@@ -2,11 +2,15 @@ package model.items
 
 import model.items.weapons.magic.*
 import model.items.weapons.normal.*
+import model.panels.Panel
 import model.units.characters.normal.Knight
 import munit.FunSuite
 import util.Json.{*, given}
 
+import scala.collection.mutable.ArrayBuffer
+
 class WeaponTest extends FunSuite {
+  private val panel1: Panel = new Panel((1, 1), ArrayBuffer())
   private var sword1: Sword = _
   private var bow1: Bow = _
   private var dagger1: Dagger = _
@@ -16,14 +20,14 @@ class WeaponTest extends FunSuite {
   private val attackPoints = 90
   private val weight = 30
   private val magicAttackPoints = 30
-  private val owner1: Knight = Knight("juan", 90, 60, 30, None, List())
+  private val owner1: Knight = Knight("juan", 90, 60, 30, panel1, List())
 
   override def beforeEach(context: BeforeEach): Unit = {
-    sword1 = new Sword(name, attackPoints, weight, owner1)
-    bow1 = new Bow(name, attackPoints, weight, owner1)
-    dagger1 = new Dagger(name, attackPoints, weight, owner1)
-    wand1 = new Wand(name, attackPoints, weight, owner1, magicAttackPoints)
-    staff1 = new Staff(name, attackPoints, weight, owner1, magicAttackPoints)
+    sword1 = new Sword(name, attackPoints, weight)
+    bow1 = new Bow(name, attackPoints, weight)
+    dagger1 = new Dagger(name, attackPoints, weight)
+    wand1 = new Wand(name, attackPoints, weight, magicAttackPoints)
+    staff1 = new Staff(name, attackPoints, weight, magicAttackPoints)
   }
 
   test("A weapon has a name.") {
@@ -48,11 +52,12 @@ class WeaponTest extends FunSuite {
   }
 
   test("A weapon has an owner.") {
-    assertEquals(sword1.getOwner, owner1)
-    assertEquals(dagger1.getOwner, owner1)
-    val owner2: Knight = new Knight("kn", 90, 90, 90, None, List())
+    assertEquals(sword1.getOwner, None)
+    dagger1.setOwner(owner1)
+    assertEquals(dagger1.getOwner, Some(owner1))
+    val owner2: Knight = new Knight("kn", 90, 90, 90, panel1, List())
     dagger1.setOwner(owner2)
-    assertEquals(dagger1.getOwner, owner2)
+    assertEquals(dagger1.getOwner, Some(owner2))
   }
 
   test("A magical weapon has magic attack points.") {

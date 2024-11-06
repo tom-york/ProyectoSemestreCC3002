@@ -6,18 +6,27 @@ import scala.collection.mutable.ArrayBuffer
 import util.Json.{*, given}
 
 class PanelTest extends FunSuite{
-  var panel1: Panel = _
-  var panel2: Panel = _
-  var panel3: Panel = _
-  var panel4: Panel = _
-  var enemy1: Enemy = new Enemy("juan", 90, 60, 30, 40)
-  val unitArray: ArrayBuffer[Units] = ArrayBuffer(enemy1)
+  private var panel1: Panel = _
+  private var panel2: Panel = _
+  private var panel3: Panel = _
+  private var panel4: Panel = _
+  private var enemy1: Enemy = _
 
   override def beforeEach(context: BeforeEach): Unit = {
-    panel1 = new Panel((1, 1), unitArray, None, None, Some(panel3), Some(panel2))
-    panel2 = new Panel((2, 1), unitArray, None, Some(panel1), Some(panel4), None)
-    panel3 = new Panel((1, 2), unitArray, Some(panel1), None, None, Some(panel4))
-    panel4 = new Panel((2, 2), unitArray, Some(panel2), Some(panel3), None, None)
+    panel1 = new Panel((1, 1), ArrayBuffer())
+    panel2 = new Panel((2, 1), ArrayBuffer())
+    panel3 = new Panel((1, 2), ArrayBuffer())
+    panel4 = new Panel((2, 2), ArrayBuffer())
+    panel1.setSouth(Some(panel3))
+    panel1.setEast(Some(panel2))
+    panel2.setWest(Some(panel1))
+    panel2.setSouth(Some(panel4))
+    panel3.setNorth(Some(panel1))
+    panel3.setEast(Some(panel4))
+    panel4.setNorth(Some(panel2))
+    panel4.setWest(Some(panel3))
+
+    enemy1 = new Enemy("juan", 90, 60, 30, panel1, 40)
   }
 
   test("A panel has a set of coordinates.") {
@@ -26,30 +35,22 @@ class PanelTest extends FunSuite{
     assertEquals(panel1.getCoordinates, (3,3))
   }
   test("A panel has a list of units.") {
-    assertEquals(panel1.getUnits, unitArray)
-    panel1.setUnits(ArrayBuffer())
-    assertEquals(panel1.getUnits, ArrayBuffer())
+    assertEquals(panel2.getUnits, ArrayBuffer())
+    assertEquals(panel1.getUnits, ArrayBuffer(enemy1))
+    panel2.setUnits(ArrayBuffer(enemy1))
+    assertEquals(panel2.getUnits, ArrayBuffer(enemy1))
   }
   test("A panel has to have a way to recognize its neighbours.") {
-    assertEquals(panel1.getNorth, None)
-    assertEquals(panel1.getWest, None)
-    assertEquals(panel1.getSouth, Some(panel3))
-    assertEquals(panel1.getEast, Some(panel2))
+    assertEquals(panel1.getNeighbours, List(panel3, panel2))
 
-    assertEquals(panel4.getNorth, Some(panel2))
-    assertEquals(panel4.getWest, Some(panel3))
-    assertEquals(panel4.getSouth, None)
-    assertEquals(panel4.getEast, None)
+    assertEquals(panel4.getNeighbours, List(panel2, panel3))
 
-    panel1.setNorth(Some(panel3))
+    panel1.setNorth(Some(panel4))
     panel1.setWest(Some(panel2))
     panel1.setSouth(None)
     panel1.setEast(None)
 
-    assertEquals(panel1.getNorth, Some(panel3))
-    assertEquals(panel1.getWest, Some(panel2))
-    assertEquals(panel1.getSouth, None)
-    assertEquals(panel1.getEast, None)
+    assertEquals(panel1.getNeighbours, List(panel4, panel2))
   }
 
   test("Panel JSON test") {
@@ -65,7 +66,9 @@ class PanelTest extends FunSuite{
   }
 
   test("Panel equals.") {
-    val testPanel = Panel((1, 1), unitArray, None, None, Some(panel3), Some(panel2))
+    val testPanel: Panel = Panel((1, 1), ArrayBuffer(enemy1))
+    testPanel.setSouth(Some(panel3))
+    testPanel.setEast(Some(panel2))
     assertEquals(panel1, testPanel)
     assert(!panel1.equals(panel2))
     assert(!panel1.equals(enemy1))

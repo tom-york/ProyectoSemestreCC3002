@@ -16,6 +16,10 @@ class Player(private var unitList: List[Units]) extends IPlayer {
   // Returns the defeat state of the player (true if defeated, false otherwise)
   override def isDefeated: Boolean = defeatState
 
+  override def setDefeatState(bool: Boolean): Unit = {
+    defeatState = bool
+  }
+
   // Returns the unique identifier of the player
   val id: String = UUID.randomUUID().toString
 
