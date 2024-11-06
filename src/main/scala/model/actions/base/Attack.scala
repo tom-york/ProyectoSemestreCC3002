@@ -1,11 +1,9 @@
 package model.actions.base
 
-import api.{Source, Target}
+import api.Target
 import model.actions.AbstractAction
-import model.exceptions.*
 import model.units.Enemy
 import model.units.characters.*
-import spray.json.JsObject
 import util.Json.{*, given}
 
 /** Class representing a basic attack action.

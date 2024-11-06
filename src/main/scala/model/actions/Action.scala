@@ -1,6 +1,6 @@
 package model.actions
 
-import api.{GameObject, Source, Target}
+import api.{GameObject, Target}
 import model.units.Enemy
 import model.units.characters.{Character, MagicCharacter}
 

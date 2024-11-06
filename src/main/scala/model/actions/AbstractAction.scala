@@ -1,7 +1,5 @@
 package model.actions
 
-import api.GameObject
-
 /** Abstract class implementing Action, providing basic action behavior.
  *
  * Defines methods for setting and retrieving the action's name.

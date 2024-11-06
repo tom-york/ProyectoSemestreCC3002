@@ -2,7 +2,6 @@ package model.items.potions.magic
 
 import model.exceptions.InvalidSourceTarget
 import model.items.potions.AbstractPotion
-import model.units.Units
 import model.units.characters.{Character, MagicCharacter}
 
 class ManaPotion(name: String) extends AbstractPotion(name) {
