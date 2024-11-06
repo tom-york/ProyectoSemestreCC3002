@@ -2,12 +2,20 @@ package model.items
 
 import api.{GameObject, Target}
 
-// Trait for any item in the game, extending GameObject
+/** Trait representing a general item in the game.
+ *
+ * Extends GameObject and Target, providing basic functionality for all items,
+ * such as getting and setting a name.
+ */
 trait Item extends GameObject with Target {
 
-  // Getter and setter for the item's name
+  /** @return The name of the item. */
   def getName: String
-  def setName(newName: String): Unit
 
+  /** Sets a new name for the item.
+   *
+   * @param newName The new name to assign.
+   */
+  def setName(newName: String): Unit
 }
 
