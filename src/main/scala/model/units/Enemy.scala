@@ -52,7 +52,7 @@ class Enemy(name: String, healthPoints: Int, defensePoints: Int, weight: Int, pa
       val damagePercentage: Float = 0.15
       val magicDamageFraction: Float = magicCharacter.getMagicDamage / 2
       val damageAmount: Int = Math.round((getMaxHp * damagePercentage) + magicDamageFraction)
-      setHp(getHp - damageAmount)
+      beAttacked(damageAmount)
     }
   }
 
