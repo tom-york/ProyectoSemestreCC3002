@@ -1,10 +1,10 @@
 package model.units
 
-import api.GameObject
+import api.{GameObject, Source, Target}
 import model.panels.IPanel
 
 // Trait defining common behavior for units in the game
-trait Units extends GameObject {
+trait Units extends GameObject with Source with Target {
 
   // Setters for name, health points, defense points, and weight
   def setHp(sHp: Int): Unit
@@ -19,6 +19,7 @@ trait Units extends GameObject {
   def getPanel: IPanel
   def getMaxHp: Int
   def getTotalDamage: Int
+  def getId: String
   
   def movePanel(newPanel: IPanel): Unit
 

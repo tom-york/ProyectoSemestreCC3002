@@ -1,4 +1,5 @@
 package model.scheduler
+import model.exceptions.NoIdFound
 import model.units.Units
 
 import scala.collection.mutable

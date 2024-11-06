@@ -9,7 +9,7 @@ import model.units.characters.{Character, MagicCharacter}
 import java.util.UUID
 
 // Abstract class implementing the Units trait with basic fields and methods
-abstract class AbstractUnit(override val name: String, private val maxHealthPoints: Int, private var defensePoints: Int, private var weight: Int, private var panel: IPanel) extends Units with Source with Target {
+abstract class AbstractUnit(override val name: String, private val maxHealthPoints: Int, private var defensePoints: Int, private var weight: Int, private var panel: IPanel) extends Units {
 
   private var healthPoints: Int = maxHealthPoints
   
@@ -46,6 +46,7 @@ abstract class AbstractUnit(override val name: String, private val maxHealthPoin
   override def getWeight: Int = weight
   override def getPanel: IPanel = panel
   override def getMaxHp: Int = maxHealthPoints
+  override def getId: String = this.id
 
   val id: String = UUID.randomUUID().toString
 
