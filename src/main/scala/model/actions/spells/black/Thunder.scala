@@ -13,6 +13,7 @@ class Thunder(name: String = "Thunder") extends Spell(name) {
     if (currentManaPoints >= 20) {
       tgt.useThunder(magicCharacter)
       magicCharacter.magicForceReset()
+      magicCharacter.setMp(magicCharacter.getMp - 20)
     }
     else throw new InsufficientManaPoints(magicCharacter, "Heal")
   }

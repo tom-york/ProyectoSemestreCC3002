@@ -13,6 +13,7 @@ class Purify(name: String = "Purify") extends Spell(name) {
     if (currentManaPoints >= 25) {
       tgt.purifyEnemy(magicCharacter)
       magicCharacter.magicForceReset()
+      magicCharacter.setMp(magicCharacter.getMp - 25)
     }
     else throw new InsufficientManaPoints(magicCharacter, "Purify")
   }
