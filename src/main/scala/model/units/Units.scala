@@ -2,12 +2,14 @@ package model.units
 
 import api.{GameObject, Source, Target}
 import model.panels.IPanel
+import model.patterns.observer.ISubject
+import model.scheduler.TaskScheduler
 
 /**
  * Trait that defines common behavior for units in the game.
  * Extends GameObject, Source, and Target, allowing units to interact with game elements.
  */
-trait Units extends GameObject with Source with Target {
+trait Units extends GameObject with Source with Target with ISubject[Boolean] {
 
   /**
    * Sets the health points of the unit.

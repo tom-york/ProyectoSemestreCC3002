@@ -1,12 +1,13 @@
 package model.players
 
 import api.GameObject
+import model.patterns.observer.Observer
 import model.units.Units
 
 /**
  * An interface defining a player in the game, extending the `GameObject` interface.
  */
-trait IPlayer extends GameObject {
+trait IPlayer extends GameObject with Observer[Boolean]{
   /**
    * Retrieves the list of units belonging to the player.
    *

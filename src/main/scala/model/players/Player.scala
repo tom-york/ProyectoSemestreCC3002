@@ -1,9 +1,12 @@
 package model.players
 
+import model.patterns.observer.ISubject
 import model.units.Units
 import util.Json.{*, given}
 
+import scala.collection.mutable.Map
 import java.util.UUID
+import scala.collection.mutable
 
 /**
  * A concrete class representing a player, implementing the IPlayer interface.
@@ -13,15 +16,24 @@ import java.util.UUID
  * @param unitList The list of units assigned to the player.
  * @constructor Creates a new Player instance with the specified list of units.
  */
-class Player(private var unitList: List[Units]) extends IPlayer {
+class Player extends IPlayer {
   private var defeatState: Boolean = false
+  private val unitMap: mutable.Map[Units, Boolean] = mutable.Map()
 
+  override def update(o: ISubject[Boolean], arg: Boolean): Unit = {
+    o match
+      case u: Units => unitMap(u) = arg
+    val currentPlayerState: Boolean = unitMap.forall((_, value) => value)
+    defeatState = currentPlayerState
+  }
   /**
    * Retrieves the list of units assigned to the player.
    *
    * @return The list of units assigned to the player.
    */
-  override def getUnitList: List[Units] = unitList
+  override def getUnitList: List[Units] = unitMap.foldLeft(List[Units]())((acc, x) => acc :+ x(0))
+
+
 
   /**
    * Retrieves the defeat state of the player.
@@ -29,15 +41,6 @@ class Player(private var unitList: List[Units]) extends IPlayer {
    * @return `true` if the player is defeated, `false` otherwise.
    */
   override def isDefeated: Boolean = defeatState
-
-  /**
-   * Sets the defeat state of the player.
-   *
-   * @param bool The new defeat state of the player.
-   */
-  override def setDefeatState(bool: Boolean): Unit = {
-    defeatState = bool
-  }
 
   /**
    * Retrieves the unique identifier of the player.
