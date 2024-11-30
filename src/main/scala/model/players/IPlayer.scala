@@ -16,13 +16,6 @@ trait IPlayer extends GameObject with Observer[Boolean]{
   def getUnitList: List[Units]
 
   /**
-   * Sets the defeat state of the player.
-   *
-   * @param bool The new defeat state of the player (true if defeated, false otherwise).
-   */
-  def setDefeatState(bool: Boolean): Unit
-
-  /**
    * Checks if the player is defeated.
    *
    * @return `true` if the player is defeated, `false` otherwise.
