@@ -13,8 +13,7 @@ import scala.collection.mutable
  *
  * The Player class maintains a list of units assigned to the player and the player's defeat state.
  *
- * @param unitList The list of units assigned to the player.
- * @constructor Creates a new Player instance with the specified list of units.
+ * @constructor Creates a new Player
  */
 class Player extends IPlayer {
   private var defeatState: Boolean = false
@@ -56,6 +55,6 @@ class Player extends IPlayer {
    */
   override def toJson: JsObj = JsObj(
     "id" -> id,
-    "characters" -> JsArr(unitList.map(_.toJson)) // Converts unitList to JSON
+    "characters" -> JsArr(getUnitList.map(_.toJson)) // Converts unitList to JSON
   )
 }
