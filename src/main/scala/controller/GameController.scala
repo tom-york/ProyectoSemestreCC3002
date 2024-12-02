@@ -14,11 +14,30 @@ import scala.collection.mutable.ArrayBuffer
 
 object GameController extends IGameController with Observer[Boolean] {
   /* write your code here */
-  private val gameScheduler: TaskScheduler = new TaskScheduler()
 
-  private val playerList: ArrayBuffer[Player] = ArrayBuffer()
-  
+  private var gameScheduler: TaskScheduler = _
+  private var playerList: ArrayBuffer[Player] = _
   private var isFinished: Boolean = false
+  private val panel1: Panel = new Panel((1, 1), ArrayBuffer())
+  private val panel2: Panel = new Panel((1, 2), ArrayBuffer())
+  private val panel3: Panel = new Panel((2, 1), ArrayBuffer())
+  private val panel4: Panel = new Panel((2, 2), ArrayBuffer())
+  panel1.setSouth(Some(panel3))
+  panel1.setEast(Some(panel2))
+  panel2.setWest(Some(panel1))
+  panel2.setSouth(Some(panel4))
+  panel3.setNorth(Some(panel1))
+  panel3.setEast(Some(panel4))
+  panel4.setNorth(Some(panel2))
+  panel4.setWest(Some(panel3))
+
+  def init(): Unit = {
+    gameScheduler = new TaskScheduler()
+    playerList = ArrayBuffer(new Player(), new Player())
+    playerList.foreach(addPlayers)
+    playerList(0).init(panel1)
+    playerList(1).init(panel4)
+  }
 
   private def addPlayers(player: Player): Unit = {
     playerList += player
@@ -30,26 +49,6 @@ object GameController extends IGameController with Observer[Boolean] {
       isFinished = true
     }
   }
-  
-  private val player1: Player = new Player()
-  private val player2: Player = new Player()
-  
-  addPlayers(player1)
-  addPlayers(player2)
-  
-  private val panel1: Panel = new Panel((1,1), ArrayBuffer())
-  private val panel2: Panel = new Panel((1,2), ArrayBuffer())
-  private val panel3: Panel = new Panel((2,1), ArrayBuffer())
-  private val panel4: Panel = new Panel((2,2), ArrayBuffer())
-  
-  panel1.setSouth(Some(panel3))
-  panel1.setEast(Some(panel2))
-  panel2.setWest(Some(panel1))
-  panel2.setSouth(Some(panel4))
-  panel3.setNorth(Some(panel1))
-  panel3.setEast(Some(panel4))
-  panel4.setNorth(Some(panel2))
-  panel4.setWest(Some(panel3))
 
   /** Returns the players of the game. In this version of the project, there are
    * strictly two players. Each player should send the information of his game
@@ -57,8 +56,7 @@ object GameController extends IGameController with Observer[Boolean] {
    */
   def getPlayers: JsVal = {
     JsArr(
-      player1.toJson,
-      player2.toJson
+      playerList.map(p => p.toJson)
     )
   }
 
@@ -142,11 +140,13 @@ object GameController extends IGameController with Observer[Boolean] {
 
   /** Resets the game. All configurations and parameters should be reset too. */
   def reset(): Unit = {
+    init()
     isFinished = false
   }
 
   def main(args: Array[String]): Unit = {
 
+    init()
     GameApi.run(args)
 
   }
