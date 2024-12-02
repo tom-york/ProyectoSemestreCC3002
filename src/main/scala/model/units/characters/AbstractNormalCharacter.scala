@@ -10,7 +10,9 @@ import model.items.potions.Potion
 import model.items.potions.normal.*
 import model.items.weapons.Weapon
 import model.panels.IPanel
+
 import scala.collection.mutable.ArrayBuffer
+import scala.util.Random
 
 /**
  * Abstract class for normal characters, extending `AbstractCharacter`.
@@ -26,6 +28,15 @@ import scala.collection.mutable.ArrayBuffer
  */
 abstract class AbstractNormalCharacter(name: String, healthPoints: Int, defensePoints: Int, weight: Int, panel: IPanel, itemInventory: ArrayBuffer[Item]) extends AbstractCharacter(name, healthPoints, defensePoints, weight, panel, itemInventory) {
 
+  override def init(): Unit = {
+    for (x <- 0 until 2) {
+      itemInventory += compatibleWeaponFactories(Random.between(0, 3))()
+    }
+    for (x <- 0 until 2) {
+      itemInventory += compatiblePotionFactories(Random.between(0, 2))()
+    }
+  }
+  
   protected def compatibleWeapons: List[Weapon]
 
   protected val compatibleConsumables: List[Potion] = List(new HealingPotion("HealPot"), new StrengthPotion("StrengthPot"))

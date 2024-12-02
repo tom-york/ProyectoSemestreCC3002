@@ -32,15 +32,9 @@ import scala.util.Random
  */
 class Archer(name: String, healthPoints: Int, defensePoints: Int, weight: Int, panel: IPanel, itemInventory: ArrayBuffer[Item]) extends AbstractNormalCharacter(name, healthPoints, defensePoints, weight, panel, itemInventory) {
 
-  private val compatibleWeaponFactories: List[WeaponFactory] = List(SwordFactory, BowFactory, WandFactory)
+  protected val compatibleWeaponFactories: List[WeaponFactory] = List(SwordFactory, BowFactory, WandFactory)
 
-  private val compatiblePotions: List[PotionFactory] = List(HealingPotionFactory, StrengthPotionFactory)
-
-  override def init(): Unit = {
-    for (x <- 0 until 2) {
-      itemInventory += compatibleWeaponFactories(Random.between(0,3))()
-    }
-  }
+  protected val compatiblePotionFactories: List[PotionFactory] = List(HealingPotionFactory, StrengthPotionFactory)
 
   protected val compatibleWeapons: List[Weapon] = List(new Sword(), new Bow(), new Wand())
 

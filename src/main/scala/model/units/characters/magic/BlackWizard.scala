@@ -11,7 +11,11 @@ import model.items.weapons.normal.Dagger
 import model.items.weapons.magic.*
 import model.items.weapons.Weapon
 import model.panels.IPanel
+import model.patterns.factory.potions.{HealingPotionFactory, MagicForcePotionFactory, ManaPotionFactory, PotionFactory, StrengthPotionFactory}
+import model.patterns.factory.weapon.{StaffFactory, DaggerFactory, WandFactory, WeaponFactory}
+
 import scala.collection.mutable.ArrayBuffer
+import scala.util.Random
 
 /**
  * A class representing a Black Wizard character in the game.
@@ -28,6 +32,10 @@ import scala.collection.mutable.ArrayBuffer
  * @param manaPoints The initial mana points of the Black Wizard.
  */
 class BlackWizard(name: String, healthPoints: Int, defensePoints: Int, weight: Int, panel: IPanel, itemInventory: ArrayBuffer[Item], manaPoints: Int) extends AbstractMagicCharacter(name, healthPoints, defensePoints, weight, panel, itemInventory, manaPoints) {
+  protected val compatibleWeaponFactories: List[WeaponFactory] = List(StaffFactory, DaggerFactory, WandFactory)
+
+  protected val compatiblePotionFactories: List[PotionFactory] = List(HealingPotionFactory, StrengthPotionFactory, ManaPotionFactory, MagicForcePotionFactory)
+
   private val compatibleWeapons: List[Weapon] = List(new Dagger(), new Wand(), new Staff())
 
   override val actions: List[Action] = List(new Attack(), new Move(), new Consume("Consume", compatibleConsumables), new Equip("Equip", compatibleWeapons), new Meteorite(), new Thunder())

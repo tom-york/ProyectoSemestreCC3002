@@ -2,6 +2,8 @@ package model.units.characters
 
 import model.items.Item
 import model.items.weapons.Weapon
+import model.patterns.factory.potions.PotionFactory
+import model.patterns.factory.weapon.WeaponFactory
 import model.units.Units
 
 import scala.collection.mutable.ArrayBuffer
@@ -14,6 +16,10 @@ import scala.collection.mutable.ArrayBuffer
  * types of weapons.
  */
 trait Character extends Units {
+  
+  protected val compatibleWeaponFactories: List[WeaponFactory]
+
+  protected val compatiblePotionFactories: List[PotionFactory]
   
   def init(): Unit
   

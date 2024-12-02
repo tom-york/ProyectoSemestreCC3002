@@ -8,7 +8,9 @@ import model.panels.IPanel
 import model.patterns.factory.potions.{HealingPotionFactory, PotionFactory, StrengthPotionFactory}
 import model.patterns.factory.weapon.{BowFactory, DaggerFactory, SwordFactory, WeaponFactory}
 import model.units.characters.AbstractNormalCharacter
+
 import scala.collection.mutable.ArrayBuffer
+import scala.util.Random
 
 /**
  * A class representing a Knight character in the game.
@@ -24,14 +26,10 @@ import scala.collection.mutable.ArrayBuffer
  * @param itemInventory The inventory of items the Knight possesses.
  */
 class Knight(name: String, healthPoints: Int, defensePoints: Int, weight: Int, panel: IPanel, itemInventory: ArrayBuffer[Item]) extends AbstractNormalCharacter(name, healthPoints, defensePoints, weight, panel, itemInventory) {
-  
-  private val compatibleWeaponFactories: List[WeaponFactory] = List(SwordFactory, DaggerFactory, BowFactory)
 
-  private val compatiblePotions: List[PotionFactory] = List(HealingPotionFactory, StrengthPotionFactory)
+  protected val compatibleWeaponFactories: List[WeaponFactory] = List(SwordFactory, DaggerFactory, BowFactory)
 
-  override def init(): Unit = {
-
-  }
+  protected val compatiblePotionFactories: List[PotionFactory] = List(HealingPotionFactory, StrengthPotionFactory)
   
   protected val compatibleWeapons: List[Weapon] = List(new Sword(), new Dagger(), new Bow())
 

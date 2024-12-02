@@ -10,7 +10,9 @@ import model.items.potions.magic.*
 import model.items.potions.normal.*
 import model.panels.IPanel
 import util.Json.{*, given}
+
 import scala.collection.mutable.ArrayBuffer
+import scala.util.Random
 
 /**
  * Abstract class for magic characters, extending `AbstractCharacter` and adding mana points.
@@ -28,6 +30,15 @@ import scala.collection.mutable.ArrayBuffer
  */
 abstract class AbstractMagicCharacter(name: String, healthPoints: Int, defensePoints: Int, weight: Int, panel: IPanel, itemInventory: ArrayBuffer[Item], private var maxManaPoints: Int) extends AbstractCharacter(name, healthPoints, defensePoints, weight, panel, itemInventory) with MagicCharacter {
 
+  override def init(): Unit = {
+    for (x <- 0 until 3) {
+      itemInventory += this.compatibleWeaponFactories(Random.between(0, 3))()
+    }
+    for (x <- 0 until 4) {
+      itemInventory += this.compatiblePotionFactories(Random.between(0, 2))()
+    }
+  }
+  
   private var manaPoints: Int = maxManaPoints
 
   private var magicForceMultiplier: Float = 1.0
