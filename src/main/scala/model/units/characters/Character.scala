@@ -4,6 +4,8 @@ import model.items.Item
 import model.items.weapons.Weapon
 import model.units.Units
 
+import scala.collection.mutable.ArrayBuffer
+
 /**
  * Trait defining additional behavior for character units, including weapons and items.
  *
@@ -12,7 +14,9 @@ import model.units.Units
  * types of weapons.
  */
 trait Character extends Units {
-
+  
+  def init(): Unit
+  
   /**
    * Sets the character's weapon.
    *
@@ -25,7 +29,7 @@ trait Character extends Units {
    *
    * @param itemList The new list of items in the character's inventory.
    */
-  def setItemInventory(itemList: List[Item]): Unit
+  def setItemInventory(itemList: ArrayBuffer[Item]): Unit
 
   /**
    * Gets the character's currently equipped weapon.
@@ -39,7 +43,7 @@ trait Character extends Units {
    *
    * @return The list of items in the character's inventory.
    */
-  def getItemInventory: List[Item]
+  def getItemInventory: ArrayBuffer[Item]
 
   /**
    * Calculates the character's action bar maximum, based on their weight and equipped weapon.

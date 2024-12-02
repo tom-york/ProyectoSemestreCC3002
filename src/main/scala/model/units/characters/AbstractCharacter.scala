@@ -3,9 +3,10 @@ package model.units.characters
 import model.exceptions.{DefeatedTarget, InvalidActionTarget, WeaponNotPresent}
 import model.items.Item
 import model.items.weapons.Weapon
-import model.panels.IPanel
+import model.panels.{IPanel, Panel}
 import model.units.AbstractUnit
 import util.Json.{*, given}
+import scala.collection.mutable.ArrayBuffer
 
 /**
  * Abstract class for characters, implementing the `Character` trait and adding weapon and item inventory.
@@ -20,7 +21,7 @@ import util.Json.{*, given}
  * @param panel The panel associated with the character.
  * @param itemInventory The initial list of items in the character's inventory.
  */
-abstract class AbstractCharacter(name: String, healthPoints: Int, defensePoints: Int, weight: Int, panel: IPanel, private var itemInventory: List[Item]) extends AbstractUnit(name, healthPoints, defensePoints, weight, panel) with Character {
+abstract class AbstractCharacter(name: String, healthPoints: Int, defensePoints: Int, weight: Int, panel: IPanel, private var itemInventory: ArrayBuffer[Item]) extends AbstractUnit(name, healthPoints, defensePoints, weight, panel) with Character {
 
   protected var weaponSlot: Option[Weapon] = None
 
@@ -45,8 +46,8 @@ abstract class AbstractCharacter(name: String, healthPoints: Int, defensePoints:
    *
    * @param itemList The new list of items in the character's inventory.
    */
-  def setItemInventory(itemList: List[Item]): Unit = {
-    itemInventory = itemList
+  def setItemInventory(itemArray: ArrayBuffer[Item]): Unit = {
+    itemInventory = itemArray
   }
 
   /**
@@ -54,7 +55,7 @@ abstract class AbstractCharacter(name: String, healthPoints: Int, defensePoints:
    *
    * @return The list of items in the character's inventory.
    */
-  def getItemInventory: List[Item] = itemInventory
+  def getItemInventory: ArrayBuffer[Item] = itemInventory
 
   /**
    * Gets the total damage the character can deal, based on their equipped weapon.

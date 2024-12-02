@@ -10,6 +10,7 @@ import model.items.potions.Potion
 import model.items.potions.normal.*
 import model.items.weapons.Weapon
 import model.panels.IPanel
+import scala.collection.mutable.ArrayBuffer
 
 /**
  * Abstract class for normal characters, extending `AbstractCharacter`.
@@ -23,7 +24,7 @@ import model.panels.IPanel
  * @param panel The panel associated with the normal character.
  * @param itemInventory The initial list of items in the normal character's inventory.
  */
-abstract class AbstractNormalCharacter(name: String, healthPoints: Int, defensePoints: Int, weight: Int, panel: IPanel, itemInventory: List[Item]) extends AbstractCharacter(name, healthPoints, defensePoints, weight, panel, itemInventory) {
+abstract class AbstractNormalCharacter(name: String, healthPoints: Int, defensePoints: Int, weight: Int, panel: IPanel, itemInventory: ArrayBuffer[Item]) extends AbstractCharacter(name, healthPoints, defensePoints, weight, panel, itemInventory) {
 
   protected def compatibleWeapons: List[Weapon]
 

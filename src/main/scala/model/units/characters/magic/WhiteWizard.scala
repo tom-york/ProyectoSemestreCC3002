@@ -11,6 +11,7 @@ import model.items.weapons.normal.Bow
 import model.items.weapons.magic.*
 import model.items.weapons.Weapon
 import model.panels.IPanel
+import scala.collection.mutable.ArrayBuffer
 
 /**
  * A class representing a White Wizard character in the game.
@@ -26,7 +27,7 @@ import model.panels.IPanel
  * @param itemInventory The inventory of items the White Wizard possesses.
  * @param manaPoints The initial mana points of the White Wizard.
  */
-class WhiteWizard(name: String, healthPoints: Int, defensePoints: Int, weight: Int, panel: IPanel, itemInventory: List[Item], manaPoints: Int) extends AbstractMagicCharacter(name, healthPoints, defensePoints, weight, panel, itemInventory, manaPoints) {
+class WhiteWizard(name: String, healthPoints: Int, defensePoints: Int, weight: Int, panel: IPanel, itemInventory: ArrayBuffer[Item], manaPoints: Int) extends AbstractMagicCharacter(name, healthPoints, defensePoints, weight, panel, itemInventory, manaPoints) {
   private val compatibleWeapons: List[Weapon] = List(new Bow(), new Wand(), new Staff())
 
   override val actions: List[Action] = List(new Attack(), new Move(), new Consume("Consume", compatibleConsumables), new Equip("Equip", compatibleWeapons), new Heal(), new Purify())

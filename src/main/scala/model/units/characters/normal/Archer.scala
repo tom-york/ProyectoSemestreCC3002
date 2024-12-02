@@ -5,11 +5,17 @@ import model.actions.base.*
 import model.actions.usage.*
 import model.exceptions.IncompatibleWeapon
 import model.items.Item
+import model.items.potions.normal.StrengthPotion
 import model.items.weapons.normal.*
 import model.items.weapons.magic.Wand
 import model.items.weapons.Weapon
 import model.panels.IPanel
+import model.patterns.factory.potions.{HealingPotionFactory, PotionFactory, StrengthPotionFactory}
+import model.patterns.factory.weapon.{BowFactory, SwordFactory, WandFactory, WeaponFactory}
 import model.units.characters.AbstractNormalCharacter
+
+import scala.collection.mutable.ArrayBuffer
+import scala.util.Random
 
 /**
  * Class representing an Archer character, extending `AbstractNormalCharacter`.
@@ -24,7 +30,18 @@ import model.units.characters.AbstractNormalCharacter
  * @param panel The panel associated with the Archer.
  * @param itemInventory The initial list of items in the Archer's inventory.
  */
-class Archer(name: String, healthPoints: Int, defensePoints: Int, weight: Int, panel: IPanel, itemInventory: List[Item]) extends AbstractNormalCharacter(name, healthPoints, defensePoints, weight, panel, itemInventory) {
+class Archer(name: String, healthPoints: Int, defensePoints: Int, weight: Int, panel: IPanel, itemInventory: ArrayBuffer[Item]) extends AbstractNormalCharacter(name, healthPoints, defensePoints, weight, panel, itemInventory) {
+
+  private val compatibleWeaponFactories: List[WeaponFactory] = List(SwordFactory, BowFactory, WandFactory)
+
+  private val compatiblePotions: List[PotionFactory] = List(HealingPotionFactory, StrengthPotionFactory)
+
+  override def init(): Unit = {
+    for (x <- 0 until 2) {
+      itemInventory += compatibleWeaponFactories(Random.between(0,3))()
+    }
+  }
+
   protected val compatibleWeapons: List[Weapon] = List(new Sword(), new Bow(), new Wand())
 
   /**

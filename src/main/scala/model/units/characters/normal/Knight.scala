@@ -5,7 +5,10 @@ import model.items.Item
 import model.items.weapons.normal.*
 import model.items.weapons.Weapon
 import model.panels.IPanel
+import model.patterns.factory.potions.{HealingPotionFactory, PotionFactory, StrengthPotionFactory}
+import model.patterns.factory.weapon.{BowFactory, DaggerFactory, SwordFactory, WeaponFactory}
 import model.units.characters.AbstractNormalCharacter
+import scala.collection.mutable.ArrayBuffer
 
 /**
  * A class representing a Knight character in the game.
@@ -20,7 +23,16 @@ import model.units.characters.AbstractNormalCharacter
  * @param panel The game panel where the Knight is displayed.
  * @param itemInventory The inventory of items the Knight possesses.
  */
-class Knight(name: String, healthPoints: Int, defensePoints: Int, weight: Int, panel: IPanel, itemInventory: List[Item]) extends AbstractNormalCharacter(name, healthPoints, defensePoints, weight, panel, itemInventory) {
+class Knight(name: String, healthPoints: Int, defensePoints: Int, weight: Int, panel: IPanel, itemInventory: ArrayBuffer[Item]) extends AbstractNormalCharacter(name, healthPoints, defensePoints, weight, panel, itemInventory) {
+  
+  private val compatibleWeaponFactories: List[WeaponFactory] = List(SwordFactory, DaggerFactory, BowFactory)
+
+  private val compatiblePotions: List[PotionFactory] = List(HealingPotionFactory, StrengthPotionFactory)
+
+  override def init(): Unit = {
+
+  }
+  
   protected val compatibleWeapons: List[Weapon] = List(new Sword(), new Dagger(), new Bow())
 
   /**

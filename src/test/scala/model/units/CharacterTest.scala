@@ -29,7 +29,7 @@ class CharacterTest extends FunSuite{
   private val weapon = new Sword("weapon", 90, 30)
   private val weapon2 = new Wand("wand", 30, 30, 30)
   private val item1 = new ManaPotion("potion")
-  private val itemInventory: List[Item] = List(weapon, item1)
+  private val itemInventory: ArrayBuffer[Item] = List(weapon, item1)
   private var panel1: Panel = _
 
   override def beforeEach(context: BeforeEach): Unit = {

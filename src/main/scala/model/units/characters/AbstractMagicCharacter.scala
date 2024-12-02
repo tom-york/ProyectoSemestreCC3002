@@ -10,6 +10,7 @@ import model.items.potions.magic.*
 import model.items.potions.normal.*
 import model.panels.IPanel
 import util.Json.{*, given}
+import scala.collection.mutable.ArrayBuffer
 
 /**
  * Abstract class for magic characters, extending `AbstractCharacter` and adding mana points.
@@ -25,7 +26,7 @@ import util.Json.{*, given}
  * @param itemInventory The initial list of items in the magic character's inventory.
  * @param maxManaPoints The maximum mana points of the magic character.
  */
-abstract class AbstractMagicCharacter(name: String, healthPoints: Int, defensePoints: Int, weight: Int, panel: IPanel, itemInventory: List[Item], private var maxManaPoints: Int) extends AbstractCharacter(name, healthPoints, defensePoints, weight, panel, itemInventory) with MagicCharacter {
+abstract class AbstractMagicCharacter(name: String, healthPoints: Int, defensePoints: Int, weight: Int, panel: IPanel, itemInventory: ArrayBuffer[Item], private var maxManaPoints: Int) extends AbstractCharacter(name, healthPoints, defensePoints, weight, panel, itemInventory) with MagicCharacter {
 
   private var manaPoints: Int = maxManaPoints
 
