@@ -4,5 +4,5 @@ import model.units.characters.Character
 import model.units.characters.normal.Archer
 
 object ArcherFactory extends CharacterFactory {
-  override def apply(): Character = new Archer("Archer", 90, 60, 30, new Panel(), List())
+  override def apply(panel: Panel): Character = new Archer("Archer", 90, 60, 30, panel, List())
 }

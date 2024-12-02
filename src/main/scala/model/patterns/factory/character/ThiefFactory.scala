@@ -6,5 +6,5 @@ import model.units.characters.normal.Thief
 
 
 object ThiefFactory extends CharacterFactory {
-  override def apply(): Character = new Thief("Thief", 90, 60, 30, new Panel(), List())
+  override def apply(panel: Panel): Character = new Thief("Thief", 90, 60, 30, panel, List())
 }

@@ -6,5 +6,5 @@ import model.units.characters.magic.WhiteWizard
 
 
 object WhiteWizardFactory extends CharacterFactory {
-  override def apply(): Character = new WhiteWizard("WhiteWizard", 90, 60, 30, new Panel(), List(), 40)
+  override def apply(panel: Panel): Character = new WhiteWizard("WhiteWizard", 90, 60, 30, panel, List(), 40)
 }
