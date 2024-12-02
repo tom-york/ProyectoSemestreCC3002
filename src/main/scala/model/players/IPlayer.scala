@@ -1,13 +1,13 @@
 package model.players
 
 import api.GameObject
-import model.patterns.observer.Observer
+import model.patterns.observer.{Observer, Subject}
 import model.units.Units
 
 /**
  * An interface defining a player in the game, extending the `GameObject` interface.
  */
-trait IPlayer extends GameObject with Observer[Boolean]{
+trait IPlayer extends Subject[Boolean] with GameObject with Observer[Boolean]{
   /**
    * Retrieves the list of units belonging to the player.
    *
@@ -21,4 +21,6 @@ trait IPlayer extends GameObject with Observer[Boolean]{
    * @return `true` if the player is defeated, `false` otherwise.
    */
   def isDefeated: Boolean
+  
+  def addUnit(units: Units): Unit
 }

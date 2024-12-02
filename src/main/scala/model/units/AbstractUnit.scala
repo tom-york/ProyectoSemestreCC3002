@@ -4,6 +4,7 @@ import api.{Source, Target}
 import model.actions.Action
 import model.exceptions.{DefeatedTarget, InvalidActionTarget, NoIdFound}
 import model.panels.IPanel
+import model.patterns.observer.Subject
 import model.units.characters.{Character, MagicCharacter}
 
 import java.util.UUID

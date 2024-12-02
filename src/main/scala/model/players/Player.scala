@@ -17,6 +17,7 @@ import scala.collection.mutable
  */
 class Player extends IPlayer {
   private var defeatState: Boolean = false
+  
   private val unitMap: mutable.Map[Units, Boolean] = mutable.Map()
 
   override def update(o: ISubject[Boolean], arg: Boolean): Unit = {
@@ -24,7 +25,16 @@ class Player extends IPlayer {
       case u: Units => unitMap(u) = arg
     val currentPlayerState: Boolean = unitMap.forall((_, value) => value)
     defeatState = currentPlayerState
+    if (defeatState) {
+      notifyObservers(true)
+    }
   }
+
+  override def addUnit(units: Units): Unit = {
+    unitMap.put(units, false)
+    units.registerObserver(this)
+  }
+  
   /**
    * Retrieves the list of units assigned to the player.
    *
