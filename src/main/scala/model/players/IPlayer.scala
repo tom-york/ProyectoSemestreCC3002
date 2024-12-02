@@ -1,6 +1,7 @@
 package model.players
 
 import api.GameObject
+import model.panels.Panel
 import model.patterns.observer.{Observer, Subject}
 import model.units.Units
 
@@ -8,6 +9,9 @@ import model.units.Units
  * An interface defining a player in the game, extending the `GameObject` interface.
  */
 trait IPlayer extends Subject[Boolean] with GameObject with Observer[Boolean]{
+  
+  def init(panel: Panel): Unit
+  
   /**
    * Retrieves the list of units belonging to the player.
    *

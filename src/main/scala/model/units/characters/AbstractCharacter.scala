@@ -44,7 +44,7 @@ abstract class AbstractCharacter(name: String, healthPoints: Int, defensePoints:
   /**
    * Sets the character's item inventory.
    *
-   * @param itemList The new list of items in the character's inventory.
+   * @param itemArray The new list of items in the character's inventory.
    */
   def setItemInventory(itemArray: ArrayBuffer[Item]): Unit = {
     itemInventory = itemArray

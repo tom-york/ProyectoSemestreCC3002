@@ -1,5 +1,7 @@
 package model.players
 
+import model.panels.Panel
+import model.patterns.factory.character.{ArcherFactory, BlackWizardFactory, CharacterFactory, KnightFactory, ThiefFactory, WhiteWizardFactory}
 import model.patterns.observer.ISubject
 import model.units.Units
 import util.Json.{*, given}
@@ -7,6 +9,7 @@ import util.Json.{*, given}
 import scala.collection.mutable.Map
 import java.util.UUID
 import scala.collection.mutable
+import scala.util.Random
 
 /**
  * A concrete class representing a player, implementing the IPlayer interface.
@@ -19,6 +22,14 @@ class Player extends IPlayer {
   private var defeatState: Boolean = false
   
   private val unitMap: mutable.Map[Units, Boolean] = mutable.Map()
+  
+  private val compatibleCharacterFactories: List[CharacterFactory] = List(ArcherFactory, BlackWizardFactory, KnightFactory, ThiefFactory, WhiteWizardFactory)
+
+  override def init(panel: Panel): Unit = {
+    for (x <- 0 until 3) {
+      addUnit(compatibleCharacterFactories(Random.between(0, 5))(panel))
+    }
+  }
 
   override def update(o: ISubject[Boolean], arg: Boolean): Unit = {
     o match
