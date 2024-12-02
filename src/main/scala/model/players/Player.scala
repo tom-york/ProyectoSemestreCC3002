@@ -2,6 +2,7 @@ package model.players
 
 import model.panels.Panel
 import model.patterns.factory.character.{ArcherFactory, BlackWizardFactory, CharacterFactory, KnightFactory, ThiefFactory, WhiteWizardFactory}
+import model.units.characters.Character
 import model.patterns.observer.ISubject
 import model.units.Units
 import util.Json.{*, given}
@@ -27,7 +28,9 @@ class Player extends IPlayer {
 
   override def init(panel: Panel): Unit = {
     for (x <- 0 until 3) {
-      addUnit(compatibleCharacterFactories(Random.between(0, 5))(panel))
+      val u: Character = compatibleCharacterFactories(Random.between(0, 5))(panel)
+      u.init()
+      addUnit(u)
     }
   }
 
