@@ -4,6 +4,7 @@ import api.{GameApi, IGameController, Source}
 import model.actions.Action
 import model.exceptions.NoIdFound
 import model.panels.Panel
+import model.patterns.observer.{ISubject, Observer}
 import model.players.Player
 import model.scheduler.TaskScheduler
 import model.units.Units
@@ -11,15 +12,36 @@ import util.Json.{*, given}
 
 import scala.collection.mutable.ArrayBuffer
 
-object GameController extends IGameController {
+object GameController extends IGameController with Observer[Boolean] {
   /* write your code here */
   private val gameScheduler: TaskScheduler = new TaskScheduler()
-  private val player1: Player = new Player(List())
-  private val player2: Player = new Player(List())
+
+  private val playerList: ArrayBuffer[Player] = ArrayBuffer()
+  
+  private var isFinished: Boolean = false
+
+  private def addPlayers(player: Player): Unit = {
+    playerList += player
+    player.registerObserver(this)
+  }
+
+  override def update(o: ISubject[Boolean], arg: Boolean): Unit = {
+    if (arg) {
+      isFinished = true
+    }
+  }
+  
+  private val player1: Player = new Player()
+  private val player2: Player = new Player()
+  
+  addPlayers(player1)
+  addPlayers(player2)
+  
   private val panel1: Panel = new Panel((1,1), ArrayBuffer())
   private val panel2: Panel = new Panel((1,2), ArrayBuffer())
   private val panel3: Panel = new Panel((2,1), ArrayBuffer())
   private val panel4: Panel = new Panel((2,2), ArrayBuffer())
+  
   panel1.setSouth(Some(panel3))
   panel1.setEast(Some(panel2))
   panel2.setWest(Some(panel1))
@@ -103,20 +125,25 @@ object GameController extends IGameController {
    * a message that describes the result of the action
    */
   def doAction(actionId: String, sourceId: String, targetId: String): String = {
-    try {
-      val source: Units = getUnitById(sourceId)
-      val action: Action = source.findActionById(actionId)
-      val target: Units = getUnitById(targetId)
-      source.doAction(action, target)
-      "Action successful"
-    } catch {
-      //Placeholder error, in next releases will be changed for each individual exception
-      case e: Exception => "Error"
+    if (!isFinished) {
+      try {
+        val source: Units = getUnitById(sourceId)
+        val action: Action = source.findActionById(actionId)
+        val target: Units = getUnitById(targetId)
+        source.doAction(action, target)
+        if (isFinished) "Game Finished"
+        else "Action successful"
+      } catch {
+        case e: Exception => "Error"
+      }
     }
+    else "Game already finished"
   }
 
   /** Resets the game. All configurations and parameters should be reset too. */
-  def reset(): Unit = None
+  def reset(): Unit = {
+    isFinished = false
+  }
 
   def main(args: Array[String]): Unit = {
 
