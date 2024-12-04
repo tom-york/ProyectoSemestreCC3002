@@ -31,6 +31,11 @@ object GameController extends IGameController with Observer[Boolean] {
   panel4.setNorth(Some(panel2))
   panel4.setWest(Some(panel3))
 
+  /** Initializes the game by setting up the game scheduler and players.
+   *
+   * Creates two players, places them on specific panels, and adds their units
+   * to the game scheduler.
+   */
   def init(): Unit = {
     gameScheduler = new TaskScheduler()
     playerList.clear()
@@ -42,17 +47,30 @@ object GameController extends IGameController with Observer[Boolean] {
     playerList(1).getUnitList.foreach(gameScheduler.addUnit(_))
   }
 
+  /** Adds a player to the game and registers them as an observer.
+   *
+   * @param player The player to be added to the game
+   */
   private def addPlayers(player: Player): Unit = {
     player.registerObserver(this)
     playerList += player
   }
 
+  /** Updates the game's finish state when notified by an observed subject.
+   *
+   * @param o The subject sending the update
+   * @param arg Boolean indicating if the game is finished
+   */
   override def update(o: ISubject[Boolean], arg: Boolean): Unit = {
     if (arg) {
       isFinished = true
     }
   }
-  
+
+  /** Retrieves the current game state's completion status.
+   *
+   * @return Boolean indicating whether the game has finished
+   */
   def getFinishState: Boolean = isFinished
 
   /** Returns the players of the game. In this version of the project, there are
@@ -108,7 +126,12 @@ object GameController extends IGameController with Observer[Boolean] {
       throw new NoIdFound(id)
     )
   }
-
+  
+  /** Retrieves possible actions for a specific game unit.
+   *
+   * @param id Unique identifier of the game unit
+   * @return Optional JSON array of available actions
+   */
   def findActionsByGameUnitId(id: String): Option[JsVal] = {
     val gameUnit: Units = getUnitById(id)
     val actionsJson = JsArr(gameUnit.actions.map(_.toJson))
