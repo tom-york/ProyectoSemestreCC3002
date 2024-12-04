@@ -26,6 +26,13 @@ class Player extends IPlayer {
   
   private val compatibleCharacterFactories: List[CharacterFactory] = List(ArcherFactory, BlackWizardFactory, KnightFactory, ThiefFactory, WhiteWizardFactory)
 
+  /** Initializes the player with a set of randomly selected characters on the given panel.
+   *
+   * Creates 3 characters from a predefined list of character factories,
+   * randomly selecting their types and placing them on the specified panel.
+   *
+   * @param panel The game panel where characters will be initialized
+   */
   override def init(panel: Panel): Unit = {
     for (x <- 0 until 3) {
       val u: Character = compatibleCharacterFactories(Random.between(0, 5))(panel)
@@ -34,6 +41,14 @@ class Player extends IPlayer {
     }
   }
 
+  /** Updates the player's state based on the defeat status of its units.
+   *
+   * When a unit is defeated, this method updates the player's overall defeat state.
+   * If all units are defeated, it notifies observers of the player's defeat.
+   *
+   * @param o   The subject (unit) sending the update
+   * @param arg Boolean indicating the unit's defeat status
+   */
   override def update(o: ISubject[Boolean], arg: Boolean): Unit = {
     o match
       case u: Units => unitMap(u) = arg
@@ -44,6 +59,10 @@ class Player extends IPlayer {
     }
   }
 
+  /** Adds a unit to the player's unit map and registers the player as an observer.
+   *
+   * @param units The game unit to be added to the player's units
+   */
   override def addUnit(units: Units): Unit = {
     unitMap.put(units, false)
     units.registerObserver(this)
