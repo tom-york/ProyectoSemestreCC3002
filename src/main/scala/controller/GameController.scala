@@ -16,7 +16,7 @@ object GameController extends IGameController with Observer[Boolean] {
   /* write your code here */
 
   private var gameScheduler: TaskScheduler = _
-  private var playerList: ArrayBuffer[Player] = _
+  val playerList: ArrayBuffer[Player] = ArrayBuffer()
   private var isFinished: Boolean = false
   private val panel1: Panel = new Panel((1, 1), ArrayBuffer())
   private val panel2: Panel = new Panel((1, 2), ArrayBuffer())
@@ -33,15 +33,18 @@ object GameController extends IGameController with Observer[Boolean] {
 
   def init(): Unit = {
     gameScheduler = new TaskScheduler()
-    playerList = ArrayBuffer(new Player(), new Player())
-    playerList.foreach(addPlayers)
+    playerList.clear()
+    val playersToAdd = Seq(new Player(), new Player())
+    playersToAdd.foreach(addPlayers)
     playerList(0).init(panel1)
+    playerList(0).getUnitList.foreach(gameScheduler.addUnit(_))
     playerList(1).init(panel4)
+    playerList(1).getUnitList.foreach(gameScheduler.addUnit(_))
   }
 
   private def addPlayers(player: Player): Unit = {
-    playerList += player
     player.registerObserver(this)
+    playerList += player
   }
 
   override def update(o: ISubject[Boolean], arg: Boolean): Unit = {
@@ -49,6 +52,8 @@ object GameController extends IGameController with Observer[Boolean] {
       isFinished = true
     }
   }
+  
+  def getFinishState: Boolean = isFinished
 
   /** Returns the players of the game. In this version of the project, there are
    * strictly two players. Each player should send the information of his game
