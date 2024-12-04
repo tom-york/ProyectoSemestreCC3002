@@ -176,7 +176,7 @@ abstract class AbstractUnit(override val name: String, private val maxHealthPoin
    * Throws an `InvalidActionTarget` exception, as the "Move" action is not valid for a generic unit.
    *
    * @param unit The unit to be moved.
-   * @throws InvalidActionTarget
+   * @throws InvalidActionTarget As the action doesn't match the correct target
    */
   override def moveUnit(unit: Units): Unit = {
     throw new InvalidActionTarget("Unit", "Move")
@@ -186,7 +186,7 @@ abstract class AbstractUnit(override val name: String, private val maxHealthPoin
    * Throws an `InvalidActionTarget` exception, as the "Equip" action is not valid for a generic unit.
    *
    * @param character The character trying to equip a weapon.
-   * @throws InvalidActionTarget
+   * @throws InvalidActionTarget As the action doesn't match the correct target
    */
   override def equipWeapon(character: characters.Character): Unit = {
     throw new InvalidActionTarget("Unit", "Equip")
@@ -196,7 +196,7 @@ abstract class AbstractUnit(override val name: String, private val maxHealthPoin
    * Throws an `InvalidActionTarget` exception, as the "Meteorite" action is not valid for a generic unit.
    *
    * @param magicCharacter The magic character trying to use the "Meteorite" action.
-   * @throws InvalidActionTarget
+   * @throws InvalidActionTarget As the action doesn't match the correct target
    */
   override def useMeteorite(magicCharacter: MagicCharacter): Unit = {
     throw new InvalidActionTarget("Unit", "Meteorite")
@@ -206,7 +206,7 @@ abstract class AbstractUnit(override val name: String, private val maxHealthPoin
    * Throws an `InvalidActionTarget` exception, as the "Consume" action is not valid for a generic unit.
    *
    * @param magicCharacter The magic character trying to consume an item.
-   * @throws InvalidActionTarget
+   * @throws InvalidActionTarget As the action doesn't match the correct target
    */
   override def magicCharacterConsume(magicCharacter: MagicCharacter): Unit = {
     throw new InvalidActionTarget("Unit", "Consume")
@@ -216,7 +216,7 @@ abstract class AbstractUnit(override val name: String, private val maxHealthPoin
    * Throws an `InvalidActionTarget` exception, as the "Consume" action is not valid for a generic unit.
    *
    * @param character The character trying to consume an item.
-   * @throws InvalidActionTarget
+   * @throws InvalidActionTarget As the action doesn't match the correct target
    */
   override def characterConsume(character: Character): Unit = {
     throw new InvalidActionTarget("Unit", "Consume")
