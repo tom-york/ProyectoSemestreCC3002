@@ -1,15 +1,7 @@
 package controller
 
-import model.items.weapons.magic.Wand
-import model.items.weapons.normal.Sword
-import model.panels.Panel
 import model.players.Player
-import model.scheduler.TaskScheduler
-import model.units.Enemy
-import model.units.characters.magic.WhiteWizard
-import model.units.characters.normal.Knight
 import munit.FunSuite
-import util.Json.{*, given}
 
 import scala.collection.mutable.ArrayBuffer
 
