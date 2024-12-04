@@ -27,11 +27,13 @@ abstract class AbstractUnit(override val name: String, private val maxHealthPoin
 
   panel.addUnit(this)
 
-  /**
-   * Sets the unit's health points.
+  /** Sets the unit's health points with validation.
    *
-   * @param sHp The new health points value for the unit.
-   * @throws IllegalArgumentException if the new health points value is negative or exceeds the maximum.
+   * Updates health points if the new value is within valid range (0 to maxHealthPoints).
+   * Notifies observers if health points reach zero, indicating unit defeat.
+   *
+   * @param sHp The new health points value
+   * @throws IllegalArgumentException If health points are negative or exceed maximum
    */
   override def setHp(sHp: Int): Unit = {
     if (0 <= sHp && sHp <= maxHealthPoints) {
