@@ -40,6 +40,9 @@ abstract class AbstractUnit(override val name: String, private val maxHealthPoin
     else {
       throw new IllegalArgumentException("Either the new HP is negative or over the maximum HP allowed")
     }
+    if (healthPoints == 0) {
+      notifyObservers(true)
+    }
   }
 
   /**
