@@ -20,7 +20,7 @@ class WeaponTest extends FunSuite {
   private val attackPoints = 90
   private val weight = 30
   private val magicAttackPoints = 30
-  private val owner1: Knight = Knight("juan", 90, 60, 30, panel1, List())
+  private val owner1: Knight = Knight("juan", 90, 60, 30, panel1, ArrayBuffer())
 
   override def beforeEach(context: BeforeEach): Unit = {
     sword1 = new Sword(name, attackPoints, weight)
@@ -55,7 +55,7 @@ class WeaponTest extends FunSuite {
     assertEquals(sword1.getOwner, None)
     dagger1.setOwner(owner1)
     assertEquals(dagger1.getOwner, Some(owner1))
-    val owner2: Knight = new Knight("kn", 90, 90, 90, panel1, List())
+    val owner2: Knight = new Knight("kn", 90, 90, 90, panel1, ArrayBuffer())
     dagger1.setOwner(owner2)
     assertEquals(dagger1.getOwner, Some(owner2))
   }

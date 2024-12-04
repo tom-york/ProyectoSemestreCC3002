@@ -24,11 +24,11 @@ class SchedulerTest extends FunSuite {
   override def beforeEach(context: BeforeEach): Unit = {
     panel1 = new Panel((1, 1), ArrayBuffer())
     enemy1 = new Enemy("enemy1", 90, 30, 45, panel1, 50)
-    character1 = new Knight("knight", 80, 40, 35, panel1, List())
+    character1 = new Knight("knight", 80, 40, 35, panel1, ArrayBuffer())
     weapon1 = new Sword("sword", 40, 10)
     weapon1.setOwner(character1)
     //max action bar should be 35 + 0.5*10 = 40
-    character2 = new WhiteWizard("w wizard", 85, 30, 35, panel1, List(), 20)
+    character2 = new WhiteWizard("w wizard", 85, 30, 35, panel1, ArrayBuffer(), 20)
     weapon2 = new Wand("sword", 30, 5, 15)
     weapon2.setOwner(character2)
     scheduler1 = new TaskScheduler()

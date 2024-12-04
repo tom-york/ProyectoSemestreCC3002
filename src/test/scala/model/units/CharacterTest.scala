@@ -29,7 +29,7 @@ class CharacterTest extends FunSuite{
   private val weapon = new Sword("weapon", 90, 30)
   private val weapon2 = new Wand("wand", 30, 30, 30)
   private val item1 = new ManaPotion("potion")
-  private val itemInventory: ArrayBuffer[Item] = List(weapon, item1)
+  private val itemInventory: ArrayBuffer[Item] = ArrayBuffer(weapon, item1)
   private var panel1: Panel = _
 
   override def beforeEach(context: BeforeEach): Unit = {
@@ -37,7 +37,7 @@ class CharacterTest extends FunSuite{
     knight1 = new Knight(name, healthPoints, defensePoints, weight, panel1, itemInventory)
     weapon.setOwner(knight1)
     thief1 = new Thief(name, healthPoints, defensePoints, weight, panel1, itemInventory)
-    archer1 = new Archer(name, healthPoints, defensePoints, weight, panel1, List())
+    archer1 = new Archer(name, healthPoints, defensePoints, weight, panel1, ArrayBuffer())
     blackWizard1 = new BlackWizard(name, healthPoints, defensePoints, weight, panel1, itemInventory, manaPoints)
     whiteWizard1 = new WhiteWizard(name, healthPoints, defensePoints, weight, panel1, itemInventory, manaPoints)
   }
@@ -78,8 +78,8 @@ class CharacterTest extends FunSuite{
   test("A character has an item inventory.") {
     assertEquals(knight1.getItemInventory, itemInventory)
     assertEquals(blackWizard1.getItemInventory, itemInventory)
-    blackWizard1.setItemInventory(List())
-    assertEquals(blackWizard1.getItemInventory, List())
+    blackWizard1.setItemInventory(ArrayBuffer())
+    assertEquals(blackWizard1.getItemInventory, ArrayBuffer())
   }
 
   test("A magical characters has mana points.") {

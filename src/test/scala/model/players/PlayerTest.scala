@@ -21,18 +21,22 @@ class PlayerTest extends FunSuite {
     
     enemy2 = new Enemy("john", 91, 61, 31, panel1, 41)
     
-    player1 = new Player(List())
-    player2 = new Player(List(enemy1, enemy2))
+    player1 = new Player()
+    player2 = new Player()
+
+    player2.addUnit(enemy2)
+    player2.addUnit(enemy1)
   }
 
   test("A player has a list of units") {
     assertEquals(player1.getUnitList, List())
-    assertEquals(player2.getUnitList, List(enemy1, enemy2))
+    assertEquals(player2.getUnitList, List(enemy2, enemy1))
   }
 
   test("A player can be defeated") {
     assertEquals(player1.isDefeated, false)
-    player2.setDefeatState(true)
+    enemy1.setHp(0)
+    enemy2.setHp(0)
     assertEquals(player2.isDefeated, true)
   }
 
@@ -40,8 +44,8 @@ class PlayerTest extends FunSuite {
     val player2Json = JsObj(
       "id" -> player2.id,
       "characters" -> JsArr(
-        enemy1.toJson,
-        enemy2.toJson
+        enemy2.toJson,
+        enemy1.toJson
       )
     )
     assertEquals(player2.toJson, player2Json)
